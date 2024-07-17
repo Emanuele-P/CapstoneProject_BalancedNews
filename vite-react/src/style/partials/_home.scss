@@ -1,0 +1,36 @@
+.left-aside {
+  min-height: 100vh;
+  background-color: red;
+}
+
+.main-section {
+  min-height: 100vh;
+  //   background-color: green;
+}
+
+.right-aside {
+  height: calc(100vh - 56px - 25px - 30px);
+  background-color: $primary;
+  border-radius: 8px;
+}
+
+//all home sections
+.hmsc {
+  padding: 0.5rem;
+}
+
+//hero
+.hero-wrapper {
+  overflow: hidden;
+  height: 40vh;
+}
+.hero {
+  object-fit: contain !important;
+  max-height: 60vh;
+  object-position: center;
+}
+
+h2 {
+  color: $black;
+  margin-block: 1rem;
+}
