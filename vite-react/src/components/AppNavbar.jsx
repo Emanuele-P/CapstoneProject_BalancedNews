@@ -7,7 +7,7 @@ import propic from '../assets/default-avatar.jpg'
 
 function AppNavbar() {
   return (
-    <Navbar expand="lg">
+    <Navbar expand="lg" className="navbar">
       <Container className="justify-content-between">
         <Navbar.Brand href="#home">News Logo</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

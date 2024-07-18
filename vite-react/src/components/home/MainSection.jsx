@@ -16,6 +16,7 @@ function MainSection() {
       </section>
       <h2>Latest news</h2>
       <CentralCard />
+      <div className="separator"></div>
     </Col>
   )
 }

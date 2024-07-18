@@ -1,7 +1,12 @@
-import { Card, Row } from 'react-bootstrap'
+import { Badge, Card, Row } from 'react-bootstrap'
 import pic from '../../assets/leftpic.webp'
+import BiasBar from '../BiasBar'
 
 function LeftCard() {
+  const leftPercentage = 'L33%'
+  const centerPercentage = 'C34%'
+  const rightPercentage = 'R33%'
+
   return (
     <>
       <Card className="left-card w-100">
@@ -10,11 +15,16 @@ function LeftCard() {
             <Card.Img src={pic} className="left-card-pic" />
           </div>
           <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
+            <Badge>n Sources</Badge>
+            <Card.Title>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis consequuntur veniam,
               possimus fugit nam
-            </Card.Text>
+            </Card.Title>
+            <BiasBar
+              leftPercentage={leftPercentage}
+              centerPercentage={centerPercentage}
+              rightPercentage={rightPercentage}
+            />
           </Card.Body>
         </Row>
       </Card>
@@ -25,11 +35,16 @@ function LeftCard() {
             <Card.Img src={pic} className="left-card-pic" />
           </div>
           <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
+            <Badge>n Sources</Badge>
+            <Card.Title>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis consequuntur veniam,
               possimus fugit nam
-            </Card.Text>
+            </Card.Title>
+            <BiasBar
+              leftPercentage={leftPercentage}
+              centerPercentage={centerPercentage}
+              rightPercentage={rightPercentage}
+            />
           </Card.Body>
         </Row>
       </Card>
@@ -40,11 +55,16 @@ function LeftCard() {
             <Card.Img src={pic} className="left-card-pic" />
           </div>
           <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
+            <Badge>n Sources</Badge>
+            <Card.Title>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis consequuntur veniam,
               possimus fugit nam
-            </Card.Text>
+            </Card.Title>
+            <BiasBar
+              leftPercentage={leftPercentage}
+              centerPercentage={centerPercentage}
+              rightPercentage={rightPercentage}
+            />
           </Card.Body>
         </Row>
       </Card>

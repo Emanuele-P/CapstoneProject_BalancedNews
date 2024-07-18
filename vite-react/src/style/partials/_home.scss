@@ -57,7 +57,7 @@
 
 h2 {
   color: $black;
-  margin-block: 1rem;
+  margin-block: 1.5rem 1rem;
 }
 
 //central card latest news
@@ -82,31 +82,51 @@ h2 {
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
     white-space: normal;
+    font-weight: 500;
   }
+
   .card-title {
     font-size: 12px;
     font-weight: 300;
   }
 }
+.separator {
+  border-bottom: 1px solid $black;
+  height: 8px;
+}
 
 //left card blindspot
 .left-card {
   background-color: transparent;
-  border-radius: 0px;
-  border: none;
+  margin-bottom: 0.5rem;
+
+  &:nth-of-type(1) {
+    border: 8px solid $right;
+  }
+  &:nth-of-type(2) {
+    border: 8px solid $left;
+  }
+  &:nth-of-type(3) {
+    border: 8px solid $center;
+  }
 
   .left-card-pic {
     border-radius: 0px;
+    overflow: hidden;
   }
-  .card-text {
+  .card-title {
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     line-clamp: 3;
     white-space: normal;
+  }
+  .card-body {
+    padding-top: 0.2rem;
+    padding-bottom: 0.4rem;
   }
 }

@@ -4,7 +4,7 @@ function CategoriesSlider() {
   return (
     <>
       <div className="categories">
-        <Container className="d-flex gap-2">
+        <Container className="d-flex gap-2 mt-3">
           <Button className="btn-ct">Politics</Button>
           <Button className="btn-ct">Business</Button>
           <Button className="btn-ct">Tech</Button>

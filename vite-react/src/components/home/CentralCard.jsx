@@ -1,5 +1,6 @@
 import { Card, Col, Row } from 'react-bootstrap'
 import pic from '../../assets/cardpic.webp'
+import BiasBar from '../BiasBar'
 
 function CentralCard() {
   return (
@@ -18,6 +19,7 @@ function CentralCard() {
                 Card title Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis
                 consequuntur veniam, possimus fugit nam
               </Card.Text>
+              <BiasBar />
             </Card.Body>
           </Col>
         </Row>
@@ -37,6 +39,7 @@ function CentralCard() {
                 Card title Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis
                 consequuntur veniam, possimus fugit nam
               </Card.Text>
+              <BiasBar />
             </Card.Body>
           </Col>
         </Row>
@@ -56,6 +59,7 @@ function CentralCard() {
                 Card title Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis
                 consequuntur veniam, possimus fugit nam
               </Card.Text>
+              <BiasBar />
             </Card.Body>
           </Col>
         </Row>
@@ -75,6 +79,7 @@ function CentralCard() {
                 Card title Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis
                 consequuntur veniam, possimus fugit nam
               </Card.Text>
+              <BiasBar />
             </Card.Body>
           </Col>
         </Row>
@@ -94,6 +99,7 @@ function CentralCard() {
                 Card title Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis
                 consequuntur veniam, possimus fugit nam
               </Card.Text>
+              <BiasBar />
             </Card.Body>
           </Col>
         </Row>
