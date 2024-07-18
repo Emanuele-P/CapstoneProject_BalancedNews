@@ -1,11 +1,9 @@
 .left-aside {
   min-height: 100vh;
-  background-color: red;
 }
 
 .main-section {
   min-height: 100vh;
-  //   background-color: green;
 }
 
 .right-aside {
@@ -23,14 +21,92 @@
 .hero-wrapper {
   overflow: hidden;
   height: 40vh;
+  position: relative;
 }
 .hero {
-  object-fit: contain !important;
-  max-height: 60vh;
-  object-position: center;
+  object-fit: cover;
+}
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, $black, transparent);
+  z-index: 1;
+}
+.hero-title {
+  position: absolute;
+  bottom: 5%;
+  color: #fff;
+  z-index: 2;
+  text-align: start;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  white-space: normal;
+  padding-inline: 1rem 0.5rem;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 
 h2 {
   color: $black;
   margin-block: 1rem;
+}
+
+//central card latest news
+.central-card {
+  background-color: $gray;
+  border: none;
+
+  .central-card-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+  .central-card-pic-container {
+    width: 100%;
+    height: 115px;
+    overflow: hidden;
+  }
+  .card-text {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    white-space: normal;
+  }
+  .card-title {
+    font-size: 12px;
+    font-weight: 300;
+  }
+}
+
+//left card blindspot
+.left-card {
+  background-color: transparent;
+  border-radius: 0px;
+  border: none;
+
+  .left-card-pic {
+    border-radius: 0px;
+  }
+  .card-text {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    white-space: normal;
+  }
 }

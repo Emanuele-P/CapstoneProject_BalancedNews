@@ -27,7 +27,7 @@ function AppNavbar() {
             </NavDropdown>
           </Nav>
           <div className="d-flex gap-3">
-            <Button className="signup-button btn-info">Signup</Button>
+            <Button className="signup-button btn-info">Sign up</Button>
             <Image src={propic} className="propic"></Image>
           </div>
         </Navbar.Collapse>
