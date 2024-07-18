@@ -31,13 +31,13 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 50%;
+  height: 55%;
   background: linear-gradient(to top, $black, transparent);
   z-index: 1;
 }
 .hero-title {
   position: absolute;
-  bottom: 5%;
+  bottom: 6%;
   color: #fff;
   z-index: 2;
   text-align: start;
@@ -86,11 +86,18 @@ h2 {
     line-clamp: 2;
     white-space: normal;
     font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  span {
+    font-size: 12px;
+    margin: 0;
   }
 
   .card-title {
     font-size: 12px;
     font-weight: 300;
+    margin-top: 0.5rem;
   }
 }
 .separator {

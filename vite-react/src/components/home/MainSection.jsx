@@ -1,8 +1,13 @@
 import { Col, Image } from 'react-bootstrap'
 import hero from '../../assets/hero.jpg'
 import CentralCard from './CentralCard'
+import BiasBar from '../BiasBar'
 
 function MainSection() {
+  const leftPercentage = 'Left 33%'
+  const centerPercentage = 'Center 34%'
+  const rightPercentage = 'Right 33%'
+
   return (
     <Col lg={6} className="main-section hmsc pt-0">
       <section className="hero-wrapper">
@@ -13,6 +18,11 @@ function MainSection() {
           inventore commodi necessitatibus doloribus, asperiores in rerum, fuga quas. Blanditiis magni hic, cumque
           nesciunt earum itaque!
         </h3>
+        <BiasBar
+          leftPercentage={leftPercentage}
+          centerPercentage={centerPercentage}
+          rightPercentage={rightPercentage}
+        />
       </section>
       <h2>Latest news</h2>
       <CentralCard />

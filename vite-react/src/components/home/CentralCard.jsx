@@ -19,7 +19,10 @@ function CentralCard() {
                 Card title Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis
                 consequuntur veniam, possimus fugit nam
               </Card.Text>
-              <BiasBar />
+              <div className="d-flex align-items-center gap-3">
+                <BiasBar />
+                <span>percentages</span>
+              </div>
             </Card.Body>
           </Col>
         </Row>
@@ -39,7 +42,10 @@ function CentralCard() {
                 Card title Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis
                 consequuntur veniam, possimus fugit nam
               </Card.Text>
-              <BiasBar />
+              <div className="d-flex align-items-center gap-3">
+                <BiasBar />
+                <span>percentages</span>
+              </div>
             </Card.Body>
           </Col>
         </Row>
@@ -59,7 +65,10 @@ function CentralCard() {
                 Card title Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis
                 consequuntur veniam, possimus fugit nam
               </Card.Text>
-              <BiasBar />
+              <div className="d-flex align-items-center gap-3">
+                <BiasBar />
+                <span>percentages</span>
+              </div>
             </Card.Body>
           </Col>
         </Row>
@@ -79,7 +88,10 @@ function CentralCard() {
                 Card title Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis
                 consequuntur veniam, possimus fugit nam
               </Card.Text>
-              <BiasBar />
+              <div className="d-flex align-items-center gap-3">
+                <BiasBar />
+                <span>percentages</span>
+              </div>
             </Card.Body>
           </Col>
         </Row>
@@ -99,7 +111,10 @@ function CentralCard() {
                 Card title Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis
                 consequuntur veniam, possimus fugit nam
               </Card.Text>
-              <BiasBar />
+              <div className="d-flex align-items-center gap-3">
+                <BiasBar />
+                <span>percentages</span>
+              </div>
             </Card.Body>
           </Col>
         </Row>

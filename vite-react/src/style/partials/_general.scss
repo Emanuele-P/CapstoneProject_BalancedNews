@@ -73,20 +73,40 @@
   }
 }
 
+.hero-wrapper {
+  @include bias();
+
+  .bias-bar-container {
+    position: absolute;
+    bottom: 0;
+    z-index: 3;
+    width: 100.1%;
+    height: 25px;
+  }
+  .percentage-text {
+    color: $main;
+    font-size: 14px;
+  }
+}
+
 .central-card {
   @include bias();
 
   .bias-bar-container {
     width: 35%;
-    height: 14px;
+    height: 10px;
   }
 
   .percentage-text {
     color: $main;
     font-size: 10px;
   }
-}
 
+  .bias-bar.center {
+    background-color: $white;
+    width: 34%;
+  }
+}
 .bias-bar.left {
   background-color: $left;
   width: 33%;

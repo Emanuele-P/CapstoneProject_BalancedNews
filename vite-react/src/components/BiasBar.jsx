@@ -1,3 +1,5 @@
+import { propTypes } from 'react-bootstrap/esm/Image'
+
 function BiasBar({ leftPercentage, centerPercentage, rightPercentage }) {
   return (
     <div className="bias-bar-container">
@@ -13,5 +15,9 @@ function BiasBar({ leftPercentage, centerPercentage, rightPercentage }) {
     </div>
   )
 }
-
+BiasBar.propTypes = {
+  leftPercentage: propTypes.string,
+  centerPercentage: propTypes.string,
+  rightPercentage: propTypes.string,
+}
 export default BiasBar
