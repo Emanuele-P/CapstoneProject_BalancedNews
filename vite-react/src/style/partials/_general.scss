@@ -11,54 +11,68 @@
   height: 40px;
   border-radius: 100%;
 }
-.test {
+.active {
   color: $primary;
+}
+.nav-logo {
+  width: 70px;
+}
+
+//decorative nav
+.decoration {
+  text-align: center;
+  height: 40px;
+  overflow: hidden;
+
+  img {
+    margin: 0;
+    width: 100%;
+    object-fit: contain;
+    position: relative;
+    opacity: 0.4;
+    top: -135px;
+    animation: moveBackground 0.5s infinite;
+  }
+  h4 {
+    font-size: 18px;
+    position: absolute;
+    z-index: 1;
+    left: 40%;
+    top: 10px;
+    background-color: rgba(255, 255, 255, 0.569);
+  }
 }
 
 //search bar
 
 .form-control {
   border-radius: 2px;
-  border: 1px solid white;
-  background-color: white;
+  border: 1px solid $gray;
+  background-color: $gray;
 
   &:focus {
-    border: none;
+    border: 1px solid $gray;
     box-shadow: none;
     outline: none;
+    background-color: $gray;
   }
 }
 .input-group:focus-within,
 .input-group:focus-visible {
   box-shadow: none;
   border: none;
+  background-color: $gray;
 }
 .input-group {
   .input-group-text {
-    border-radius: 2px !important;
-    background-color: $white;
-    border: 1px solid $white;
+    border-radius: 2px;
+    background-color: $gray;
+    border: 1px solid $gray;
     border-right: none;
   }
 }
 
 //bias bar
-@mixin bias {
-  .bias-bar-container {
-    display: flex;
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    overflow: hidden;
-    border-radius: 0;
-  }
-  .bias-bar {
-    height: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
 
 .left-card {
   @include bias();
@@ -89,7 +103,8 @@
   }
 }
 
-.central-card {
+.central-card,
+.right-card {
   @include bias();
 
   .bias-bar-container {
@@ -128,4 +143,44 @@
 //badges
 .badge.bg-primary {
   background-color: $black !important;
+}
+
+//footer
+footer {
+  li {
+    font-size: 13px;
+    font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .li-title {
+    font-size: 16px;
+    font-weight: 600;
+    &:hover {
+      cursor: text;
+    }
+  }
+  span {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  p {
+    font-weight: 600;
+  }
+
+  .logo {
+    width: 50%;
+  }
+
+  .social-link {
+    i {
+      color: $black;
+
+      &:hover {
+        color: $info;
+      }
+    }
+  }
 }

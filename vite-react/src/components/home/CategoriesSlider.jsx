@@ -1,17 +1,25 @@
-import { Button, Container } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
+import SearchForm from '../SearchForm'
 
 function CategoriesSlider() {
   return (
     <>
       <div className="categories">
-        <Container className="d-flex gap-2 mt-3">
-          <Button className="btn-ct">Politics</Button>
-          <Button className="btn-ct">Business</Button>
-          <Button className="btn-ct">Tech</Button>
-          <Button className="btn-ct">Arts</Button>
-          <Button className="btn-ct">Science</Button>
-          <Button className="btn-ct">Health</Button>
-          <Button className="btn-ct">Sports</Button>
+        <Container className="mt-3">
+          <Row className="align-items-center">
+            <Col lg={9} className="d-flex gap-2">
+              <Button className="btn-ct rounded-pill btn-outline-dark">Politics</Button>
+              <Button className="btn-ct rounded-pill btn-outline-dark">Business</Button>
+              <Button className="btn-ct rounded-pill btn-outline-dark">Tech</Button>
+              <Button className="btn-ct rounded-pill btn-outline-dark">Arts</Button>
+              <Button className="btn-ct rounded-pill btn-outline-dark">Science</Button>
+              <Button className="btn-ct rounded-pill btn-outline-dark">Health</Button>
+              <Button className="btn-ct rounded-pill btn-outline-dark">Sports</Button>
+            </Col>
+            <Col lg={3} className="p-0">
+              <SearchForm />
+            </Col>
+          </Row>
         </Container>
       </div>
     </>

@@ -24,9 +24,12 @@ function MainSection() {
           rightPercentage={rightPercentage}
         />
       </section>
-      <h2>Latest news</h2>
+      <h2>Top news stories</h2>
       <CentralCard />
-      <div className="separator"></div>
+      <CentralCard />
+      <CentralCard />
+      <CentralCard />
+      <CentralCard />
     </Col>
   )
 }

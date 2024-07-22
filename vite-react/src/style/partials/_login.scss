@@ -1,0 +1,73 @@
+.background-login {
+  h1 {
+    color: $info;
+    font-weight: 300;
+    margin-block: 3rem 2.5rem;
+  }
+
+  .form-label {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .form-control {
+    padding: 0.8rem;
+    border: 1px solid transparent;
+  }
+
+  @media (max-width: $sm) {
+    .form-control {
+      width: 100%;
+    }
+  }
+
+  h6 {
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    margin-top: 1rem;
+    font-size: 12px;
+    opacity: 80%;
+    span {
+      color: $info;
+      font-weight: 700;
+      &:hover {
+        text-decoration: underline $info;
+        cursor: pointer;
+      }
+    }
+  }
+  button {
+    width: 100%;
+    padding-block: 0.7rem;
+  }
+  .join-btn {
+    margin-bottom: 3rem;
+    background: transparent;
+    color: $black;
+    border: 1px solid $gray;
+
+    &:hover {
+      background: $gray;
+    }
+  }
+  .img-col {
+    user-select: none;
+  }
+}
+
+//nav
+.simple-nav {
+  margin-bottom: 1rem;
+
+  .nav-logo {
+    width: 80px;
+    height: unset;
+  }
+}

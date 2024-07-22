@@ -28,46 +28,6 @@ function LeftCard() {
           </Card.Body>
         </Row>
       </Card>
-
-      <Card className="left-card w-100">
-        <Row>
-          <div className="left-card-pic-container">
-            <Card.Img src={pic} className="left-card-pic" />
-          </div>
-          <Card.Body>
-            <Badge>n Sources</Badge>
-            <Card.Title>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis consequuntur veniam,
-              possimus fugit nam
-            </Card.Title>
-            <BiasBar
-              leftPercentage={leftPercentage}
-              centerPercentage={centerPercentage}
-              rightPercentage={rightPercentage}
-            />
-          </Card.Body>
-        </Row>
-      </Card>
-
-      <Card className="left-card w-100">
-        <Row>
-          <div className="left-card-pic-container">
-            <Card.Img src={pic} className="left-card-pic" />
-          </div>
-          <Card.Body>
-            <Badge>n Sources</Badge>
-            <Card.Title>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis consequuntur veniam,
-              possimus fugit nam
-            </Card.Title>
-            <BiasBar
-              leftPercentage={leftPercentage}
-              centerPercentage={centerPercentage}
-              rightPercentage={rightPercentage}
-            />
-          </Card.Body>
-        </Row>
-      </Card>
     </>
   )
 }

@@ -1,0 +1,23 @@
+@mixin clamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+@mixin bias {
+  .bias-bar-container {
+    display: flex;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    border-radius: 0;
+  }
+  .bias-bar {
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

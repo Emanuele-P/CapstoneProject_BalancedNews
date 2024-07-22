@@ -1,8 +1,8 @@
-.signup-button {
+.signup-button,
+.login-button {
   border: 1px solid transparent;
   width: 100px;
   padding-inline: 10px;
-  text-align: start;
   color: #fff;
 
   --bs-btn-active-color: #fff;
@@ -12,27 +12,33 @@
   &:focus-visible {
     border: 1px solid transparent;
     color: #fff;
-    background-color: rgb(78, 167, 162);
+    background-color: rgb(109, 89, 223);
+  }
+}
+.login-button {
+  color: $black;
+  border: 1px solid $gray;
+  --bs-btn-active-color: #2a2a2a;
+  --bs-btn-active-bg: #eaeaea;
+  --bs-btn-active-border-color: transparent;
+
+  background-color: transparent;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:focus-visible {
+    border: 1px solid $gray;
+    color: $black;
+  }
+  &:hover {
+    background-color: $gray;
+    border: 1px solid $gray;
   }
 }
 
 .btn-ct {
-  border-radius: 75px;
-  height: 30px;
-  padding-block: 0;
-  padding-inline: 1.2rem;
   background-color: transparent;
   border: 1px solid $black;
   color: $black;
-  font-size: 14px;
-  height: 25px;
-
-  --bs-btn-active-color: $black;
-  --bs-btn-hover-bg: transparent;
-  --bs-btn-active-bg: #eaeaea;
-  --bs-btn-active-border-color: #eaeaea;
-
-  &:hover {
-    color: $black;
-  }
 }
