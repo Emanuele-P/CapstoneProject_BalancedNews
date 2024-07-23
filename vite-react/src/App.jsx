@@ -8,6 +8,7 @@ import AppFooter from './components/AppFooter'
 import LoginForm from './components/login/LoginForm'
 import SimpleNav from './components/login/SimpleNav'
 import SignupForm from './components/login/SignupForm'
+import ArticlesPage from './components/articles/ArticlesPage'
 
 function App() {
   return (
@@ -39,6 +40,16 @@ function App() {
                 <DecorativeNav />
                 <AppNavbar />
                 <HomePage />
+              </>
+            }
+          />
+          <Route
+            path="/article"
+            element={
+              <>
+                <DecorativeNav />
+                <AppNavbar />
+                <ArticlesPage />
               </>
             }
           />

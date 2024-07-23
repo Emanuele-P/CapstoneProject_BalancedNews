@@ -1,11 +1,11 @@
 //navbar
 
-.navbar {
-  // position: fixed;
-  // top: 0;
-  // z-index: 1000;
-  // width: 100%;
-}
+// .navbar {
+// position: fixed;
+// top: 0;
+// z-index: 1000;
+// width: 100%;
+// }
 .propic {
   width: 40px;
   height: 40px;
@@ -72,74 +72,6 @@
   }
 }
 
-//bias bar
-
-.left-card {
-  @include bias();
-
-  .bias-bar-container {
-    width: 100%;
-    height: 20px;
-  }
-  .percentage-text {
-    color: $main;
-    font-size: 14px;
-  }
-}
-
-.hero-wrapper {
-  @include bias();
-
-  .bias-bar-container {
-    position: absolute;
-    bottom: 0;
-    z-index: 3;
-    width: 100.1%;
-    height: 25px;
-  }
-  .percentage-text {
-    color: $main;
-    font-size: 14px;
-  }
-}
-
-.central-card,
-.right-card {
-  @include bias();
-
-  .bias-bar-container {
-    width: 35%;
-    height: 10px;
-  }
-
-  .percentage-text {
-    color: $main;
-    font-size: 10px;
-  }
-
-  .bias-bar.center {
-    background-color: $white;
-    width: 34%;
-  }
-}
-.bias-bar.left {
-  background-color: $left;
-  width: 33%;
-}
-
-.bias-bar.center {
-  background-color: $gray;
-  width: 34%;
-  .percentage-text {
-    color: $black;
-  }
-}
-
-.bias-bar.right {
-  background-color: $right;
-  width: 33%;
-}
-
 //badges
 .badge.bg-primary {
   background-color: $black !important;
@@ -182,5 +114,26 @@ footer {
         color: $info;
       }
     }
+  }
+}
+
+//card link
+a {
+  text-decoration: none;
+  color: inherit;
+  &:hover p,
+  &:hover h3,
+  &:hover h5 {
+    text-decoration: underline;
+  }
+}
+.carousel-link {
+  &:hover p {
+    text-decoration: none;
+  }
+}
+.s-cards-link {
+  &:hover h5 {
+    text-decoration: none;
   }
 }

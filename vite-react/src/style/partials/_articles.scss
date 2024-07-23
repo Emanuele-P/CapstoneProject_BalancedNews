@@ -1,0 +1,18 @@
+.factuality-bar-container {
+  position: relative;
+  height: 20px;
+  width: 100%;
+  background-color: #cecece;
+}
+
+.factuality-bar {
+  position: absolute;
+  height: 20px;
+  width: 10px;
+  background-color: #ffc107;
+  transform: translateX(-50%);
+}
+
+.article-card {
+  min-height: 135px;
+}
