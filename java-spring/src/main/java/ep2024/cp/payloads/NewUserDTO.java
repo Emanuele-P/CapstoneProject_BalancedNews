@@ -22,5 +22,9 @@ public record NewUserDTO(@NotBlank(message = "Email must not be empty!")
                          @Size(min = 3, max = 30, message = "Surname must be between 3 and 30 characters.")
                          String surname,
 
+                         @NotBlank(message = "Username must not be empty!")
+                         @Size(min = 3, max = 30, message = "Username must be between 3 and 30 characters.")
+                         String username,
+
                          UUID roleId) {
 }

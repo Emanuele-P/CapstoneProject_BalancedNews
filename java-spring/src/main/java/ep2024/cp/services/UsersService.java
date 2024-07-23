@@ -1,5 +1,7 @@
 package ep2024.cp.services;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import ep2024.cp.entities.Role;
 import ep2024.cp.entities.User;
 import ep2024.cp.exceptions.BadRequestException;
@@ -13,7 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -28,6 +32,9 @@ public class UsersService {
 
     @Autowired
     private PasswordEncoder bcrypt;
+
+    @Autowired
+    private Cloudinary cloudinaryUploader;
 
     public Page<User> getUsers(int pageNumber, int pageSize, String sortBy) {
         if (pageSize > 20) pageSize = 20;
@@ -44,9 +51,14 @@ public class UsersService {
     }
 
     public User save(NewUserDTO body) {
-        this.usersRepository.findByEmail(body.email()).ifPresent(
+        usersRepository.findByEmail(body.email()).ifPresent(
                 user -> {
                     throw new BadRequestException("The email address: " + body.email() + " is already in use!");
+                }
+        );
+        usersRepository.findByUsername(body.username()).ifPresent(
+                user -> {
+                    throw new BadRequestException("Username " + body.username() + " is already in use!");
                 }
         );
 
@@ -55,7 +67,7 @@ public class UsersService {
         newUser.setPassword(bcrypt.encode(body.password()));
         newUser.setName(body.name());
         newUser.setSurname(body.surname());
-        newUser.setUsername(body.name() + " " + body.surname());
+        newUser.setUsername(body.username());
         newUser.setAvatar("https://ui-avatars.com/api/?name=" + body.name() + "+" + body.surname());
 
         Role newRole = userRolesService.findByName("USER");
@@ -63,5 +75,31 @@ public class UsersService {
         roles.add(newRole);
         newUser.setRoles(roles);
         return usersRepository.save(newUser);
+    }
+
+    public User findByIdAndUpdate(UUID userId, NewUserDTO updatedUser) {
+        User found = this.findById(userId);
+        found.setEmail(updatedUser.email());
+        found.setPassword(bcrypt.encode(updatedUser.password()));
+        found.setName(updatedUser.name());
+        found.setSurname(updatedUser.surname());
+        found.setUsername(updatedUser.username());
+        found.setAvatar("https://ui-avatars.com/api/?name=" + updatedUser.name() + "+" + updatedUser.surname());
+        return usersRepository.save(found);
+    }
+
+    public void findByIdAndDelete(UUID userId) {
+        User found = this.findById(userId);
+        usersRepository.delete(found);
+    }
+
+    public String uploadAvatar(MultipartFile file) throws IOException {
+        return (String) cloudinaryUploader.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
+    }
+
+    public User updateAvatar(UUID userId, String url) {
+        User employee = this.findById(userId);
+        employee.setAvatar(url);
+        return usersRepository.save(employee);
     }
 }

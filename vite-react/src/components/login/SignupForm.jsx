@@ -27,6 +27,10 @@ const SignupForm = () => {
                   </Form.Group>
                 </Col>
               </Row>
+              <Form.Group className="mb-3" controlId="username">
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text" placeholder="Enter your username" required />
+              </Form.Group>
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter your email address" required />
