@@ -10,13 +10,13 @@ function AppNavbar() {
   return (
     <Navbar expand="lg" className="navbar">
       <Container className="justify-content-between">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/home">
           <Image src={logo} className="nav-logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home" className="active">
+            <Nav.Link href="/home" className="active">
               Home
             </Nav.Link>
             <Nav.Link href="#link">Discover</Nav.Link>

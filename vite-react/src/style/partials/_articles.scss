@@ -16,3 +16,82 @@
 .article-card {
   min-height: 135px;
 }
+
+.articles-list-card {
+  border: none;
+  .card-body {
+    padding: 0;
+  }
+  .top-wrapper {
+    padding: 0.5rem;
+    background-color: $gray;
+    border-radius: 6px;
+  }
+  .badge {
+    padding: 0.5rem;
+    font-weight: 600;
+  }
+  .fact-badge {
+    background-color: $teal !important;
+  }
+  .bias-badge {
+    background-color: $info !important;
+  }
+
+  button {
+    border-radius: 75px;
+    padding: 4px 15px 4px 5px;
+  }
+  .source-logo {
+    width: 30px;
+    border-radius: 99px;
+  }
+  h6 {
+    margin: 0 0 0 10px;
+    font-size: 14px;
+  }
+
+  .card-text {
+    @include clamp();
+
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
+  a:hover p,
+  a:hover h3,
+  a:hover h5 {
+    text-decoration: none;
+  }
+
+  div:nth-of-type(2) {
+    padding-right: 0.5rem;
+    span {
+      font-size: 12px;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+    span:last-of-type {
+      text-decoration: underline;
+    }
+  }
+}
+
+.article-selection {
+  display: flex;
+  justify-content: start;
+  gap: 3rem;
+  align-items: center;
+
+  .badge {
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    background-color: $gray !important;
+    color: rgb(136, 136, 136);
+    padding: 4px;
+  }
+}
+.nav-item a {
+  color: $black;
+  text-decoration: #ffc107;
+}
