@@ -11,6 +11,20 @@ public class HttpConfig {
     @Value("${worldnews.key}")
     private String apiKey;
 
+//    @Value("${balanced.port}")
+//    private String url;
+//
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.setAllowedOrigins(Arrays.asList("url"));
+//        configuration.setAllowedMethods(Arrays.asList("*"));
+//        configuration.setAllowedHeaders(Arrays.asList("*"));
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//        return source;
+//    }
+
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();

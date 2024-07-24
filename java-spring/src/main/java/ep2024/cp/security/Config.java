@@ -21,6 +21,7 @@ public class Config {
         httpSecurity.formLogin(http -> http.disable());
         httpSecurity.csrf(http -> http.disable());
         httpSecurity.sessionManagement(http -> http.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+//        httpSecurity.cors(Customizer.withDefaults());
         httpSecurity.authorizeHttpRequests(http -> http
                 .requestMatchers("/**").permitAll()
         );
