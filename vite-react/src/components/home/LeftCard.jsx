@@ -3,7 +3,8 @@ import pic from '../../assets/leftpic.webp'
 import BiasBar from '../BiasBar'
 import { Link } from 'react-router-dom'
 
-function LeftCard() {
+// eslint-disable-next-line react/prop-types
+function LeftCard({ borderClass }) {
   const leftPercentage = 'L33%'
   const centerPercentage = 'C34%'
   const rightPercentage = 'R33%'
@@ -11,7 +12,7 @@ function LeftCard() {
   return (
     <>
       <Link to={'/article'}>
-        <Card className="left-card w-100">
+        <Card className={`left-card w-100 ${borderClass}`}>
           <Row>
             <div className="left-card-pic-container">
               <Card.Img src={pic} className="left-card-pic" />

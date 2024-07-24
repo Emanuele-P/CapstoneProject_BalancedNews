@@ -1,4 +1,4 @@
-import { Col, Image } from 'react-bootstrap'
+import { Col, Image, Spinner } from 'react-bootstrap'
 import hero from '../../assets/hero.jpg'
 import CentralCard from './CentralCard'
 import BiasBar from '../BiasBar'
@@ -27,7 +27,9 @@ function MainSection() {
           />
         </section>
       </Link>
-      <h2>Top news stories</h2>
+      <h2>
+        Top news stories <Spinner animation="grow" className="text-danger" />
+      </h2>
       <CentralCard />
       <CentralCard />
       <CentralCard />
