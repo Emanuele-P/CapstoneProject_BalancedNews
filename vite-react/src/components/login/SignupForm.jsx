@@ -1,7 +1,23 @@
 import { Button, Form, Container, Row, Col, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { register } from '../../redux/actions/authActions'
+import { useState } from 'react'
 
 const SignupForm = () => {
+  const [name, setName] = useState('')
+  const [surname, setSurname] = useState('')
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+  const { loading, error } = useSelector((state) => state.auth)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(register({ name, surname, username, email, password }))
+  }
+
   return (
     <div className="background-login">
       <Container className="mb-5">
@@ -12,40 +28,71 @@ const SignupForm = () => {
 
           <Col xs={12} md={12} lg={5}>
             <h1 className="mt-3 mb-4">Create your free account</h1>
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <Row>
                 <Col md={6}>
                   <Form.Group className="mb-3" controlId="name">
                     <Form.Label>First name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter your first name" required />
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter your first name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                    />
                   </Form.Group>
                 </Col>
                 <Col md={6}>
                   <Form.Group className="mb-3" controlId="surname">
                     <Form.Label>Last name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter your last name" required />
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter your last name"
+                      value={surname}
+                      onChange={(e) => setSurname(e.target.value)}
+                      required
+                    />
                   </Form.Group>
                 </Col>
               </Row>
               <Form.Group className="mb-3" controlId="username">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="text" placeholder="Enter your username" required />
+                <Form.Control
+                  type="text"
+                  placeholder="Enter your username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                />
               </Form.Group>
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter your email address" required />
+                <Form.Control
+                  type="email"
+                  placeholder="Enter your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
               </Form.Group>
               <Form.Group className="mb-3" controlId="password">
                 <Form.Label column sm={2}>
                   Password
                 </Form.Label>
                 <Col lg={12}>
-                  <Form.Control type="password" placeholder="Enter your password" required />
+                  <Form.Control
+                    type="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
                 </Col>
               </Form.Group>
               <Button type="submit" className="my-3 btn-info">
-                Create Account
+                {loading ? 'Creating Account...' : 'Create Account'}
               </Button>
+              {error && <p className="text-danger">{error}</p>}
             </Form>
 
             <Row className="d-flex align-items-center justify-content-center mt-3">

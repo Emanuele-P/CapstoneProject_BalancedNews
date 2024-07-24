@@ -39,7 +39,7 @@ public class RolesAndAdminInitializer {
                 rolesRepository.save(new Role("USER"));
             }
 
-            if (usersRepository.findByEmail("striscialanotizia@gmail.com").isEmpty()) {
+            if (usersRepository.findByEmail("bidenomics@gmail.com").isEmpty()) {
                 Role adminRole = rolesService.findByName("ADMIN");
                 List<Role> roles = List.of(adminRole);
                 User adminUser = new User(
