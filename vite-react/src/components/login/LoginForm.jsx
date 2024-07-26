@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button, Form, Container, Row, Col, Image, Spinner } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
-import { login } from '../../redux/actions/authActions'
+import { login, fetchProfile } from '../../redux/actions/authActions'
 import { useDispatch, useSelector } from 'react-redux'
 
 const LoginForm = () => {
@@ -12,7 +12,7 @@ const LoginForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { loading, error, isAuthenticated, user } = useSelector((state) => state.auth)
+  const { loading, error, isAuthenticated, profile } = useSelector((state) => state.auth)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -21,25 +21,31 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
+      dispatch(fetchProfile())
+    }
+  }, [isAuthenticated, dispatch])
+
+  useEffect(() => {
+    if (profile) {
       setShowWelcome(true)
+      console.log(profile)
       setTimeout(() => {
         navigate('/home')
-        console.log(user)
       }, 2000)
     }
-  }, [isAuthenticated, navigate])
+  }, [profile, navigate])
 
   return (
     <div className="background-login">
       <Container className="mb-5">
         <Row>
-          <Col xs={12} md={4} lg={7} className="mb-5 d-flex align-items-center  img-col">
-            <Image className="img-fluid  img-col" />
+          <Col xs={12} md={4} lg={7} className="mb-5 d-flex align-items-center img-col">
+            <Image className="img-fluid img-col" />
           </Col>
 
           {showWelcome ? (
             <Col xs={12} md={12} lg={5} className="d-flex flex-column align-items-center justify-content-center notice">
-              <h4 className="mb-4">Welcome {user?.email}!</h4>
+              <h4 className="mb-4">Welcome {profile?.username}!</h4>
               <Spinner animation="border" />
             </Col>
           ) : (
