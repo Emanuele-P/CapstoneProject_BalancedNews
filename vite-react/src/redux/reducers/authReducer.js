@@ -8,6 +8,7 @@ import {
   FETCH_PROFILE_REQUEST,
   FETCH_PROFILE_SUCCESS,
   FETCH_PROFILE_FAILURE,
+  LOGOUT,
 } from '../actions/authActions'
 
 const initialState = {
@@ -31,7 +32,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        token: action.payload, // Store token
+        token: action.payload,
         isAuthenticated: true,
       }
     case FETCH_PROFILE_SUCCESS:
@@ -40,6 +41,14 @@ const authReducer = (state = initialState, action) => {
     case LOGIN_FAILURE:
     case FETCH_PROFILE_FAILURE:
       return { ...state, loading: false, error: action.error, isAuthenticated: false }
+    case LOGOUT:
+      return {
+        ...state,
+        token: null,
+        user: null,
+        profile: null,
+        isAuthenticated: false,
+      }
     default:
       return state
   }

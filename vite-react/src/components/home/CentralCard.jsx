@@ -3,7 +3,11 @@ import pic from '../../assets/cardpic.webp'
 import BiasBar from '../BiasBar'
 import { Link } from 'react-router-dom'
 
-function CentralCard() {
+function CentralCard({ article }) {
+  if (!article) {
+    return null
+  }
+
   return (
     <>
       <Link to={'/article'}>
@@ -11,16 +15,13 @@ function CentralCard() {
           <Row>
             <Col md={3} className="pe-0">
               <div className="central-card-pic-container">
-                <Card.Img variant="left" src={pic} className="central-card-pic" />
+                <Card.Img variant="left" src={article.image || pic} className="central-card-pic" />
               </div>
             </Col>
             <Col md={9}>
               <Card.Body className="p-0">
-                <Card.Title>Source name ・ other info</Card.Title>
-                <Card.Text>
-                  Card title Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cupiditate officiis
-                  consequuntur veniam, possimus fugit nam
-                </Card.Text>
+                <Card.Title>{article.author ? article.author : 'Unknown Author'} ・ US</Card.Title>
+                <Card.Text>{article.title || 'No title available'}</Card.Text>
                 <div className="d-flex align-items-center gap-3">
                   <BiasBar />
                   <span>percentages</span>

@@ -1,11 +1,33 @@
-//navbar
+navbar .navbar {
+  // position: fixed;
+  // top: 0;
+  // z-index: 1000;
+  // width: 100%;
+}
 
-// .navbar {
-// position: fixed;
-// top: 0;
-// z-index: 1000;
-// width: 100%;
-// }
+.dropdown-menu {
+  padding-inline: 5px;
+  border-top-right-radius: 0px;
+  padding-inline: 0.5rem;
+
+  .dropdown-item {
+    padding: 4px 14px;
+    min-width: 160px !important;
+    &:hover {
+      background-color: $info;
+      border-radius: 2px;
+    }
+  }
+  a {
+    font-size: 16px;
+    text-align: start;
+    text-decoration: none;
+  }
+}
+.first-dropdown:hover {
+  color: $info;
+}
+
 .propic {
   width: 40px;
   height: 40px;

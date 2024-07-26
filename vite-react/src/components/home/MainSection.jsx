@@ -3,38 +3,67 @@ import hero from '../../assets/hero.jpg'
 import CentralCard from './CentralCard'
 import BiasBar from '../BiasBar'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { getNews } from '../../redux/actions/newsActions'
 
 function MainSection() {
   const leftPercentage = 'Left 33%'
   const centerPercentage = 'Center 34%'
   const rightPercentage = 'Right 33%'
 
+  const dispatch = useDispatch()
+  const { loading, news, error } = useSelector((state) => state.news)
+
+  useEffect(() => {
+    dispatch(getNews())
+  }, [dispatch])
+
+  const getValidArticle = (newsArray) => {
+    for (let article of newsArray) {
+      if (article.author && article.image && article.title && article.summary) {
+        return article
+      }
+    }
+    return newsArray[0]
+  }
+
+  const heroArticle =
+    news.top_news && news.top_news.length > 0 && news.top_news[0].news.length > 0
+      ? getValidArticle(news.top_news[0].news)
+      : null
+
+  const selectedNews = news.top_news
+    ? news.top_news.slice(1, 6).flatMap((newsItem) => {
+        return getValidArticle(newsItem.news)
+      })
+    : []
+  console.log('Selected News:', selectedNews)
+
   return (
     <Col lg={6} className="main-section hmsc pt-0">
-      <Link to={'/article'}>
-        <section className="hero-wrapper">
-          <Image src={hero} className="hero w-100"></Image>
-          <div className="hero-overlay"></div>
-          <h3 className="hero-title">
-            News title Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque tempore non harum optio voluptatem
-            inventore commodi necessitatibus doloribus, asperiores in rerum, fuga quas. Blanditiis magni hic, cumque
-            nesciunt earum itaque!
-          </h3>
-          <BiasBar
-            leftPercentage={leftPercentage}
-            centerPercentage={centerPercentage}
-            rightPercentage={rightPercentage}
-          />
-        </section>
-      </Link>
+      {loading && <Spinner animation="border" />}
+      {error && <div className="text-danger">{error}</div>}
+      {news.top_news && news.top_news.length > 0 && (
+        <Link to={'/article'}>
+          <section className="hero-wrapper">
+            <Image src={heroArticle.image || hero} className="hero w-100"></Image>
+            <div className="hero-overlay"></div>
+            <h3 className="hero-title">{heroArticle.title || 'Untitled'}</h3>
+            <BiasBar
+              leftPercentage={leftPercentage}
+              centerPercentage={centerPercentage}
+              rightPercentage={rightPercentage}
+            />
+          </section>
+        </Link>
+      )}
       <h2>
         Top news stories <Spinner animation="grow" className="text-danger" />
       </h2>
-      <CentralCard />
-      <CentralCard />
-      <CentralCard />
-      <CentralCard />
-      <CentralCard />
+      {selectedNews.map((article) => (
+        <CentralCard key={article.id} article={article} />
+      ))}
     </Col>
   )
 }

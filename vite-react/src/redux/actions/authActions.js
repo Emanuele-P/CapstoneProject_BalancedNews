@@ -7,6 +7,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 export const FETCH_PROFILE_REQUEST = 'FETCH_PROFILE_REQUEST'
 export const FETCH_PROFILE_SUCCESS = 'FETCH_PROFILE_SUCCESS'
 export const FETCH_PROFILE_FAILURE = 'FETCH_PROFILE_FAILURE'
+export const LOGOUT = 'LOGOUT'
 
 export const register = (userData) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST })
@@ -77,4 +78,8 @@ export const fetchProfile = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({ type: FETCH_PROFILE_FAILURE, error: error.message })
   }
+}
+
+export const logout = () => (dispatch) => {
+  dispatch({ type: LOGOUT })
 }
