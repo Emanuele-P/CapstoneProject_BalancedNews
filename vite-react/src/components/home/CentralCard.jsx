@@ -10,7 +10,7 @@ function CentralCard({ article }) {
 
   return (
     <>
-      <Link to={'/article'}>
+      <Link to={`/article/${article.id}`}>
         <Card className="w-100 central-card p-0 mb-2">
           <Row>
             <Col md={3} className="pe-0">
@@ -20,7 +20,7 @@ function CentralCard({ article }) {
             </Col>
             <Col md={9}>
               <Card.Body className="p-0">
-                <Card.Title>{article.author ? article.author : 'Unknown Author'} ・ US</Card.Title>
+                <Card.Title>{article.author || 'Unknown Author'} ・ US</Card.Title>
                 <Card.Text>{article.title || 'No title available'}</Card.Text>
                 <div className="d-flex align-items-center gap-3">
                   <BiasBar />

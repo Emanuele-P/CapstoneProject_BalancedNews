@@ -45,7 +45,7 @@ function MainSection() {
       {loading && <Spinner animation="border" />}
       {error && <div className="text-danger">{error}</div>}
       {news.top_news && news.top_news.length > 0 && (
-        <Link to={'/article'}>
+        <Link to={`/article/${heroArticle.id}`}>
           <section className="hero-wrapper">
             <Image src={heroArticle.image || hero} className="hero w-100"></Image>
             <div className="hero-overlay"></div>
