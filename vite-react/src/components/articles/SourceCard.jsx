@@ -22,7 +22,7 @@ function SourceCard({ article }) {
             <Badge className="ms-2 bias-badge">Bias</Badge>
           </div>
         </div>
-        <Link to={''}>
+        <Link to={article.url}>
           <CardTitle className="mt-2">{article.title || 'No title available'}</CardTitle>
           <CardText>{article.summary || 'No summary available'}</CardText>
           <div className="flex justify-content-between">
