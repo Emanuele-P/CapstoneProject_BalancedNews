@@ -11,10 +11,11 @@ export const getNews = () => async (dispatch) => {
     if (response.ok) {
       dispatch({ type: GET_NEWS_SUCCESS, payload: data })
     } else {
-      dispatch({ type: GET_NEWS_FAILURE, error: data.message })
+      console.log('Error fetching news:', data.message)
+      throw new Error('Error fetching news, try again later!')
     }
   } catch (error) {
     console.error('API error:', error)
-    dispatch({ type: GET_NEWS_FAILURE, error: error.message })
+    dispatch({ type: GET_NEWS_FAILURE })
   }
 }

@@ -6,7 +6,7 @@ import { getNews } from '../../redux/actions/newsActions'
 
 function RightAside() {
   const dispatch = useDispatch()
-  const { loading, news, error } = useSelector((state) => state.news)
+  const { loading, news } = useSelector((state) => state.news)
 
   useEffect(() => {
     dispatch(getNews())
@@ -31,11 +31,14 @@ function RightAside() {
   return (
     <Col lg={3} className="right-aside hmsc pt-0">
       {loading && <Spinner animation="border" />}
-      {error && <div className="text-danger">{error}</div>}
-      <h6 className="m-0">Latest news</h6>
-      {selectedNews.map((article) => (
-        <RightCard key={article.id} article={article} />
-      ))}
+      {!loading && (
+        <>
+          <h6 className="m-0">Latest news</h6>
+          {selectedNews.map((article) => (
+            <RightCard key={article.id} article={article} />
+          ))}
+        </>
+      )}
     </Col>
   )
 }

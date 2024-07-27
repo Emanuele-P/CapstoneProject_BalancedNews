@@ -3,7 +3,6 @@ import { GET_NEWS_REQUEST, GET_NEWS_SUCCESS, GET_NEWS_FAILURE } from '../actions
 const initialState = {
   loading: false,
   news: [],
-  error: null,
 }
 
 const newsReducer = (state = initialState, action) => {
@@ -13,7 +12,7 @@ const newsReducer = (state = initialState, action) => {
     case GET_NEWS_SUCCESS:
       return { ...state, loading: false, news: action.payload }
     case GET_NEWS_FAILURE:
-      return { ...state, loading: false, error: action.error }
+      return { ...state, loading: false }
     default:
       return state
   }

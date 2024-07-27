@@ -1,8 +1,8 @@
+/* eslint-disable react/prop-types */
 import { Badge, Button, Card, CardBody, CardText, CardTitle, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import pic from '../../assets/default-avatar.jpg'
 import { getTimeDifference } from '../../utils/timeUtils'
-import PropTypes from 'prop-types'
 
 function SourceCard({ article }) {
   if (!article) {
@@ -37,19 +37,6 @@ function SourceCard({ article }) {
       </CardBody>
     </Card>
   )
-}
-
-SourceCard.propTypes = {
-  article: PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    url: PropTypes.string.isRequired,
-    image: PropTypes.string,
-    author: PropTypes.string,
-    source_country: PropTypes.string,
-    title: PropTypes.string,
-    summary: PropTypes.string,
-    publish_date: PropTypes.string.isRequired,
-  }).isRequired,
 }
 
 export default SourceCard

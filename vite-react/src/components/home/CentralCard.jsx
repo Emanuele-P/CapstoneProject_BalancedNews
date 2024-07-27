@@ -1,8 +1,8 @@
+/* eslint-disable react/prop-types */
 import { Card, Col, Row } from 'react-bootstrap'
 import pic from '../../assets/cardpic.webp'
 import BiasBar from '../BiasBar'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 
 function CentralCard({ article }) {
   if (!article) {
@@ -36,16 +36,6 @@ function CentralCard({ article }) {
       </Link>
     </>
   )
-}
-
-CentralCard.propTypes = {
-  article: PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    image: PropTypes.string,
-    author: PropTypes.string,
-    source_country: PropTypes.string,
-    title: PropTypes.string,
-  }).isRequired,
 }
 
 export default CentralCard

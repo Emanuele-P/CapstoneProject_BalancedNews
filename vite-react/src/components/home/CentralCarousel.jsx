@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 function CentralCarousel() {
   return (
     <>
-      <Link to={'/article'} className="carousel-link">
-        <Carousel fade className="carousel mb-4">
-          <Carousel.Item>
+      <Carousel fade className="carousel mb-4">
+        <Carousel.Item>
+          <Link to={'/article/${id}'} className="carousel-link">
             <Image src={pic} className="w-100 c-pic" />
             <div className="hero-overlay"></div>
             <Carousel.Caption>
@@ -22,25 +22,29 @@ function CentralCarousel() {
                 explicabo omnis sunt ipsam blanditiis earum.
               </h3>
             </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
+          </Link>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Link to={'/article/${id}'} className="carousel-link">
             <Image src={pic} className="w-100 c-pic" />
             <div className="hero-overlay"></div>
             <Carousel.Caption>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
               <h3>Second slide label</h3>
             </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
+          </Link>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Link to={'/article/${id}'} className="carousel-link">
             <Image src={pic} className="w-100 c-pic" />
             <div className="hero-overlay"></div>
             <Carousel.Caption>
               <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
               <h3>Third slide label</h3>
             </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
-      </Link>
+          </Link>
+        </Carousel.Item>
+      </Carousel>
     </>
   )
 }

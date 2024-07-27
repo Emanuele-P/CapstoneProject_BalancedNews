@@ -13,7 +13,7 @@ function MainSection() {
   const rightPercentage = 'Right 33%'
 
   const dispatch = useDispatch()
-  const { loading, news, error } = useSelector((state) => state.news)
+  const { loading, news } = useSelector((state) => state.news)
   const [hasFetched, setHasFetched] = useState(false)
 
   useEffect(() => {
@@ -48,8 +48,7 @@ function MainSection() {
   return (
     <Col lg={6} className="main-section hmsc pt-1">
       {loading && <Spinner animation="border" />}
-      {error && <div className="text-danger">An error occurred while fetching news.</div>}
-      {news.top_news && news.top_news.length > 0 && (
+      {!loading && news.top_news && news.top_news.length > 0 && (
         <Link to={`/article/${heroArticle.id}`}>
           <section className="hero-wrapper">
             <Image src={heroArticle.image || hero} className="hero w-100"></Image>
