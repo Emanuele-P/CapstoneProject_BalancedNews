@@ -4,7 +4,7 @@ import CentralCard from './CentralCard'
 import BiasBar from '../BiasBar'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getNews } from '../../redux/actions/newsActions'
 
 function MainSection() {
@@ -14,10 +14,16 @@ function MainSection() {
 
   const dispatch = useDispatch()
   const { loading, news, error } = useSelector((state) => state.news)
+  const [hasFetched, setHasFetched] = useState(false)
 
   useEffect(() => {
-    dispatch(getNews())
-  }, [dispatch])
+    if (!news || !news.top_news || news.top_news.length < 15) {
+      if (!hasFetched) {
+        dispatch(getNews())
+        setHasFetched(true)
+      }
+    }
+  }, [dispatch, news, hasFetched])
 
   const getValidArticle = (newsArray) => {
     for (let article of newsArray) {
@@ -38,12 +44,11 @@ function MainSection() {
         return getValidArticle(newsItem.news)
       })
     : []
-  console.log('Selected News:', selectedNews)
 
   return (
-    <Col lg={6} className="main-section hmsc pt-0">
+    <Col lg={6} className="main-section hmsc pt-1">
       {loading && <Spinner animation="border" />}
-      {error && <div className="text-danger">{error}</div>}
+      {error && <div className="text-danger">An error occurred while fetching news.</div>}
       {news.top_news && news.top_news.length > 0 && (
         <Link to={`/article/${heroArticle.id}`}>
           <section className="hero-wrapper">

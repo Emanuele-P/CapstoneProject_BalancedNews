@@ -20,7 +20,9 @@ function CentralCard({ article }) {
             </Col>
             <Col md={9}>
               <Card.Body className="p-0">
-                <Card.Title>{article.author || 'Unknown Author'} ・ US</Card.Title>
+                <Card.Title>
+                  {article.author || 'Unknown Author'} ・ {article.source_country.toUpperCase()}
+                </Card.Title>
                 <Card.Text>{article.title || 'No title available'}</Card.Text>
                 <div className="d-flex align-items-center gap-3">
                   <BiasBar />

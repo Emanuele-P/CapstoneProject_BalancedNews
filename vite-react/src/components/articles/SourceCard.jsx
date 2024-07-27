@@ -1,6 +1,7 @@
 import { Badge, Button, Card, CardBody, CardText, CardTitle, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import pic from '../../assets/default-avatar.jpg'
+import { getTimeDifference } from '../../utils/timeUtils'
 
 function SourceCard({ article }) {
   if (!article) {
@@ -26,7 +27,7 @@ function SourceCard({ article }) {
           <CardTitle className="mt-2">{article.title || 'No title available'}</CardTitle>
           <CardText>{article.summary || 'No summary available'}</CardText>
           <div className="flex justify-content-between">
-            <span>{new Date(article.publish_date).toLocaleTimeString()} ago</span>
+            <span>{getTimeDifference(article.publish_date)}</span>
             <span>Read full article</span>
           </div>
         </Link>
