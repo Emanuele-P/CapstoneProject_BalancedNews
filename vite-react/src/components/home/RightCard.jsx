@@ -1,6 +1,7 @@
 import { Card } from 'react-bootstrap'
 import BiasBar from '../BiasBar'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 function RightCard({ article }) {
   return (
@@ -21,6 +22,16 @@ function RightCard({ article }) {
       </Link>
     </>
   )
+}
+
+RightCard.propTypes = {
+  article: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    image: PropTypes.string,
+    author: PropTypes.string,
+    source_country: PropTypes.string,
+    title: PropTypes.string,
+  }).isRequired,
 }
 
 export default RightCard

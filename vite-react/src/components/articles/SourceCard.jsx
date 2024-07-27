@@ -2,6 +2,7 @@ import { Badge, Button, Card, CardBody, CardText, CardTitle, Image } from 'react
 import { Link } from 'react-router-dom'
 import pic from '../../assets/default-avatar.jpg'
 import { getTimeDifference } from '../../utils/timeUtils'
+import PropTypes from 'prop-types'
 
 function SourceCard({ article }) {
   if (!article) {
@@ -23,16 +24,32 @@ function SourceCard({ article }) {
             <Badge className="ms-2 bias-badge">Bias</Badge>
           </div>
         </div>
-        <Link to={article.url}>
+        <Link to={`/article/${article.id}`}>
           <CardTitle className="mt-2">{article.title || 'No title available'}</CardTitle>
           <CardText>{article.summary || 'No summary available'}</CardText>
           <div className="flex justify-content-between">
             <span>{getTimeDifference(article.publish_date)}</span>
-            <span>Read full article</span>
+            <Link to={article.url}>
+              <span className="span-link">Read full article</span>
+            </Link>
           </div>
         </Link>
       </CardBody>
     </Card>
   )
 }
+
+SourceCard.propTypes = {
+  article: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    url: PropTypes.string.isRequired,
+    image: PropTypes.string,
+    author: PropTypes.string,
+    source_country: PropTypes.string,
+    title: PropTypes.string,
+    summary: PropTypes.string,
+    publish_date: PropTypes.string.isRequired,
+  }).isRequired,
+}
+
 export default SourceCard

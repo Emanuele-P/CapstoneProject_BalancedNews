@@ -15,6 +15,27 @@
 
 .article-card {
   min-height: 135px;
+  margin-bottom: 1rem;
+}
+
+.span-link {
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+  text-decoration: underline;
+}
+
+.source .card-text {
+  font-size: 0.8rem;
+  margin-bottom: 5px !important;
+}
+
+.article-text {
+  text-align: justify;
+  margin-bottom: 0;
+  @include clamp();
+  -webkit-line-clamp: 18;
+  line-clamp: 18;
 }
 
 .articles-list-card {
@@ -56,6 +77,7 @@
 
     -webkit-line-clamp: 3;
     line-clamp: 3;
+    text-align: justify;
   }
 
   a:hover p,
@@ -70,9 +92,6 @@
       font-size: 12px;
       font-weight: 300;
       margin-bottom: 0.5rem;
-    }
-    span:last-of-type {
-      text-decoration: underline;
     }
   }
 }

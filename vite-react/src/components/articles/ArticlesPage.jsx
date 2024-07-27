@@ -1,10 +1,25 @@
-import { Badge, Button, Card, CardBody, CardText, CardTitle, Col, Container, Nav, Row } from 'react-bootstrap'
+import {
+  Badge,
+  Button,
+  Card,
+  CardBody,
+  CardSubtitle,
+  CardText,
+  CardTitle,
+  Col,
+  Container,
+  Image,
+  Nav,
+  Row,
+} from 'react-bootstrap'
 import BiasBar from '../BiasBar'
 import FactualityBar from './FactualityBar'
 import SourceCard from './SourceCard'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import pic from '../../assets/default-avatar.jpg'
+import { getTimeDifference } from '../../utils/timeUtils'
 
 function ArticlesPage() {
   const leftPercentage = 'L33%'
@@ -53,9 +68,46 @@ function ArticlesPage() {
             {mainArticle.source_country.toUpperCase()}
           </span>
           <h2>{mainArticle.title}</h2>
-          <p>{mainArticle.text || 'No content available'}</p>
+
           <Row>
-            <Col xs={6}>
+            <Col xs={7}>
+              <p className="article-text">{mainArticle.text || 'No content available'}</p>
+              <Link to={mainArticle.url}>
+                <span className="span-link">Read full article</span>
+              </Link>
+            </Col>
+
+            <Col xs={5}>
+              <Card className="article-card source mt-1">
+                <CardBody>
+                  <Row className="flex">
+                    <Col lg={3}>
+                      <Image fluid src={pic} />
+                    </Col>
+                    <Col lg={5}>
+                      <CardText>{getTimeDifference(mainArticle.publish_date)}</CardText>
+                      <CardSubtitle className="mb-2">Source name</CardSubtitle>
+                      <CardText>Media Type</CardText>
+                      <CardSubtitle>TV Station/Website</CardSubtitle>
+                    </Col>
+                    <Col lg={4}>
+                      <CardText>Country</CardText>
+                      <CardSubtitle className="mb-2">USA</CardSubtitle>
+                      <CardText>Popularity</CardText>
+                      <CardSubtitle>High Traffic</CardSubtitle>
+                    </Col>
+                  </Row>
+                </CardBody>
+              </Card>
+
+              <Card className="article-card">
+                <CardBody>
+                  <CardText className="mb-2">Factuality: {factuality}</CardText>
+                  <CardText>Bias: {bias}</CardText>
+                  <FactualityBar bias={bias} />
+                </CardBody>
+              </Card>
+
               <Card className="article-card">
                 <CardBody>
                   <CardTitle>Bias Distribution</CardTitle>
@@ -65,16 +117,6 @@ function ArticlesPage() {
                     centerPercentage={centerPercentage}
                     rightPercentage={rightPercentage}
                   />
-                </CardBody>
-              </Card>
-            </Col>
-
-            <Col xs={6}>
-              <Card className="article-card">
-                <CardBody>
-                  <CardText className="mb-2">Factuality: {factuality}</CardText>
-                  <CardText>Bias: {bias}</CardText>
-                  <FactualityBar bias={bias} />
                 </CardBody>
               </Card>
             </Col>
@@ -90,17 +132,17 @@ function ArticlesPage() {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey="link-1">
-            Left <Badge>10</Badge>
+            Left <Badge>0</Badge>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey="link-2">
-            Center <Badge>10</Badge>
+            Center <Badge>0</Badge>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey="link-3">
-            Right <Badge>10</Badge>
+            Right <Badge>0</Badge>
           </Nav.Link>
         </Nav.Item>
       </Nav>
