@@ -16,7 +16,7 @@ function HomePage() {
             <MainSection />
             <RightAside />
           </Row>
-          <TrendingSection title={'Trending title'} />
+          <TrendingSection title={'Olympics'} />
         </Container>
       </div>
     </>

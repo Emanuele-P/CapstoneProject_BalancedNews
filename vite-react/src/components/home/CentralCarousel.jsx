@@ -4,7 +4,10 @@ import pic from '../../assets/hero.jpg'
 import { Link } from 'react-router-dom'
 
 function CentralCarousel({ news }) {
-  if (!Array.isArray(news)) {
+  console.log('CentralCarousel received news:', news)
+
+  if (!Array.isArray(news) || news.length === 0) {
+    console.log('No news data available')
     return null
   }
   const limitedNews = news.slice(0, 3)
