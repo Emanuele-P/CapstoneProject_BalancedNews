@@ -27,6 +27,7 @@ export const getTrendingNews = (query) => async (dispatch) => {
   try {
     const response = await fetch(`${import.meta.env.VITE_URL}/api/news/trending?query=${query}`)
     const data = await response.json()
+
     if (response.ok) {
       dispatch({ type: GET_TRENDING_NEWS_SUCCESS, payload: data })
     } else {

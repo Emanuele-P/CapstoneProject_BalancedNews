@@ -16,7 +16,8 @@ function HomePage() {
             <MainSection />
             <RightAside />
           </Row>
-          <TrendingSection title={'Olympics'} />
+          <TrendingSection title="Olympics" query="olympics" />
+          <TrendingSection title="Israel-Hamas Conflict" query="israel+war" />
         </Container>
       </div>
     </>

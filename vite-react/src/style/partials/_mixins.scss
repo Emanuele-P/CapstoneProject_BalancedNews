@@ -21,3 +21,9 @@
     justify-content: center;
   }
 }
+
+@mixin sentbar {
+  &:hover .sentiment-bar {
+    width: calc(var(--sentiment-percentage, 0%) + 10px) !important;
+  }
+}

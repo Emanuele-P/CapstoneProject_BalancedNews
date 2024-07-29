@@ -1,15 +1,19 @@
 import PropTypes from 'prop-types'
 
 function SentimentBar({ sentiment }) {
-  const sentimentPercentage = sentiment * 100
+  const sentimentPercentage = (((sentiment + 1) / 2) * 100).toFixed(2)
 
   return (
     <div className="sentiment-bar-container">
       <div
         className="sentiment-bar"
-        style={{ width: `${sentimentPercentage}%`, backgroundColor: getSentimentColor(sentiment) }}
+        style={{
+          width: `${sentimentPercentage}%`,
+          backgroundColor: getSentimentColor(sentiment),
+          '--sentiment-percentage': `${sentimentPercentage}%`,
+        }}
       ></div>
-      <span className="sentiment-percentage">{sentimentPercentage.toFixed(2)}%</span>
+      <span className="sentiment-percentage">{sentimentPercentage}%</span>
     </div>
   )
 }

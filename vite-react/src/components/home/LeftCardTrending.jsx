@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
-import { Card, Row } from 'react-bootstrap'
+import { Card, Image, Row } from 'react-bootstrap'
 import pic from '../../assets/leftpic.webp'
 import { Link } from 'react-router-dom'
 import SentimentBar from '../SentimentBar'
+import logo from '../../assets/default-avatar.jpg'
 
 function LeftCardTrending({ article }) {
   if (!article) {
@@ -19,7 +20,8 @@ function LeftCardTrending({ article }) {
             </div>
             <Card.Body>
               <div className="d-flex flex-column">
-                <div>
+                <div className="body-wrapper">
+                  <Image src={logo} className="source-pic" />
                   <Card.Subtitle>
                     {article.author || 'Unknown Author'} ・ {article.source_country.toUpperCase()}
                   </Card.Subtitle>
