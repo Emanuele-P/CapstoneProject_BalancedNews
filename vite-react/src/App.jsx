@@ -9,11 +9,13 @@ import LoginForm from './components/login/LoginForm'
 import SimpleNav from './components/login/SimpleNav'
 import SignupForm from './components/login/SignupForm'
 import ArticlesPage from './components/articles/ArticlesPage'
+import ScrollToTop from './utils/ScrollToTop'
 
 function App() {
   return (
     <div className="app">
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route
             path="/"

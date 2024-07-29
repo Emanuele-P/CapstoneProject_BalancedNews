@@ -100,7 +100,17 @@ navbar .navbar {
 }
 
 //footer
+.footer-wrapper {
+  background-color: $dark;
+}
 footer {
+  color: #fff;
+
+  a {
+    color: #fff !important;
+    padding: 0 !important;
+  }
+
   li {
     font-size: 13px;
     font-weight: 500;
@@ -111,10 +121,8 @@ footer {
   .li-title {
     font-size: 16px;
     font-weight: 600;
-    &:hover {
-      cursor: text;
-    }
   }
+
   span {
     font-size: 13px;
     font-weight: 500;
@@ -125,12 +133,12 @@ footer {
   }
 
   .logo {
-    width: 50%;
+    width: 60%;
   }
 
   .social-link {
     i {
-      color: $black;
+      color: #fff;
 
       &:hover {
         color: $info;

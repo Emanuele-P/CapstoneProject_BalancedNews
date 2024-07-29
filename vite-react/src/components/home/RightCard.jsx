@@ -8,7 +8,7 @@ function RightCard({ article }) {
     <>
       <Link to={`/article/${article.id}`} className="s-cards-link">
         <Card className="w-100 right-card mb-2 border-bottom">
-          <Card.Body className="py-2 px-0">
+          <Card.Body className="px-0 pt-0 pb-2">
             <Card.Title>
               {article.author || 'Unknown Author'} ・ {article.source_country.toUpperCase()}
             </Card.Title>

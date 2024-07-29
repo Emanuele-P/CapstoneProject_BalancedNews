@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Button, Form, Container, Row, Col, Image, Spinner } from 'react-bootstrap'
+import { Button, Form, Container, Row, Col, Spinner } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { login, fetchProfile } from '../../redux/actions/authActions'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,7 +28,6 @@ const LoginForm = () => {
   useEffect(() => {
     if (profile) {
       setShowWelcome(true)
-      console.log(profile)
       setTimeout(() => {
         navigate('/home')
       }, 2000)
@@ -38,18 +37,14 @@ const LoginForm = () => {
   return (
     <div className="background-login">
       <Container className="mb-5">
-        <Row>
-          <Col xs={12} md={4} lg={7} className="mb-5 d-flex align-items-center img-col">
-            <Image className="img-fluid img-col" />
-          </Col>
-
+        <Row className="justify-content-center">
           {showWelcome ? (
-            <Col xs={12} md={12} lg={5} className="d-flex flex-column align-items-center justify-content-center notice">
+            <Col xs={12} lg={5} className="d-flex flex-column align-items-center justify-content-center notice">
               <h4 className="mb-4">Welcome {profile?.username}!</h4>
               <Spinner animation="border" />
             </Col>
           ) : (
-            <Col xs={12} md={12} lg={5}>
+            <Col xs={12} lg={5}>
               <h1 className="mt-3 mb-4">Log In</h1>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="email">

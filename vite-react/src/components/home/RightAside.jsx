@@ -1,15 +1,15 @@
-import { Col, Spinner } from 'react-bootstrap'
+import { Button, Col, Spinner } from 'react-bootstrap'
 import RightCard from './RightCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { getNews } from '../../redux/actions/newsActions'
+import { getTopNews } from '../../redux/actions/newsActions'
 
 function RightAside() {
   const dispatch = useDispatch()
   const { loading, news } = useSelector((state) => state.news)
 
   useEffect(() => {
-    dispatch(getNews())
+    dispatch(getTopNews())
   }, [dispatch])
 
   const getValidArticle = (newsArray) => {
@@ -22,7 +22,7 @@ function RightAside() {
   }
 
   const selectedNews = news.top_news
-    ? news.top_news.slice(6, 16).flatMap((newsItem) => {
+    ? news.top_news.slice(7, 17).flatMap((newsItem) => {
         return getValidArticle(newsItem.news)
       })
     : []
@@ -33,10 +33,11 @@ function RightAside() {
       {loading && <Spinner animation="border" />}
       {!loading && (
         <>
-          <h6 className="m-0">Latest news</h6>
+          <h6 className="m-0 pb-1 mb-3 border-bottom">Latest news</h6>
           {selectedNews.map((article) => (
             <RightCard key={article.id} article={article} />
           ))}
+          <Button className="mt-1 w-100 login-button">Load more</Button>
         </>
       )}
     </Col>

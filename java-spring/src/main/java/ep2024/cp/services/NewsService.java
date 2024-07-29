@@ -19,7 +19,7 @@ public class NewsService {
     private String apiKey;
 
     public String getTopNews() {
-        String url = "https://api.worldnewsapi.com/top-news?source-country=us&language=en";
+        String url = "https://api.worldnewsapi.com/top-news?source-country=us&language=en&date=2024-05-28";
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("x-api-key", apiKey);
@@ -30,5 +30,18 @@ public class NewsService {
 
         return response.getBody();
 
+    }
+
+    public String getTrendingNews(String query) {
+        String url = "https://api.worldnewsapi.com/search-news?text=" + query + "&language=en&number=10";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("x-api-key", apiKey);
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
+
+        return response.getBody();
     }
 }

@@ -1,5 +1,5 @@
 import { Container, Image, Navbar } from 'react-bootstrap'
-import logo from '../../assets/simple-logo.png'
+import logo from '../../assets/svg/simple-logo.svg'
 import { Link } from 'react-router-dom'
 
 function SimpleNav() {

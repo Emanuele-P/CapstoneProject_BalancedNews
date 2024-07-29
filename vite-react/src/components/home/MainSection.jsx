@@ -5,7 +5,7 @@ import BiasBar from '../BiasBar'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { getNews } from '../../redux/actions/newsActions'
+import { getTopNews } from '../../redux/actions/newsActions'
 
 function MainSection() {
   const leftPercentage = 'Left 33%'
@@ -17,9 +17,9 @@ function MainSection() {
   const [hasFetched, setHasFetched] = useState(false)
 
   useEffect(() => {
-    if (!news || !news.top_news || news.top_news.length < 15) {
+    if (!news || !news.top_news || news.top_news.flatMap((n) => n.news).length < 18) {
       if (!hasFetched) {
-        dispatch(getNews())
+        dispatch(getTopNews())
         setHasFetched(true)
       }
     }
@@ -40,7 +40,7 @@ function MainSection() {
       : null
 
   const selectedNews = news.top_news
-    ? news.top_news.slice(1, 6).flatMap((newsItem) => {
+    ? news.top_news.slice(1, 7).flatMap((newsItem) => {
         return getValidArticle(newsItem.news)
       })
     : []
@@ -51,7 +51,7 @@ function MainSection() {
       {!loading && news.top_news && news.top_news.length > 0 && (
         <Link to={`/article/${heroArticle.id}`}>
           <section className="hero-wrapper">
-            <Image src={heroArticle.image || hero} className="hero w-100"></Image>
+            <Image src={heroArticle.image || hero} className="hero"></Image>
             <div className="hero-overlay"></div>
             <h3 className="hero-title">{heroArticle.title || 'Untitled'}</h3>
             <BiasBar
