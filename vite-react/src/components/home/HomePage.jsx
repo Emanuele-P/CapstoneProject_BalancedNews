@@ -2,10 +2,18 @@ import { Container, Row } from 'react-bootstrap'
 import CategoriesSlider from './CategoriesSlider'
 import LeftAside from './LeftAside'
 import MainSection from './MainSection'
-import RightAside from './RightAside'
 import TrendingSection from './TrendingSection'
+import { useEffect, useState } from 'react'
 
 function HomePage() {
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoaded(true)
+    }, 1000)
+  }, [])
+
   return (
     <>
       <CategoriesSlider />
@@ -14,10 +22,9 @@ function HomePage() {
           <Row className="flex-row mb-3 border-bottom">
             <LeftAside />
             <MainSection />
-            <RightAside />
           </Row>
           <TrendingSection title="Olympics" query="olympics" />
-          <TrendingSection title="Israel-Hamas Conflict" query="israel+war" />
+          {loaded && <TrendingSection title="Israel-Hamas Conflict" query="israel" />}
         </Container>
       </div>
     </>

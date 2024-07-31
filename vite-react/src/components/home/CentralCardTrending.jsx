@@ -9,6 +9,9 @@ function CentralCardTrending({ article }) {
     return null
   }
 
+  const url = new URL(article.url)
+  const domain = url.hostname.replace('www.', '').split('.')[0]
+
   return (
     <>
       <Link to={article.url}>
@@ -22,7 +25,7 @@ function CentralCardTrending({ article }) {
             <Col md={9}>
               <Card.Body className="p-0">
                 <Card.Title>
-                  {article.author || 'Unknown Author'} ・ {article.source_country.toUpperCase()}
+                  | {domain} {''} ・ {''} {article.author || 'Unknown Author'} ・ {article.source_country.toUpperCase()}
                 </Card.Title>
                 <Card.Text>{article.title || 'No title available'}</Card.Text>
                 <div className="flex gap-3 justify-content-between">

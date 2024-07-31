@@ -1,46 +1,38 @@
+/* eslint-disable react/prop-types */
 import { Button, Col, Spinner } from 'react-bootstrap'
 import RightCard from './RightCard'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { getTopNews } from '../../redux/actions/newsActions'
+import { useRef, useState } from 'react'
+import { useDynamicHeight } from '../../utils/heightUtils'
 
-function RightAside() {
-  const dispatch = useDispatch()
-  const { loading, news } = useSelector((state) => state.news)
+function RightAside({ mainSectionRef, validatedNews }) {
+  const [displayCount, setDisplayCount] = useState(10)
 
-  useEffect(() => {
-    dispatch(getTopNews())
-  }, [dispatch])
+  const rightAsideRef = useRef(null)
+  const mainSectionHeight = useDynamicHeight(mainSectionRef)
 
-  const getValidArticle = (newsArray) => {
-    for (let article of newsArray) {
-      if (article.author && article.image && article.title && article.summary) {
-        return article
-      }
-    }
-    return newsArray[0]
+  const handleLoadMore = () => {
+    setDisplayCount(displayCount + 5)
   }
 
-  const selectedNews = news.top_news
-    ? news.top_news.slice(7, 17).flatMap((newsItem) => {
-        return getValidArticle(newsItem.news)
-      })
-    : []
-  console.log('Selected News:', selectedNews)
-
   return (
-    <Col lg={3} className="right-aside hmsc pt-0">
-      {loading && <Spinner animation="border" />}
-      {!loading && (
-        <>
-          <h6 className="m-0 pb-1 mb-3 border-bottom">Latest news</h6>
-          {selectedNews.map((article) => (
-            <RightCard key={article.id} article={article} />
-          ))}
-          <Button className="mt-1 w-100 login-button">Load more</Button>
-        </>
-      )}
-    </Col>
+    <>
+      <Col lg={3}>
+        <h6 className="m-0 pb-1 border-bottom">Latest news</h6>
+        {validatedNews.length === 0 && <Spinner animation="border" />}
+        {validatedNews.length > 0 && (
+          <Col className="right-aside hmsc pt-3" style={{ maxHeight: mainSectionHeight }} ref={rightAsideRef}>
+            {validatedNews.slice(0, displayCount).map((article) => (
+              <RightCard key={article.id} article={article} />
+            ))}
+            {validatedNews.length > displayCount && (
+              <Button className="mt-1 w-100 login-button" onClick={handleLoadMore}>
+                Load more
+              </Button>
+            )}
+          </Col>
+        )}
+      </Col>
+    </>
   )
 }
 

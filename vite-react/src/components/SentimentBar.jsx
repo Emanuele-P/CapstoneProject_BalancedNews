@@ -19,10 +19,11 @@ function SentimentBar({ sentiment }) {
 }
 
 function getSentimentColor(sentiment) {
-  if (sentiment > 0.75) return '#4caf50'
-  if (sentiment > 0.5) return '#8bc34a'
-  if (sentiment > 0.25) return '#ffc107'
-  return '#f44336'
+  if (sentiment > 0.75) return '#1B998B'
+  if (sentiment > 0.4) return '#D6E681'
+  if (sentiment >= 0) return '#F2A840'
+  if (sentiment > -0.5) return '#EA4859'
+  return '#5F0711'
 }
 
 SentimentBar.propTypes = {

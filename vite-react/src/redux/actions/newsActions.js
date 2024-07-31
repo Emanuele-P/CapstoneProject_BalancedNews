@@ -29,7 +29,7 @@ export const getTrendingNews = (query) => async (dispatch) => {
     const data = await response.json()
 
     if (response.ok) {
-      dispatch({ type: GET_TRENDING_NEWS_SUCCESS, payload: data })
+      dispatch({ type: GET_TRENDING_NEWS_SUCCESS, payload: { data, query } })
     } else {
       console.log('Error fetching trending news:', data.message)
       throw new Error('Error fetching trending news, try again later!')

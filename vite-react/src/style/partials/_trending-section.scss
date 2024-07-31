@@ -1,4 +1,18 @@
 //carousel
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  }
+}
+
+.blinking {
+  animation: blink 3s infinite;
+}
+
 .carousel {
   position: relative;
   .c-pic {
@@ -115,4 +129,10 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.trending-left-aside {
+  padding-bottom: 8px;
+  @include scrollbar-style;
+  min-height: 80vh;
 }

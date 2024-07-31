@@ -20,4 +20,9 @@ public class NewsController {
     public String getTrendingNews(@RequestParam String query) {
         return newsService.getTrendingNews(query);
     }
+
+    @GetMapping("/categories")
+    public String getCategories(@RequestParam String query) {
+        return newsService.getCategories(query);
+    }
 }

@@ -27,3 +27,29 @@
     width: calc(var(--sentiment-percentage, 0%) + 10px) !important;
   }
 }
+
+@mixin scrollbar-style {
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 6px;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(80, 80, 80, 0.3);
+    cursor: pointer;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(30, 30, 30, 0.333);
+  }
+}

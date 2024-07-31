@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   loading: false,
-  topNews: [],
+  news: [],
   trendingNews: [],
 }
 
@@ -19,9 +19,13 @@ const newsReducer = (state = initialState, action) => {
     case GET_TRENDING_NEWS_REQUEST:
       return { ...state, loading: true }
     case GET_TOP_NEWS_SUCCESS:
-      return { ...state, loading: false, topNews: action.payload }
+      return { ...state, loading: false, news: action.payload }
     case GET_TRENDING_NEWS_SUCCESS:
-      return { ...state, loading: false, trendingNews: action.payload }
+      return {
+        ...state,
+        loading: false,
+        trendingNews: { ...state.trendingNews, [action.payload.query]: action.payload.data },
+      }
     case GET_TOP_NEWS_FAILURE:
     case GET_TRENDING_NEWS_FAILURE:
       return { ...state, loading: false }

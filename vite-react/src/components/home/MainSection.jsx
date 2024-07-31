@@ -4,8 +4,9 @@ import CentralCard from './CentralCard'
 import BiasBar from '../BiasBar'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { getTopNews } from '../../redux/actions/newsActions'
+import RightAside from './RightAside'
 
 function MainSection() {
   const leftPercentage = 'Left 33%'
@@ -14,61 +15,56 @@ function MainSection() {
 
   const dispatch = useDispatch()
   const { loading, news } = useSelector((state) => state.news)
-  const [hasFetched, setHasFetched] = useState(false)
+  const mainSectionRef = useRef(null)
 
   useEffect(() => {
-    if (!news || !news.top_news || news.top_news.flatMap((n) => n.news).length < 18) {
-      if (!hasFetched) {
-        dispatch(getTopNews())
-        setHasFetched(true)
-      }
+    if (!news || !news.top_news) {
+      dispatch(getTopNews())
     }
-  }, [dispatch, news, hasFetched])
+  }, [])
 
-  const getValidArticle = (newsArray) => {
-    for (let article of newsArray) {
-      if (article.author && article.image && article.title && article.summary) {
-        return article
+  const getValidNews = (newsArray) => {
+    const validArticles = []
+    newsArray.forEach((newsItem) => {
+      for (let article of newsItem.news) {
+        if (article.author && article.image && article.title && article.summary) {
+          validArticles.push(article)
+          break
+        }
       }
-    }
-    return newsArray[0]
+    })
+    return validArticles
   }
 
-  const heroArticle =
-    news.top_news && news.top_news.length > 0 && news.top_news[0].news.length > 0
-      ? getValidArticle(news.top_news[0].news)
-      : null
-
-  const selectedNews = news.top_news
-    ? news.top_news.slice(1, 7).flatMap((newsItem) => {
-        return getValidArticle(newsItem.news)
-      })
-    : []
+  const allValidNews = news.top_news ? getValidNews(news.top_news) : []
 
   return (
-    <Col lg={6} className="main-section hmsc pt-1">
-      {loading && <Spinner animation="border" />}
-      {!loading && news.top_news && news.top_news.length > 0 && (
-        <Link to={`/article/${heroArticle.id}`}>
-          <section className="hero-wrapper">
-            <Image src={heroArticle.image || hero} className="hero"></Image>
-            <div className="hero-overlay"></div>
-            <h3 className="hero-title">{heroArticle.title || 'Untitled'}</h3>
-            <BiasBar
-              leftPercentage={leftPercentage}
-              centerPercentage={centerPercentage}
-              rightPercentage={rightPercentage}
-            />
-          </section>
-        </Link>
-      )}
-      <h2>
-        Top news stories <Spinner animation="grow" className="text-danger" />
-      </h2>
-      {selectedNews.map((article) => (
-        <CentralCard key={article.id} article={article} />
-      ))}
-    </Col>
+    <>
+      <Col lg={6} className="main-section hmsc pt-1" ref={mainSectionRef}>
+        {loading && <Spinner animation="border" />}
+        {!loading && news.top_news && news.top_news.length > 0 && (
+          <Link to={`/article/${allValidNews[0]?.id}`}>
+            <section className="hero-wrapper">
+              <Image src={allValidNews[0]?.image || hero} className="hero"></Image>
+              <div className="hero-overlay"></div>
+              <h3 className="hero-title">{allValidNews[0]?.title || 'Untitled'}</h3>
+              <BiasBar
+                leftPercentage={leftPercentage}
+                centerPercentage={centerPercentage}
+                rightPercentage={rightPercentage}
+              />
+            </section>
+          </Link>
+        )}
+        <h2>
+          Top news stories <Spinner animation="grow" className="text-danger" />
+        </h2>
+        {allValidNews.slice(1, 7).map((article) => (
+          <CentralCard key={article.id} article={article} />
+        ))}
+      </Col>
+      <RightAside mainSectionRef={mainSectionRef} validatedNews={allValidNews.slice(8)} />
+    </>
   )
 }
 

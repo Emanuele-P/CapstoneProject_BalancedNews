@@ -59,6 +59,7 @@ function ArticlesPage() {
   const handleLoadMore = () => {
     setDisplayedArticles((prevCount) => prevCount + 5)
   }
+
   return (
     <Container className="my-3">
       {mainArticle && (
