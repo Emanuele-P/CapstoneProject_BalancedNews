@@ -22,15 +22,9 @@ import pic from '../../assets/default-avatar.jpg'
 import { getTimeDifference } from '../../utils/timeUtils'
 import { getNewsSource } from '../../redux/actions/newsActions'
 import { extractDomain } from '../../utils/urlUtils'
+import { calculateBiasPercentages, getMaxBias } from '../../utils/BiasUtils'
 
 function ArticlesPage() {
-  const leftPercentage = 'L33%'
-  const centerPercentage = 'C34%'
-  const rightPercentage = 'R33%'
-
-  const factuality = 'HIGH'
-  const bias = 'Least Biased'
-
   const { id } = useParams()
   const [displayedArticles, setDisplayedArticles] = useState(5)
   const dispatch = useDispatch()
@@ -80,34 +74,10 @@ function ArticlesPage() {
     })
   }, [])
 
-  const categorizeArticles = (articles) => {
-    const left = []
-    const center = []
-    const right = []
-
-    articles.forEach((article) => {
-      const domain = extractDomain(article.url)
-      const source = sources[domain]
-      if (source) {
-        switch (source.biasRating) {
-          case 'Left':
-          case 'Left-Center':
-            left.push(article)
-            break
-          case 'Right':
-          case 'Right-Center':
-            right.push(article)
-            break
-          default:
-            center.push(article)
-        }
-      }
-    })
-
-    return { left, center, right }
-  }
-
-  const { left, center, right } = categorizeArticles(uniqueRelatedArticles)
+  const { leftPercentage, centerPercentage, rightPercentage, left, center, right } = calculateBiasPercentages(
+    uniqueRelatedArticles,
+    sources
+  )
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter)
@@ -132,9 +102,12 @@ function ArticlesPage() {
   }
 
   const source = mainArticle ? sources[extractDomain(mainArticle.url)] : {}
+  const url = new URL(mainArticle.url)
+  const displayDomain = url.hostname.replace('www.', '').split('.')[0]
+  const maxBias = getMaxBias(leftPercentage, centerPercentage, rightPercentage)
 
   return (
-    <Container className="my-3">
+    <Container className="mt-3 mb-5">
       {mainArticle && (
         <>
           <span>
@@ -160,9 +133,9 @@ function ArticlesPage() {
                     </Col>
                     <Col lg={5}>
                       <CardText>{getTimeDifference(mainArticle.publish_date)}</CardText>
-                      <CardSubtitle className="mb-2">{source?.name || 'Unknown source'}</CardSubtitle>
+                      <CardSubtitle className="mb-2">{source?.name || displayDomain || 'Unknown source'}</CardSubtitle>
                       <CardText>Media Type</CardText>
-                      <CardSubtitle>{source?.mediaType || 'Website'}</CardSubtitle>
+                      <CardSubtitle>{source?.mediaType || 'News Website'}</CardSubtitle>
                     </Col>
                     <Col lg={4}>
                       <CardText>Country</CardText>
@@ -174,20 +147,21 @@ function ArticlesPage() {
                 </CardBody>
               </Card>
 
-              <Card className="article-card">
+              <Card className="article-card fact">
                 <CardBody>
-                  <CardText className="mb-2">
-                    Factuality: {source?.factualReporting || factuality || 'Factuality'}
-                  </CardText>
-                  <CardText>Bias: {source?.biasRating || bias || 'Bias'}</CardText>
-                  <FactualityBar bias={bias} />
+                  <CardText className="mb-2">Factuality: {source?.factualReporting || 'High'}</CardText>
+                  <CardText>Bias: {source?.biasRating || 'Center'}</CardText>
+                  <FactualityBar bias={source?.biasRating} />
                 </CardBody>
               </Card>
 
               <Card className="article-card">
                 <CardBody>
                   <CardTitle>Bias Distribution</CardTitle>
-                  <CardText> • max% of the sources are Center</CardText>
+                  <CardText>
+                    {' '}
+                    • {maxBias.value}% of the sources are {maxBias.type}
+                  </CardText>
                   <BiasBar
                     leftPercentage={leftPercentage}
                     centerPercentage={centerPercentage}
@@ -200,24 +174,24 @@ function ArticlesPage() {
         </>
       )}
       <Nav variant="underline" defaultActiveKey="link" className="article-selection mt-4 mb-3 border-bottom">
-        <Nav.Item>N of Articles</Nav.Item>
+        <Nav.Item className="ms-2">{uniqueRelatedArticles.length} Articles</Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey="all" onClick={() => handleFilterChange('all')}>
-            All <Badge>{uniqueRelatedArticles.length}</Badge>
+            All
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="left" onClick={() => handleFilterChange('left')}>
+          <Nav.Link eventKey="left" onClick={() => handleFilterChange('left')} disabled={left.length === 0}>
             Left <Badge>{left.length}</Badge>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="center" onClick={() => handleFilterChange('center')}>
+          <Nav.Link eventKey="center" onClick={() => handleFilterChange('center')} disabled={center.length === 0}>
             Center <Badge>{center.length}</Badge>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="right" onClick={() => handleFilterChange('right')}>
+          <Nav.Link eventKey="right" onClick={() => handleFilterChange('right')} disabled={right.length === 0}>
             Right <Badge>{right.length}</Badge>
           </Nav.Link>
         </Nav.Item>
@@ -227,7 +201,7 @@ function ArticlesPage() {
         <SourceCard key={index} article={article} />
       ))}
 
-      {displayedArticles < relatedArticles.length && (
+      {displayedArticles < filteredArticles.length && (
         <Button className="my-3 btn-info" onClick={handleLoadMore}>
           More articles
         </Button>

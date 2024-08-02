@@ -34,10 +34,10 @@ function SourceCard({ article }) {
   const displayDomain = url.hostname.replace('www.', '').split('.')[0]
 
   return (
-    <Card className="articles-list-card mb-2">
+    <Card className="articles-list-card mb-3">
       <CardBody>
         <div className="flex justify-content-between top-wrapper">
-          <Button className="flex justify-content-start btn-secondary">
+          <Button className="flex justify-content-start btn-source">
             <Image src={pic} className="source-logo" />
             <h6>{source?.name || displayDomain || 'Unknown Source'}</h6>
           </Button>
@@ -47,9 +47,9 @@ function SourceCard({ article }) {
           </div>
         </div>
         <Link to={`/article/${article.id}`}>
-          <CardTitle className="mt-2">{article.title || 'No title available'}</CardTitle>
-          <CardText>{article.summary || 'No summary available'}</CardText>
-          <div className="flex justify-content-between">
+          <CardTitle className="mt-2 px-2">{article.title || 'No title available'}</CardTitle>
+          <CardText className="px-2">{article.summary || 'No summary available'}</CardText>
+          <div className="flex justify-content-between px-2 pb-3">
             <span>{getTimeDifference(article.publish_date)}</span>
             <Link to={article.url}>
               <span className="span-link">Read full article</span>

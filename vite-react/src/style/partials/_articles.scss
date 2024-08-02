@@ -3,14 +3,23 @@
   height: 20px;
   width: 100%;
   background-color: #cecece;
+  overflow: hidden;
 }
 
 .factuality-bar {
   position: absolute;
   height: 20px;
-  width: 10px;
-  background-color: #ffc107;
+  width: 90px;
   transform: translateX(-50%);
+  transition: width 0.2s linear;
+}
+
+.fact:hover {
+  cursor: pointer;
+
+  .factuality-bar {
+    width: 100px;
+  }
 }
 
 .article-card {
@@ -21,7 +30,6 @@
 .span-link {
   font-size: 12px;
   font-weight: 300;
-  margin-bottom: 0.5rem;
   text-decoration: underline;
 }
 
@@ -38,8 +46,27 @@
   line-clamp: 18;
 }
 
+@keyframes backgroundFade {
+  0% {
+    background-size: 100% 0%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
 .articles-list-card {
   border: none;
+  background: linear-gradient(to bottom, $gray 0%, $gray 100%);
+  background-size: 100% 0%;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s ease-out;
+
+  &:hover {
+    cursor: pointer;
+    background-size: 100% 100%;
+  }
+
   .card-body {
     padding: 0;
   }
@@ -53,10 +80,15 @@
     font-weight: 600;
   }
   .fact-badge {
-    background-color: $teal !important;
+    background-color: #a6b1b0 !important;
   }
   .bias-badge {
-    background-color: $info !important;
+    background-color: #a6b1b0 !important;
+  }
+
+  .fact-badge:hover,
+  .bias-badge:hover {
+    cursor: pointer;
   }
 
   button {
@@ -78,6 +110,7 @@
     -webkit-line-clamp: 3;
     line-clamp: 3;
     text-align: justify;
+    margin-bottom: 0.5rem;
   }
 
   a:hover p,
@@ -91,7 +124,6 @@
     span {
       font-size: 12px;
       font-weight: 300;
-      margin-bottom: 0.5rem;
     }
   }
 }

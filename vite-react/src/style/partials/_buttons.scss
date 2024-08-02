@@ -42,3 +42,13 @@
   border: 1px solid $black;
   color: $black;
 }
+
+.btn-source {
+  background-color: #a6b1b0;
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: #8c9897;
+    border: 1px solid transparent;
+  }
+}

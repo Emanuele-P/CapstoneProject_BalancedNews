@@ -2,12 +2,11 @@
 
 .bias-bar.left {
   background-color: $left;
-  width: 33%;
 }
 
 .bias-bar.center {
   background-color: $gray;
-  width: 34%;
+
   .percentage-text {
     color: $black;
   }
@@ -15,7 +14,6 @@
 
 .bias-bar.right {
   background-color: $right;
-  width: 33%;
 }
 
 .left-card {
