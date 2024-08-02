@@ -28,7 +28,7 @@ public class NewsSourcesService {
                 newsSource.setCountry(details.optString("country", null));
                 newsSource.setCountryFreedomRank(details.optString("MBFC_ranking", null));
                 newsSource.setMediaType(details.optString("media_type", null));
-                newsSource.setTrafficPopularity(details.optString("popularity", null));
+                newsSource.setTrafficPopularity(details.optString("traffic_popularity", null));
                 newsSource.setCredibilityRating(details.optString("credibility", null));
 
                 newsSourcesRepository.save(newsSource);

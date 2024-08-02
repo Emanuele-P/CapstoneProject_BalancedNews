@@ -15,11 +15,13 @@ import {
 import BiasBar from '../BiasBar'
 import FactualityBar from './FactualityBar'
 import SourceCard from './SourceCard'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import pic from '../../assets/default-avatar.jpg'
 import { getTimeDifference } from '../../utils/timeUtils'
+import { getNewsSource } from '../../redux/actions/newsActions'
+import { extractDomain } from '../../utils/urlUtils'
 
 function ArticlesPage() {
   const leftPercentage = 'L33%'
@@ -31,8 +33,14 @@ function ArticlesPage() {
 
   const { id } = useParams()
   const [displayedArticles, setDisplayedArticles] = useState(5)
+  const dispatch = useDispatch()
+  const [filter, setFilter] = useState('all')
 
-  const news = useSelector((state) => state.news.news)
+  const { news, sources } = useSelector((state) => ({
+    news: state.news.news,
+    sources: state.news.newsSource,
+  }))
+
   let mainArticle = null
   let relatedArticles = []
 
@@ -47,8 +55,7 @@ function ArticlesPage() {
 
   const uniqueDomains = new Set()
   const uniqueRelatedArticles = relatedArticles.filter((article) => {
-    const url = new URL(article.url)
-    const domain = url.hostname.replace('www.', '').split('.')[0]
+    const domain = extractDomain(article.url)
     if (uniqueDomains.has(domain)) {
       return false
     }
@@ -56,9 +63,75 @@ function ArticlesPage() {
     return true
   })
 
+  useEffect(() => {
+    if (mainArticle) {
+      const domain = extractDomain(mainArticle.url)
+      if (domain) {
+        uniqueDomains.add(domain)
+        dispatch(getNewsSource(domain))
+      }
+    }
+    relatedArticles.forEach((article) => {
+      const domain = extractDomain(article.url)
+      if (domain && !uniqueDomains.has(domain)) {
+        uniqueDomains.add(domain)
+        dispatch(getNewsSource(domain))
+      }
+    })
+  }, [])
+
+  const categorizeArticles = (articles) => {
+    const left = []
+    const center = []
+    const right = []
+
+    articles.forEach((article) => {
+      const domain = extractDomain(article.url)
+      const source = sources[domain]
+      if (source) {
+        switch (source.biasRating) {
+          case 'Left':
+          case 'Left-Center':
+            left.push(article)
+            break
+          case 'Right':
+          case 'Right-Center':
+            right.push(article)
+            break
+          default:
+            center.push(article)
+        }
+      }
+    })
+
+    return { left, center, right }
+  }
+
+  const { left, center, right } = categorizeArticles(uniqueRelatedArticles)
+
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter)
+    setDisplayedArticles(5)
+  }
+
+  const filteredArticles = (() => {
+    switch (filter) {
+      case 'left':
+        return left
+      case 'center':
+        return center
+      case 'right':
+        return right
+      default:
+        return uniqueRelatedArticles
+    }
+  })()
+
   const handleLoadMore = () => {
     setDisplayedArticles((prevCount) => prevCount + 5)
   }
+
+  const source = mainArticle ? sources[extractDomain(mainArticle.url)] : {}
 
   return (
     <Container className="my-3">
@@ -87,15 +160,15 @@ function ArticlesPage() {
                     </Col>
                     <Col lg={5}>
                       <CardText>{getTimeDifference(mainArticle.publish_date)}</CardText>
-                      <CardSubtitle className="mb-2">Source name</CardSubtitle>
+                      <CardSubtitle className="mb-2">{source?.name || 'Unknown source'}</CardSubtitle>
                       <CardText>Media Type</CardText>
-                      <CardSubtitle>TV Station/Website</CardSubtitle>
+                      <CardSubtitle>{source?.mediaType || 'Website'}</CardSubtitle>
                     </Col>
                     <Col lg={4}>
                       <CardText>Country</CardText>
-                      <CardSubtitle className="mb-2">USA</CardSubtitle>
+                      <CardSubtitle className="mb-2">{mainArticle.source_country.toUpperCase()}</CardSubtitle>
                       <CardText>Popularity</CardText>
-                      <CardSubtitle>High Traffic</CardSubtitle>
+                      <CardSubtitle>{source?.trafficPopularity || 'Medium Traffic'}</CardSubtitle>
                     </Col>
                   </Row>
                 </CardBody>
@@ -103,8 +176,10 @@ function ArticlesPage() {
 
               <Card className="article-card">
                 <CardBody>
-                  <CardText className="mb-2">Factuality: {factuality}</CardText>
-                  <CardText>Bias: {bias}</CardText>
+                  <CardText className="mb-2">
+                    Factuality: {source?.factualReporting || factuality || 'Factuality'}
+                  </CardText>
+                  <CardText>Bias: {source?.biasRating || bias || 'Bias'}</CardText>
                   <FactualityBar bias={bias} />
                 </CardBody>
               </Card>
@@ -127,28 +202,28 @@ function ArticlesPage() {
       <Nav variant="underline" defaultActiveKey="link" className="article-selection mt-4 mb-3 border-bottom">
         <Nav.Item>N of Articles</Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link">
-            All <Badge>{relatedArticles.length}</Badge>
+          <Nav.Link eventKey="all" onClick={() => handleFilterChange('all')}>
+            All <Badge>{uniqueRelatedArticles.length}</Badge>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-1">
-            Left <Badge>0</Badge>
+          <Nav.Link eventKey="left" onClick={() => handleFilterChange('left')}>
+            Left <Badge>{left.length}</Badge>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-2">
-            Center <Badge>0</Badge>
+          <Nav.Link eventKey="center" onClick={() => handleFilterChange('center')}>
+            Center <Badge>{center.length}</Badge>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-3">
-            Right <Badge>0</Badge>
+          <Nav.Link eventKey="right" onClick={() => handleFilterChange('right')}>
+            Right <Badge>{right.length}</Badge>
           </Nav.Link>
         </Nav.Item>
       </Nav>
 
-      {uniqueRelatedArticles.slice(0, displayedArticles).map((article, index) => (
+      {filteredArticles.slice(0, displayedArticles).map((article, index) => (
         <SourceCard key={index} article={article} />
       ))}
 

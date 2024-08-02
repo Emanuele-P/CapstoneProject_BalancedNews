@@ -7,8 +7,6 @@ import ep2024.cp.services.NewsSourcesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
 @CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/api/news")
@@ -34,9 +32,9 @@ public class NewsController {
         return newsService.getCategories(query);
     }
 
-    @GetMapping("/source/{id}")
-    public NewsSource getNewsSourceById(@PathVariable UUID id) {
-        NewsSource newsSource = newsSourcesService.getSourceById(id);
+    @GetMapping("/source/domain/{domain}")
+    public NewsSource getNewsSourceById(@PathVariable String domain) {
+        NewsSource newsSource = newsSourcesService.getSourceByDomain(domain);
         if (newsSource == null) {
             throw new NotFoundException("News source not found.");
         }

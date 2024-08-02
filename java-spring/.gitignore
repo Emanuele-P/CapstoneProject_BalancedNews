@@ -32,4 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 env.properties
-db.json
+news_sources.json
