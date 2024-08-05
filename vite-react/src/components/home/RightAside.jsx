@@ -20,7 +20,7 @@ function RightAside({ mainSectionRef, validatedNews }) {
         <h6 className="m-0 pb-1 border-bottom">Latest news</h6>
         {validatedNews.length === 0 && <Spinner animation="border" />}
         {validatedNews.length > 0 && (
-          <Col className="right-aside hmsc pt-3" style={{ maxHeight: mainSectionHeight }} ref={rightAsideRef}>
+          <Col className="right-aside hmsc pt-2" style={{ maxHeight: mainSectionHeight }} ref={rightAsideRef}>
             {validatedNews.slice(0, displayCount).map((article) => (
               <RightCard key={article.id} article={article} />
             ))}

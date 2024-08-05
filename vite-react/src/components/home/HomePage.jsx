@@ -4,9 +4,23 @@ import LeftAside from './LeftAside'
 import MainSection from './MainSection'
 import TrendingSection from './TrendingSection'
 import { useEffect, useState } from 'react'
+import DecorativeNav from '../DecorativeNav'
+import AppNavbar from '../AppNavbar'
 
 function HomePage() {
   const [loaded, setLoaded] = useState(false)
+  const [scrollTop, setScrollTop] = useState(0)
+
+  const handleScroll = () => {
+    setScrollTop(window.scrollY)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   useEffect(() => {
     setTimeout(() => {
@@ -16,6 +30,8 @@ function HomePage() {
 
   return (
     <>
+      <DecorativeNav />
+      <AppNavbar className={scrollTop > 0 ? 'scrolled' : ''} />
       <CategoriesSlider />
       <div className="border-bottom mb-3">
         <Container className="mt-4">

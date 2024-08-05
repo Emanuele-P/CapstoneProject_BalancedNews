@@ -10,6 +10,7 @@ import SimpleNav from './components/login/SimpleNav'
 import SignupForm from './components/login/SignupForm'
 import ArticlesPage from './components/articles/ArticlesPage'
 import ScrollToTop from './utils/ScrollToTop'
+import UserPage from './components/login/UserPage'
 
 function App() {
   return (
@@ -35,16 +36,7 @@ function App() {
               </>
             }
           />
-          <Route
-            path="/home"
-            element={
-              <>
-                <DecorativeNav />
-                <AppNavbar />
-                <HomePage />
-              </>
-            }
-          />
+          <Route path="/home" element={<HomePage />} />
           <Route
             path="/article/:id"
             element={
@@ -52,6 +44,14 @@ function App() {
                 <DecorativeNav />
                 <AppNavbar />
                 <ArticlesPage />
+              </>
+            }
+          />
+          <Route
+            path="/me"
+            element={
+              <>
+                <UserPage />
               </>
             }
           />

@@ -5,7 +5,7 @@ function CategoriesSlider() {
   return (
     <>
       <div className="categories">
-        <Container className="mt-3">
+        <Container className="mb-4">
           <Row className="align-items-center">
             <Col lg={9} className="d-flex gap-2">
               <Button className="btn-ct rounded-pill btn-outline-dark">Politics</Button>
@@ -16,7 +16,7 @@ function CategoriesSlider() {
               <Button className="btn-ct rounded-pill btn-outline-dark">Health</Button>
               <Button className="btn-ct rounded-pill btn-outline-dark">Sports</Button>
             </Col>
-            <Col lg={3} className="p-0">
+            <Col lg={3}>
               <SearchForm />
             </Col>
           </Row>

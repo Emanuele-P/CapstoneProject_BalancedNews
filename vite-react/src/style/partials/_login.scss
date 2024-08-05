@@ -69,9 +69,37 @@
 //nav
 .simple-nav {
   margin-bottom: 1rem;
+  background-color: $background;
+  box-shadow: none;
 
-  .nav-logo {
-    width: 80px;
-    height: unset;
+  i {
+    font-size: 18px;
+    color: $dark;
+
+    &:hover {
+      cursor: pointer;
+      color: $info;
+    }
+  }
+  i::before {
+    font-weight: 600 !important;
+  }
+}
+
+//personal page
+.user-page {
+  min-height: 80vh;
+
+  h4 {
+    color: $info;
+  }
+  .propic {
+    height: 100px;
+    width: 100px;
+  }
+
+  span:hover {
+    cursor: pointer;
+    text-decoration: underline;
   }
 }
