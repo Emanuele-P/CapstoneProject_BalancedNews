@@ -166,7 +166,7 @@ export const updateEmail = (userId, email) => async (dispatch, getState) => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ value: email.trim() }),
+      body: JSON.stringify({ value: email }),
     })
     if (response.ok) {
       const data = await response.json()
@@ -199,7 +199,7 @@ export const updateUsername = (userId, username) => async (dispatch, getState) =
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ value: username.trim() }),
+      body: JSON.stringify({ value: username }),
     })
     if (response.ok) {
       const data = await response.json()
@@ -232,7 +232,7 @@ export const updateName = (userId, name) => async (dispatch, getState) => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ value: name.trim() }),
+      body: JSON.stringify({ value: name }),
     })
     if (response.ok) {
       const data = await response.json()
@@ -265,7 +265,7 @@ export const updateSurname = (userId, surname) => async (dispatch, getState) => 
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ value: surname.trim() }),
+      body: JSON.stringify({ value: surname }),
     })
     if (response.ok) {
       const data = await response.json()
@@ -298,7 +298,7 @@ export const updatePassword = (userId, password) => async (dispatch, getState) =
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ value: password.trim() }),
+      body: JSON.stringify({ value: password }),
     })
     if (response.ok) {
       const data = await response.json()

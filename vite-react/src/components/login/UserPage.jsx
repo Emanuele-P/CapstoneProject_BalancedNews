@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button, Col, Container, Image, Navbar, Row, Spinner } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../assets/svg/simple-logo.svg'
 import NavDropdownComponent from './NavDropdownComponent'
 import propic from '../../assets/default-avatar.jpg'
@@ -27,6 +27,7 @@ function UserPage() {
   const [showEditModal, setShowEditModal] = useState(false)
   const [editField, setEditField] = useState('')
   const [editValues, setEditValues] = useState({ name: '', surname: '', email: '', username: '', password: '' })
+  const navigate = useNavigate()
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]
@@ -64,28 +65,46 @@ function UserPage() {
 
   const handleEditSave = () => {
     setShowEditModal(false)
-    const payload = editValues[editField].trim()
 
     switch (editField) {
       case 'name':
-        dispatch(updateName(profile.id, payload))
+        dispatch(updateName(profile.id, editValues.name))
+        dispatch(updateSurname(profile.id, editValues.surname))
         break
       case 'surname':
-        dispatch(updateSurname(profile.id, payload))
+        dispatch(updateSurname(profile.id, editValues.surname))
         break
       case 'email':
-        dispatch(updateEmail(profile.id, payload))
+        dispatch(updateEmail(profile.id, editValues.email))
         break
       case 'username':
-        dispatch(updateUsername(profile.id, payload))
+        dispatch(updateUsername(profile.id, editValues.username))
         break
       case 'password':
-        dispatch(updatePassword(profile.id, payload))
+        dispatch(updatePassword(profile.id, editValues.password))
         break
       default:
         break
     }
   }
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/home')
+    }
+  }, [isAuthenticated, navigate])
+
+  useEffect(() => {
+    if (profile) {
+      setEditValues({
+        name: profile.name || '',
+        surname: profile.surname || '',
+        email: profile.email || '',
+        username: profile.username || '',
+        password: '',
+      })
+    }
+  }, [profile])
 
   return (
     <>
@@ -115,7 +134,7 @@ function UserPage() {
               <Col lg={4} className="d-flex flex-column justify-content-center">
                 <Row></Row>
                 <h6>Upload your profile photo</h6>
-                <span>Profile photo guidelines</span>
+                <span className="gl">Profile photo guidelines</span>
                 <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
               </Col>
               <Col lg={{ span: 2, offset: 4 }} className="d-flex align-items-center">

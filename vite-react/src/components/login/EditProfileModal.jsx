@@ -25,7 +25,7 @@ const EditProfileModal = ({ show, onClose, onSave, field, values, setValues }) =
                 <Form.Control type="text" name="name" value={values.name} onChange={handleChange} placeholder="Name" />
                 <Form.Label>Name</Form.Label>
               </Form.Group>
-              <Form.Group controlId="formSurname" className="form-floating-label" style={{ marginTop: '10px' }}>
+              <Form.Group controlId="formSurname" className="form-floating-label">
                 <Form.Control
                   type="text"
                   name="surname"

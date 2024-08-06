@@ -6,7 +6,7 @@ import ep2024.cp.entities.Role;
 import ep2024.cp.entities.User;
 import ep2024.cp.exceptions.BadRequestException;
 import ep2024.cp.exceptions.NotFoundException;
-import ep2024.cp.payloads.NewUserDTO;
+import ep2024.cp.payloads.*;
 import ep2024.cp.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -103,43 +103,51 @@ public class UsersService {
         return usersRepository.save(employee);
     }
 
-    public User updateEmail(UUID userId, String email) {
+    public UpdateEmailResponseDTO updateEmail(UUID userId, UpdateEmailDTO dto) {
         User user = findById(userId);
-        usersRepository.findByEmail(email).ifPresent(existingUser -> {
+        usersRepository.findByEmail(dto.email()).ifPresent(existingUser -> {
             if (!existingUser.getId().equals(userId)) {
-                throw new BadRequestException("The email address:" + email + " is already in use!");
+                throw new BadRequestException("The email address:" + dto.email() + " is already in use!");
             }
         });
-        user.setEmail(email);
-        return usersRepository.save(user);
+        user.setEmail(dto.email());
+        usersRepository.save(user);
+        return new UpdateEmailResponseDTO(user.getId());
     }
 
-    public User updatePassword(UUID userId, String password) {
+    public UpdateNameResponseDTO updateName(UUID userId, UpdateNameDTO dto) {
         User user = findById(userId);
-        user.setPassword(bcrypt.encode(password));
-        return usersRepository.save(user);
+        user.setName(dto.name());
+        usersRepository.save(user);
+        return new UpdateNameResponseDTO(user.getId());
     }
 
-    public User updateUsername(UUID userId, String username) {
+    public UpdateSurnameResponseDTO updateSurname(UUID userId, UpdateSurnameDTO dto) {
         User user = findById(userId);
-        usersRepository.findByUsername(username).ifPresent(existingUser -> {
+        user.setSurname(dto.surname());
+        usersRepository.save(user);
+        return new UpdateSurnameResponseDTO(user.getId());
+    }
+
+    public UpdateUsernameResponseDTO updateUsername(UUID userId, UpdateUsernameDTO dto) {
+        User user = findById(userId);
+        usersRepository.findByUsername(dto.username()).ifPresent(existingUser -> {
             if (!existingUser.getId().equals(userId)) {
-                throw new BadRequestException("The username: " + username + " is already in use!");
+                throw new BadRequestException("The username: " + dto.username() + " is already in use!");
             }
         });
-        user.setUsername(username);
-        return usersRepository.save(user);
+        user.setUsername(dto.username());
+        usersRepository.save(user);
+        return new UpdateUsernameResponseDTO(user.getId());
     }
 
-    public User updateName(UUID userId, String name) {
+    public UpdatePasswordResponseDTO changePassword(UUID userId, UpdatePasswordDTO dto) {
         User user = findById(userId);
-        user.setName(name);
-        return usersRepository.save(user);
-    }
-
-    public User updateSurname(UUID userId, String surname) {
-        User user = findById(userId);
-        user.setSurname(surname);
-        return usersRepository.save(user);
+        if (!bcrypt.matches(dto.oldPassword(), user.getPassword())) {
+            throw new BadRequestException("Your existing password is incorrect!");
+        }
+        user.setPassword(bcrypt.encode(dto.newPassword()));
+        usersRepository.save(user);
+        return new UpdatePasswordResponseDTO(user.getId());
     }
 }

@@ -14,7 +14,8 @@ const initialState = {
   loading: false,
   news: [],
   trendingNews: [],
-  newsSource: null,
+  newsSource: {},
+  error: null,
 }
 
 const newsReducer = (state = initialState, action) => {
