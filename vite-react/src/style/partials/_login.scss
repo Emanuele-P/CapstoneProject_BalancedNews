@@ -96,10 +96,32 @@
   .propic {
     height: 100px;
     width: 100px;
+    object-fit: cover;
   }
 
   span:hover {
     cursor: pointer;
     text-decoration: underline;
+  }
+
+  .del-btn {
+    border: 1px solid $left;
+    color: $left;
+
+    &:hover {
+      background-color: $left;
+      color: #fff;
+    }
+  }
+
+  .up-btn {
+    border: 1px solid $info;
+    background-color: $info;
+    color: #fff;
+
+    &:hover {
+      background-color: rgb(109, 89, 223);
+      color: #fff;
+    }
   }
 }

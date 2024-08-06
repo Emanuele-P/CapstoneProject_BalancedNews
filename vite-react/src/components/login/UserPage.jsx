@@ -3,10 +3,26 @@ import { Link } from 'react-router-dom'
 import logo from '../../assets/svg/simple-logo.svg'
 import NavDropdownComponent from './NavDropdownComponent'
 import propic from '../../assets/default-avatar.jpg'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useRef } from 'react'
+import { uploadAvatar } from '../../redux/actions/authActions'
+import UserPagePlaceholder from './UserPagePlaceholder'
 
 function UserPage() {
   const { isAuthenticated, profile, loading } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const fileInputRef = useRef(null)
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]
+    if (file && profile?.id) {
+      dispatch(uploadAvatar(profile.id, file))
+    }
+  }
+
+  const handleUploadClick = () => {
+    fileInputRef.current.click()
+  }
 
   return (
     <>
@@ -34,27 +50,69 @@ function UserPage() {
                 <Image src={profile.avatar || propic} className="propic" roundedCircle />
               </Col>
               <Col lg={4} className="d-flex flex-column justify-content-center">
+                <Row></Row>
                 <h6>Upload your profile photo</h6>
                 <span>Profile photo guidelines</span>
+                <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
               </Col>
               <Col lg={{ span: 2, offset: 4 }} className="flex">
-                <Button className="login-button w-100">Upload photo</Button>
+                <Button className="up-btn w-100" onClick={handleUploadClick}>
+                  Upload photo
+                </Button>
               </Col>
             </Row>
             <Row className="border-bottom pb-4 mx-0 mb-4">
+              <h5 className="mt-1 mb-4">Personal details</h5>
               <Col lg={4} className="d-flex flex-column justify-content-center">
                 <h6>Name</h6>
                 <span>
                   {profile.name} {profile.surname}
                 </span>
               </Col>
-              <Col lg={{ span: 1, offset: 7 }} className="flex">
+              <Col lg={{ span: 1, offset: 7 }} className="d-flex align-items-start">
                 <Button className="login-button w-100">Edit</Button>
+              </Col>
+            </Row>
+            <Row className="border-bottom pb-4 mx-0 mb-4">
+              <Col lg={4} className="d-flex flex-column justify-content-center">
+                <h6>Email address</h6>
+                <span>{profile.email}</span>
+              </Col>
+              <Col lg={{ span: 1, offset: 7 }} className="d-flex align-items-start">
+                <Button className="login-button w-100">Edit</Button>
+              </Col>
+            </Row>
+            <Row className="border-bottom pb-4 mx-0 mb-4">
+              <Col lg={4} className="d-flex flex-column justify-content-center">
+                <h6>Username</h6>
+                <span>{profile.username}</span>
+              </Col>
+              <Col lg={{ span: 1, offset: 7 }} className="d-flex align-items-start">
+                <Button className="login-button w-100">Edit</Button>
+              </Col>
+            </Row>
+            <Row className="border-bottom pb-4 mx-0 mb-4">
+              <Col lg={4} className="d-flex flex-column justify-content-center">
+                <h6>Password</h6>
+                <span>Change your password</span>
+              </Col>
+              <Col lg={{ span: 1, offset: 7 }} className="d-flex align-items-start">
+                <Button className="login-button w-100">Edit</Button>
+              </Col>
+            </Row>
+            <Row className="border-bottom pb-4 mx-0 mb-4">
+              <h5 className="mt-1 mb-4">Manage account</h5>
+              <Col lg={4} className="d-flex flex-column justify-content-center">
+                <h6>Delete account</h6>
+                <span>Permanently delete your account</span>
+              </Col>
+              <Col lg={{ span: 1, offset: 7 }} className="d-flex align-items-start">
+                <Button className="login-button del-btn w-100">Delete</Button>
               </Col>
             </Row>
           </>
         ) : (
-          <p>Loading...</p>
+          <UserPagePlaceholder />
         )}
       </Container>
     </>

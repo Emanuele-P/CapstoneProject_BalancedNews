@@ -9,6 +9,9 @@ import {
   FETCH_PROFILE_SUCCESS,
   FETCH_PROFILE_FAILURE,
   LOGOUT,
+  UPLOAD_AVATAR_REQUEST,
+  UPLOAD_AVATAR_SUCCESS,
+  UPLOAD_AVATAR_FAILURE,
 } from '../actions/authActions'
 
 const initialState = {
@@ -24,6 +27,8 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case REGISTER_REQUEST:
     case LOGIN_REQUEST:
+    case UPLOAD_AVATAR_REQUEST:
+      return { ...state, loading: true }
     case FETCH_PROFILE_REQUEST:
       return { ...state, loading: true }
     case REGISTER_SUCCESS:
@@ -37,10 +42,14 @@ const authReducer = (state = initialState, action) => {
       }
     case FETCH_PROFILE_SUCCESS:
       return { ...state, loading: false, profile: action.payload }
+    case UPLOAD_AVATAR_SUCCESS:
+      return { ...state, loading: false, profile: { ...state.profile, avatar: action.payload.avatar } }
     case REGISTER_FAILURE:
     case LOGIN_FAILURE:
     case FETCH_PROFILE_FAILURE:
       return { ...state, loading: false, error: action.error, isAuthenticated: false }
+    case UPLOAD_AVATAR_FAILURE:
+      return { ...state, loading: false, error: action.error }
     case LOGOUT:
       return {
         ...state,

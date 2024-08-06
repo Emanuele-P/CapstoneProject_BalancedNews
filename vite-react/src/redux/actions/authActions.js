@@ -8,6 +8,9 @@ export const FETCH_PROFILE_REQUEST = 'FETCH_PROFILE_REQUEST'
 export const FETCH_PROFILE_SUCCESS = 'FETCH_PROFILE_SUCCESS'
 export const FETCH_PROFILE_FAILURE = 'FETCH_PROFILE_FAILURE'
 export const LOGOUT = 'LOGOUT'
+export const UPLOAD_AVATAR_REQUEST = 'UPLOAD_AVATAR_REQUEST'
+export const UPLOAD_AVATAR_SUCCESS = 'UPLOAD_AVATAR_SUCCESS'
+export const UPLOAD_AVATAR_FAILURE = 'UPLOAD_AVATAR_FAILURE'
 
 export const register = (userData) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST })
@@ -82,4 +85,40 @@ export const fetchProfile = () => async (dispatch, getState) => {
 
 export const logout = () => (dispatch) => {
   dispatch({ type: LOGOUT })
+}
+
+export const uploadAvatar = (userId, file) => async (dispatch, getState) => {
+  dispatch({ type: UPLOAD_AVATAR_REQUEST })
+
+  const {
+    auth: { token },
+  } = getState()
+
+  if (!token) {
+    dispatch({ type: UPLOAD_AVATAR_FAILURE, error: 'No token available' })
+    return
+  }
+
+  const formData = new FormData()
+  formData.append('avatar', file)
+
+  try {
+    const response = await fetch(`${import.meta.env.VITE_URL}/users/${userId}/avatar`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    })
+
+    if (response.ok) {
+      const data = await response.json()
+      dispatch({ type: UPLOAD_AVATAR_SUCCESS, payload: data })
+    } else {
+      const errorData = await response.json()
+      dispatch({ type: UPLOAD_AVATAR_FAILURE, error: errorData.message })
+    }
+  } catch (error) {
+    dispatch({ type: UPLOAD_AVATAR_FAILURE, error: error.message })
+  }
 }
