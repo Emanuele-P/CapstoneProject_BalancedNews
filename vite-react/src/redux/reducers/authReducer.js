@@ -12,6 +12,21 @@ import {
   UPLOAD_AVATAR_REQUEST,
   UPLOAD_AVATAR_SUCCESS,
   UPLOAD_AVATAR_FAILURE,
+  UPDATE_EMAIL_REQUEST,
+  UPDATE_EMAIL_SUCCESS,
+  UPDATE_EMAIL_FAILURE,
+  UPDATE_PASSWORD_REQUEST,
+  UPDATE_PASSWORD_SUCCESS,
+  UPDATE_PASSWORD_FAILURE,
+  UPDATE_NAME_REQUEST,
+  UPDATE_NAME_SUCCESS,
+  UPDATE_NAME_FAILURE,
+  UPDATE_SURNAME_REQUEST,
+  UPDATE_SURNAME_SUCCESS,
+  UPDATE_SURNAME_FAILURE,
+  UPDATE_USERNAME_REQUEST,
+  UPDATE_USERNAME_SUCCESS,
+  UPDATE_USERNAME_FAILURE,
 } from '../actions/authActions'
 
 const initialState = {
@@ -27,9 +42,13 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case REGISTER_REQUEST:
     case LOGIN_REQUEST:
-    case UPLOAD_AVATAR_REQUEST:
-      return { ...state, loading: true }
     case FETCH_PROFILE_REQUEST:
+    case UPLOAD_AVATAR_REQUEST:
+    case UPDATE_EMAIL_REQUEST:
+    case UPDATE_PASSWORD_REQUEST:
+    case UPDATE_NAME_REQUEST:
+    case UPDATE_SURNAME_REQUEST:
+    case UPDATE_USERNAME_REQUEST:
       return { ...state, loading: true }
     case REGISTER_SUCCESS:
       return { ...state, loading: false, user: action.payload }
@@ -43,13 +62,22 @@ const authReducer = (state = initialState, action) => {
     case FETCH_PROFILE_SUCCESS:
       return { ...state, loading: false, profile: action.payload }
     case UPLOAD_AVATAR_SUCCESS:
-      return { ...state, loading: false, profile: { ...state.profile, avatar: action.payload.avatar } }
+    case UPDATE_EMAIL_SUCCESS:
+    case UPDATE_PASSWORD_SUCCESS:
+    case UPDATE_NAME_SUCCESS:
+    case UPDATE_SURNAME_SUCCESS:
+    case UPDATE_USERNAME_SUCCESS:
+      return { ...state, loading: false, profile: { ...state.profile, ...action.payload } }
     case REGISTER_FAILURE:
     case LOGIN_FAILURE:
     case FETCH_PROFILE_FAILURE:
-      return { ...state, loading: false, error: action.error, isAuthenticated: false }
     case UPLOAD_AVATAR_FAILURE:
-      return { ...state, loading: false, error: action.error }
+    case UPDATE_EMAIL_FAILURE:
+    case UPDATE_PASSWORD_FAILURE:
+    case UPDATE_NAME_FAILURE:
+    case UPDATE_SURNAME_FAILURE:
+    case UPDATE_USERNAME_FAILURE:
+      return { ...state, loading: false, error: action.error, isAuthenticated: false }
     case LOGOUT:
       return {
         ...state,

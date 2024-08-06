@@ -5,9 +5,17 @@ import logo from '../../assets/svg/simple-logo.svg'
 import NavDropdownComponent from './NavDropdownComponent'
 import propic from '../../assets/default-avatar.jpg'
 import { useDispatch, useSelector } from 'react-redux'
-import { uploadAvatar } from '../../redux/actions/authActions'
+import {
+  uploadAvatar,
+  updateEmail,
+  updateUsername,
+  updateName,
+  updateSurname,
+  updatePassword,
+} from '../../redux/actions/authActions'
 import UserPagePlaceholder from './UserPagePlaceholder'
 import ImageCropModal from './ImageCropModal'
+import EditProfileModal from './EditProfileModal'
 
 function UserPage() {
   const { isAuthenticated, profile, loading } = useSelector((state) => state.auth)
@@ -16,6 +24,9 @@ function UserPage() {
   const [uploading, setUploading] = useState(false)
   const [cropModalVisible, setCropModalVisible] = useState(false)
   const [imageSrc, setImageSrc] = useState(null)
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [editField, setEditField] = useState('')
+  const [editValues, setEditValues] = useState({ name: '', surname: '', email: '', username: '', password: '' })
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]
@@ -38,6 +49,41 @@ function UserPage() {
     if (croppedImageBlob && profile?.id) {
       setUploading(true)
       dispatch(uploadAvatar(profile.id, croppedImageBlob)).then(() => setUploading(false))
+    }
+  }
+
+  const handleEditClick = (field) => {
+    setEditField(field)
+    if (field === 'name' || field === 'surname') {
+      setEditValues({ name: profile.name, surname: profile.surname })
+    } else {
+      setEditValues({ [field]: profile[field] })
+    }
+    setShowEditModal(true)
+  }
+
+  const handleEditSave = () => {
+    setShowEditModal(false)
+    const payload = editValues[editField].trim()
+
+    switch (editField) {
+      case 'name':
+        dispatch(updateName(profile.id, payload))
+        break
+      case 'surname':
+        dispatch(updateSurname(profile.id, payload))
+        break
+      case 'email':
+        dispatch(updateEmail(profile.id, payload))
+        break
+      case 'username':
+        dispatch(updateUsername(profile.id, payload))
+        break
+      case 'password':
+        dispatch(updatePassword(profile.id, payload))
+        break
+      default:
+        break
     }
   }
 
@@ -87,7 +133,9 @@ function UserPage() {
                 </span>
               </Col>
               <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                <Button className="login-button w-100">Edit</Button>
+                <Button className="login-button w-100" onClick={() => handleEditClick('name')}>
+                  Edit
+                </Button>
               </Col>
             </Row>
             <Row className="border-bottom pb-4 mx-0 mb-4">
@@ -96,7 +144,9 @@ function UserPage() {
                 <span>{profile.email}</span>
               </Col>
               <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                <Button className="login-button w-100">Edit</Button>
+                <Button className="login-button w-100" onClick={() => handleEditClick('email')}>
+                  Edit
+                </Button>
               </Col>
             </Row>
             <Row className="border-bottom pb-4 mx-0 mb-4">
@@ -105,7 +155,9 @@ function UserPage() {
                 <span>{profile.username}</span>
               </Col>
               <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                <Button className="login-button w-100">Edit</Button>
+                <Button className="login-button w-100" onClick={() => handleEditClick('username')}>
+                  Edit
+                </Button>
               </Col>
             </Row>
             <Row className="border-bottom pb-4 mx-0 mb-4">
@@ -114,17 +166,9 @@ function UserPage() {
                 <span>Change your password</span>
               </Col>
               <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                <Button className="login-button w-100">Edit</Button>
-              </Col>
-            </Row>
-            <Row className="border-bottom pb-4 mx-0 mb-4">
-              <h5 className="mt-1 mb-4">Manage account</h5>
-              <Col lg={4} className="d-flex flex-column justify-content-center">
-                <h6>Delete account</h6>
-                <span>Permanently delete your account</span>
-              </Col>
-              <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                <Button className="login-button del-btn w-100">Delete</Button>
+                <Button className="login-button w-100" onClick={() => handleEditClick('password')}>
+                  Edit
+                </Button>
               </Col>
             </Row>
           </>
@@ -139,6 +183,14 @@ function UserPage() {
           onClose={() => setCropModalVisible(false)}
         />
       )}
+      <EditProfileModal
+        show={showEditModal}
+        onClose={() => setShowEditModal(false)}
+        onSave={handleEditSave}
+        field={editField}
+        values={editValues}
+        setValues={setEditValues}
+      />
     </>
   )
 }

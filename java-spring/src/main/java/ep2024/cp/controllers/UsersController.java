@@ -2,6 +2,7 @@ package ep2024.cp.controllers;
 
 import ep2024.cp.entities.User;
 import ep2024.cp.payloads.NewUserDTO;
+import ep2024.cp.payloads.UpdateRequest;
 import ep2024.cp.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -47,6 +48,32 @@ public class UsersController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public void findByIdAndDelete(@PathVariable UUID id) {
         usersService.findByIdAndDelete(id);
+    }
+
+    // Edit user info
+    @PatchMapping("/{id}/email")
+    public User updateEmail(@PathVariable UUID id, @RequestBody UpdateRequest request) {
+        return usersService.updateEmail(id, request.getValue());
+    }
+
+    @PatchMapping("/{id}/password")
+    public User updatePassword(@PathVariable UUID id, @RequestBody UpdateRequest request) {
+        return usersService.updatePassword(id, request.getValue());
+    }
+
+    @PatchMapping("/{id}/name")
+    public User updateName(@PathVariable UUID id, @RequestBody UpdateRequest request) {
+        return usersService.updateName(id, request.getValue());
+    }
+
+    @PatchMapping("/{id}/surname")
+    public User updateSurname(@PathVariable UUID id, @RequestBody UpdateRequest request) {
+        return usersService.updateSurname(id, request.getValue());
+    }
+
+    @PatchMapping("/{id}/username")
+    public User updateUsername(@PathVariable UUID id, @RequestBody UpdateRequest request) {
+        return usersService.updateUsername(id, request.getValue());
     }
 
     //upload avatar

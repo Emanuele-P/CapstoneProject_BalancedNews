@@ -121,3 +121,57 @@
   height: 38px;
   border-radius: 5px;
 }
+
+.form-floating-label {
+  position: relative;
+}
+
+.form-floating-label input {
+  padding-block: 0.75rem;
+  margin-bottom: 2rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+
+.form-floating-label label {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  font-size: 14px;
+  color: #6c757d;
+  transition: all 0.2s;
+  pointer-events: none;
+}
+
+.form-floating-label input:focus + label,
+.form-floating-label input:not(:placeholder-shown) + label {
+  top: -0.5rem;
+  left: 0.75rem;
+  font-size: 12px;
+  color: #fff;
+  background-color: $info;
+  border-radius: 75px;
+  padding-inline: 12px;
+}
+
+.form-floating-label input:focus {
+  border-color: $info;
+}
+
+.modal-body {
+  margin: 3rem 2rem 2rem;
+  padding: 0;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.597);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.3px);
+  -webkit-backdrop-filter: blur(9.3px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.modal-backdrop.fade {
+  opacity: 0.5;
+}

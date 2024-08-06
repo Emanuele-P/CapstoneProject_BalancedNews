@@ -102,4 +102,44 @@ public class UsersService {
         employee.setAvatar(url);
         return usersRepository.save(employee);
     }
+
+    public User updateEmail(UUID userId, String email) {
+        User user = findById(userId);
+        usersRepository.findByEmail(email).ifPresent(existingUser -> {
+            if (!existingUser.getId().equals(userId)) {
+                throw new BadRequestException("The email address:" + email + " is already in use!");
+            }
+        });
+        user.setEmail(email);
+        return usersRepository.save(user);
+    }
+
+    public User updatePassword(UUID userId, String password) {
+        User user = findById(userId);
+        user.setPassword(bcrypt.encode(password));
+        return usersRepository.save(user);
+    }
+
+    public User updateUsername(UUID userId, String username) {
+        User user = findById(userId);
+        usersRepository.findByUsername(username).ifPresent(existingUser -> {
+            if (!existingUser.getId().equals(userId)) {
+                throw new BadRequestException("The username: " + username + " is already in use!");
+            }
+        });
+        user.setUsername(username);
+        return usersRepository.save(user);
+    }
+
+    public User updateName(UUID userId, String name) {
+        User user = findById(userId);
+        user.setName(name);
+        return usersRepository.save(user);
+    }
+
+    public User updateSurname(UUID userId, String surname) {
+        User user = findById(userId);
+        user.setSurname(surname);
+        return usersRepository.save(user);
+    }
 }
