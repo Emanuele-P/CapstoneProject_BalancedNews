@@ -6,6 +6,7 @@ import TrendingSection from './TrendingSection'
 import { useEffect, useState } from 'react'
 import DecorativeNav from '../DecorativeNav'
 import AppNavbar from '../AppNavbar'
+import AppFooter from '../AppFooter'
 
 function HomePage() {
   const [loaded, setLoaded] = useState(false)
@@ -43,6 +44,7 @@ function HomePage() {
           {loaded && <TrendingSection title="Israel-Hamas Conflict" query="israel" />}
         </Container>
       </div>
+      <AppFooter />
     </>
   )
 }

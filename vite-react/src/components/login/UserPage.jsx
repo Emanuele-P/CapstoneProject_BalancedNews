@@ -18,6 +18,7 @@ import {
 import UserPagePlaceholder from './UserPagePlaceholder'
 import ImageCropModal from './ImageCropModal'
 import EditProfileModal from './EditProfileModal'
+import MiniFooter from './MiniFooter'
 
 function UserPage() {
   const { isAuthenticated, profile, loading } = useSelector((state) => state.auth)
@@ -99,7 +100,7 @@ function UserPage() {
   const handleDeleteAccount = () => {
     setDeleteSuccess(true)
     setTimeout(async () => {
-      const result = await dispatch(deleteAccount())
+      const result = dispatch(deleteAccount())
       if (result.success) {
         navigate('/home')
       } else {
@@ -116,8 +117,8 @@ function UserPage() {
 
   return (
     <>
-      <Container>
-        <Navbar className="simple-nav border-bottom flex justify-content-between">
+      <Navbar className="simple-nav border-bottom">
+        <Container className="flex justify-content-between">
           <Navbar.Brand className="m-0">
             <Link to={'/home'}>
               <Image src={logo} className="nav-logo" />
@@ -129,103 +130,141 @@ function UserPage() {
             <i className="bi bi-bell-fill"></i>
             <NavDropdownComponent />
           </div>
-        </Navbar>
-      </Container>
-      <Container className="user-page">
-        {isAuthenticated && !loading ? (
-          <>
-            <h4 className="mb-4">Your account</h4>
-            <Row className="border-bottom pb-4 mx-0 mb-4">
-              <Col lg={2} className="ps-0">
-                <Image src={profile.avatar || propic} className="propic" roundedCircle />
+        </Container>
+      </Navbar>
+      {isAuthenticated && !loading ? (
+        <>
+          <Container className="user-page">
+            <Row>
+              <Col lg={2} className="user-aside d-flex flex-column gap-2 mb-4 py-3">
+                <div className="flex gap-2 user-active">
+                  <i className="bi bi-person-circle"></i>
+                  <h6>Your account</h6>
+                </div>
+                <div className="flex gap-2">
+                  <i className="bi bi-shield-lock"></i>
+                  <h6>Login & Security</h6>
+                </div>
+                <div className="flex gap-2">
+                  <i className="bi bi-envelope"></i>
+                  <h6>Messages settings</h6>
+                </div>
+                <div className="flex gap-2">
+                  <i className="bi bi-unlock"></i>
+                  <h6>Privacy preferences</h6>
+                </div>
+                <div className="flex gap-2">
+                  <i className="bi bi-bar-chart-line"></i>
+                  <h6>Activity logs</h6>
+                </div>
+                <hr />
+                <div className="flex gap-2">
+                  <i className="bi bi-newspaper"></i>
+                  <h6>About us</h6>
+                </div>
+                <div className="flex gap-2">
+                  <i className="bi bi-sliders"></i>
+                  <h6>Preferences</h6>
+                </div>
               </Col>
-              <Col lg={4} className="d-flex flex-column justify-content-center">
-                <Row></Row>
-                <h6>Upload your profile photo</h6>
-                <span>Profile photo guidelines</span>
-                <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
-              </Col>
-              <Col lg={{ span: 2, offset: 4 }} className="d-flex align-items-center">
-                <Button className="up-btn w-100" onClick={handleUploadClick} disabled={uploading}>
-                  {uploading ? <Spinner animation="border" size="sm" /> : 'Upload photo'}
-                </Button>
+              <Col className="ms-5" style={{ paddingLeft: '18%' }}>
+                <h4 className="mb-4">Your account</h4>
+                <Row className="border-bottom pb-4 mx-0 mb-4">
+                  <Col lg={2} className="ps-0">
+                    <Image src={profile.avatar || propic} className="propic" roundedCircle />
+                  </Col>
+                  <Col lg={4} className="d-flex flex-column justify-content-center">
+                    <Row></Row>
+                    <h6>Upload your profile photo</h6>
+                    <span className="guide">Profile photo guidelines</span>
+                    <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
+                  </Col>
+                  <Col lg={{ span: 2, offset: 4 }} className="d-flex align-items-center pe-0">
+                    <Button className="up-btn w-100" onClick={handleUploadClick} disabled={uploading}>
+                      {uploading ? <Spinner animation="border" size="sm" /> : 'Upload photo'}
+                    </Button>
+                  </Col>
+                </Row>
+                <Row className="border-bottom pb-4 mx-0 mb-4">
+                  <h5 className="mt-1 mb-4">Personal details</h5>
+                  <Col lg={4} className="d-flex flex-column justify-content-center">
+                    <h6>Name</h6>
+                    <span>
+                      {profile.name} {profile.surname}
+                    </span>
+                  </Col>
+                  <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
+                    <Button className="login-button w-100" onClick={() => handleEditClick('name')}>
+                      Edit
+                    </Button>
+                  </Col>
+                </Row>
+                <Row className="border-bottom pb-4 mx-0 mb-4">
+                  <Col lg={4} className="d-flex flex-column justify-content-center pe-0">
+                    <h6>Email address</h6>
+                    <span>{profile.email}</span>
+                  </Col>
+                  <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
+                    <Button className="login-button w-100" onClick={() => handleEditClick('email')}>
+                      Edit
+                    </Button>
+                  </Col>
+                </Row>
+                <Row className="border-bottom pb-4 mx-0 mb-4">
+                  <Col lg={4} className="d-flex flex-column justify-content-center pe-0">
+                    <h6>Username</h6>
+                    <span>{profile.username}</span>
+                  </Col>
+                  <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
+                    <Button className="login-button w-100" onClick={() => handleEditClick('username')}>
+                      Edit
+                    </Button>
+                  </Col>
+                </Row>
+                <Row className="border-bottom pb-4 mx-0 mb-4">
+                  <h5 className="mt-1 mb-4">Login & security</h5>
+                  <Col lg={4} className="d-flex flex-column justify-content-center pe-0">
+                    <h6>Password</h6>
+                    <span>Change your password</span>
+                  </Col>
+                  <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
+                    <Button className="login-button w-100" onClick={() => handleEditClick('password')}>
+                      Edit
+                    </Button>
+                  </Col>
+                </Row>
+                <Row className="border-bottom pb-4 mx-0 mb-4">
+                  <Col lg={4} className="d-flex flex-column justify-content-center">
+                    <h6>Logout</h6>
+                    <span>End this sessions by signing out from this device</span>
+                  </Col>
+                  <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
+                    <Button className="login-button w-100" onClick={handleLogout}>
+                      Log out
+                    </Button>
+                  </Col>
+                </Row>
+                <Row className="border-bottom pb-4 mx-0 mb-4">
+                  <Col lg={4} className="d-flex flex-column justify-content-center">
+                    <h6>Delete account</h6>
+                    <span>Remove your account permanently</span>
+                  </Col>
+                  <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
+                    <Button className="del-btn w-100" onClick={() => setShowDeleteModal(true)}>
+                      Delete
+                    </Button>
+                  </Col>
+                </Row>
               </Col>
             </Row>
-            <Row className="border-bottom pb-4 mx-0 mb-4">
-              <h5 className="mt-1 mb-4">Personal details</h5>
-              <Col lg={4} className="d-flex flex-column justify-content-center">
-                <h6>Name</h6>
-                <span>
-                  {profile.name} {profile.surname}
-                </span>
-              </Col>
-              <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                <Button className="login-button w-100" onClick={() => handleEditClick('name')}>
-                  Edit
-                </Button>
-              </Col>
-            </Row>
-            <Row className="border-bottom pb-4 mx-0 mb-4">
-              <Col lg={4} className="d-flex flex-column justify-content-center">
-                <h6>Email address</h6>
-                <span>{profile.email}</span>
-              </Col>
-              <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                <Button className="login-button w-100" onClick={() => handleEditClick('email')}>
-                  Edit
-                </Button>
-              </Col>
-            </Row>
-            <Row className="border-bottom pb-4 mx-0 mb-4">
-              <Col lg={4} className="d-flex flex-column justify-content-center">
-                <h6>Username</h6>
-                <span>{profile.username}</span>
-              </Col>
-              <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                <Button className="login-button w-100" onClick={() => handleEditClick('username')}>
-                  Edit
-                </Button>
-              </Col>
-            </Row>
-            <Row className="border-bottom pb-4 mx-0 mb-4">
-              <h5 className="mt-1 mb-4">Login & security</h5>
-              <Col lg={4} className="d-flex flex-column justify-content-center">
-                <h6>Password</h6>
-                <span>Change your password</span>
-              </Col>
-              <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                <Button className="login-button w-100" onClick={() => handleEditClick('password')}>
-                  Edit
-                </Button>
-              </Col>
-            </Row>
-            <Row className="border-bottom pb-4 mx-0 mb-4">
-              <Col lg={4} className="d-flex flex-column justify-content-center">
-                <h6>Logout</h6>
-                <span>End this sessions by signing out from this device</span>
-              </Col>
-              <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                <Button className="login-button w-100" onClick={handleLogout}>
-                  Log out
-                </Button>
-              </Col>
-            </Row>
-            <Row className="border-bottom pb-4 mx-0 mb-4">
-              <Col lg={4} className="d-flex flex-column justify-content-center">
-                <h6>Delete account</h6>
-                <span>Remove your account permanently</span>
-              </Col>
-              <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                <Button className="del-btn w-100" onClick={() => setShowDeleteModal(true)}>
-                  Delete
-                </Button>
-              </Col>
-            </Row>
-          </>
-        ) : (
+          </Container>
+          <MiniFooter />
+        </>
+      ) : (
+        <Container>
           <UserPagePlaceholder />
-        )}
-      </Container>
+        </Container>
+      )}
       {cropModalVisible && (
         <ImageCropModal
           imageSrc={imageSrc}

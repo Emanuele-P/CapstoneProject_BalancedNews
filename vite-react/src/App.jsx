@@ -56,7 +56,7 @@ function App() {
             }
           />
         </Routes>
-        <AppFooter />
+        {/* <AppFooter /> */}
       </BrowserRouter>
     </div>
   )

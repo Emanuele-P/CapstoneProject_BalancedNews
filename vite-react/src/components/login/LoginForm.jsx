@@ -40,7 +40,7 @@ const LoginForm = () => {
 
   return (
     <div className="background-login">
-      <Container className="mb-5">
+      <Container className="mb-0">
         <Row className="justify-content-center">
           {showWelcome ? (
             <Col xs={12} lg={5} className="d-flex flex-column align-items-center justify-content-center notice">

@@ -52,8 +52,8 @@ function NavDropdownComponent() {
           <p className="drop-name px-2 m-0 pt-1">{profile?.username}</p>
           <p className="drop-email px-2">{profile?.email}</p>
 
-          <Link to={'/me'}>
-            <Button className="login-button w-100">Profile</Button>
+          <Link to={'/home'}>
+            <Button className="login-button w-100">Home</Button>
           </Link>
         </>
       )}

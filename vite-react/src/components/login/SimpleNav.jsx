@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function SimpleNav() {
   return (
     <Container>
-      <Navbar className="simple-nav border-bottom">
+      <Navbar className="simple-navbar border-bottom">
         <Container className="justify-content-center">
           <Navbar.Brand className="m-0">
             <Link to={'/home'}>
