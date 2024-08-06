@@ -1,7 +1,7 @@
 import { Button, Form, Container, Row, Col, Spinner } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { register } from '../../redux/actions/authActions'
+import { clearErrors, register, REGISTER_SUCCESS } from '../../redux/actions/authActions'
 import { useEffect, useState } from 'react'
 
 const SignupForm = () => {
@@ -24,16 +24,16 @@ const SignupForm = () => {
     if (user) {
       setIsRegistered(true)
       setTimeout(() => {
+        setIsRegistered(false)
+        dispatch({ type: REGISTER_SUCCESS, payload: null })
         navigate('/')
       }, 3000)
     }
-  }, [user, navigate])
+  }, [user, navigate, dispatch])
 
   useEffect(() => {
-    if (user) {
-      setIsRegistered(true)
-    }
-  }, [user])
+    dispatch(clearErrors())
+  }, [dispatch])
 
   return (
     <div className="background-login">

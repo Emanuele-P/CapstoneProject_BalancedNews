@@ -27,6 +27,8 @@ import {
   UPDATE_USERNAME_REQUEST,
   UPDATE_USERNAME_SUCCESS,
   UPDATE_USERNAME_FAILURE,
+  DELETE_ACCOUNT,
+  CLEAR_ERRORS,
 } from '../actions/authActions'
 
 const initialState = {
@@ -78,6 +80,7 @@ const authReducer = (state = initialState, action) => {
     case UPDATE_SURNAME_FAILURE:
     case UPDATE_USERNAME_FAILURE:
       return { ...state, loading: false, error: action.error, isAuthenticated: false }
+    case DELETE_ACCOUNT:
     case LOGOUT:
       return {
         ...state,
@@ -86,6 +89,8 @@ const authReducer = (state = initialState, action) => {
         profile: null,
         isAuthenticated: false,
       }
+    case CLEAR_ERRORS:
+      return { ...state, error: null }
     default:
       return state
   }

@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react'
-import { Button, Col, Container, Image, Navbar, Row, Spinner } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { Button, Col, Container, Image, Modal, Navbar, Row, Spinner } from 'react-bootstrap'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../assets/svg/simple-logo.svg'
 import NavDropdownComponent from './NavDropdownComponent'
 import propic from '../../assets/default-avatar.jpg'
@@ -12,6 +12,8 @@ import {
   updateName,
   updateSurname,
   updatePassword,
+  logout,
+  deleteAccount,
 } from '../../redux/actions/authActions'
 import UserPagePlaceholder from './UserPagePlaceholder'
 import ImageCropModal from './ImageCropModal'
@@ -27,6 +29,9 @@ function UserPage() {
   const [showEditModal, setShowEditModal] = useState(false)
   const [editField, setEditField] = useState('')
   const [editValues, setEditValues] = useState({ name: '', surname: '', email: '', username: '', password: '' })
+  const navigate = useNavigate()
+  const [deleteSuccess, setDeleteSuccess] = useState(false)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]
@@ -86,6 +91,28 @@ function UserPage() {
         break
     }
   }
+
+  const handleLogout = () => {
+    dispatch(logout())
+  }
+
+  const handleDeleteAccount = () => {
+    setDeleteSuccess(true)
+    setTimeout(async () => {
+      const result = await dispatch(deleteAccount())
+      if (result.success) {
+        navigate('/home')
+      } else {
+        setDeleteSuccess(false)
+      }
+    }, 3000)
+  }
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/home')
+    }
+  }, [isAuthenticated, navigate, deleteSuccess])
 
   return (
     <>
@@ -161,6 +188,7 @@ function UserPage() {
               </Col>
             </Row>
             <Row className="border-bottom pb-4 mx-0 mb-4">
+              <h5 className="mt-1 mb-4">Login & security</h5>
               <Col lg={4} className="d-flex flex-column justify-content-center">
                 <h6>Password</h6>
                 <span>Change your password</span>
@@ -168,6 +196,28 @@ function UserPage() {
               <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
                 <Button className="login-button w-100" onClick={() => handleEditClick('password')}>
                   Edit
+                </Button>
+              </Col>
+            </Row>
+            <Row className="border-bottom pb-4 mx-0 mb-4">
+              <Col lg={4} className="d-flex flex-column justify-content-center">
+                <h6>Logout</h6>
+                <span>End this sessions by signing out from this device</span>
+              </Col>
+              <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
+                <Button className="login-button w-100" onClick={handleLogout}>
+                  Log out
+                </Button>
+              </Col>
+            </Row>
+            <Row className="border-bottom pb-4 mx-0 mb-4">
+              <Col lg={4} className="d-flex flex-column justify-content-center">
+                <h6>Delete account</h6>
+                <span>Remove your account permanently</span>
+              </Col>
+              <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
+                <Button className="del-btn w-100" onClick={() => setShowDeleteModal(true)}>
+                  Delete
                 </Button>
               </Col>
             </Row>
@@ -191,6 +241,31 @@ function UserPage() {
         values={editValues}
         setValues={setEditValues}
       />
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} centered>
+        <Modal.Body className="text-center">
+          {deleteSuccess ? (
+            <>
+              <h6>Deleting account...</h6>
+              <Spinner animation="border" role="status" />
+            </>
+          ) : (
+            <h6>
+              Are you sure you want to delete your account? <br />
+              This action cannot be undone.
+            </h6>
+          )}
+        </Modal.Body>
+        {!deleteSuccess && (
+          <Modal.Footer>
+            <Button className="login-button" onClick={() => setShowDeleteModal(false)}>
+              No
+            </Button>
+            <Button className="del-btn" onClick={handleDeleteAccount}>
+              Yes, Delete
+            </Button>
+          </Modal.Footer>
+        )}
+      </Modal>
     </>
   )
 }

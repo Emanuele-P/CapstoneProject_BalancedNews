@@ -36,6 +36,14 @@ export const UPDATE_USERNAME_REQUEST = 'UPDATE_USERNAME_REQUEST'
 export const UPDATE_USERNAME_SUCCESS = 'UPDATE_USERNAME_SUCCESS'
 export const UPDATE_USERNAME_FAILURE = 'UPDATE_USERNAME_FAILURE'
 
+export const DELETE_ACCOUNT = 'DELETE_ACCOUNT'
+
+export const CLEAR_ERRORS = 'CLEAR_ERRORS'
+
+export const clearErrors = () => ({
+  type: CLEAR_ERRORS,
+})
+
 export const register = (userData) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST })
   try {
@@ -309,5 +317,39 @@ export const updatePassword = (userId, password) => async (dispatch, getState) =
     }
   } catch (error) {
     dispatch({ type: UPDATE_PASSWORD_FAILURE, error: error.message })
+  }
+}
+
+export const deleteAccount = () => async (dispatch, getState) => {
+  const {
+    auth: { token },
+  } = getState()
+
+  if (!token) {
+    console.error('No token available')
+    return { success: false }
+  }
+
+  try {
+    const response = await fetch(`${import.meta.env.VITE_URL}/users/me`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    if (response.ok) {
+      dispatch({ type: DELETE_ACCOUNT })
+      dispatch({ type: LOGOUT })
+      return { success: true }
+    } else {
+      const errorData = await response.json()
+      console.error('Error deleting account:', errorData)
+      return { success: false }
+    }
+  } catch (error) {
+    console.error('Error deleting account:', error)
+    return { success: false }
   }
 }

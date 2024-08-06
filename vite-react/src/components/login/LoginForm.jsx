@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button, Form, Container, Row, Col, Spinner } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
-import { login, fetchProfile } from '../../redux/actions/authActions'
+import { login, fetchProfile, clearErrors } from '../../redux/actions/authActions'
 import { useDispatch, useSelector } from 'react-redux'
 
 const LoginForm = () => {
@@ -33,6 +33,10 @@ const LoginForm = () => {
       }, 1000)
     }
   }, [profile, navigate])
+
+  useEffect(() => {
+    dispatch(clearErrors())
+  }, [dispatch])
 
   return (
     <div className="background-login">

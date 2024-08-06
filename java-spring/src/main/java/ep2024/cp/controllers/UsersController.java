@@ -50,6 +50,13 @@ public class UsersController {
         usersService.findByIdAndDelete(id);
     }
 
+    //delete my account
+    @DeleteMapping("/me")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteMyAccount(@AuthenticationPrincipal User loggedUser) {
+        usersService.findByIdAndDelete(loggedUser.getId());
+    }
+
     // Edit user info
     @PatchMapping("/{id}/email")
     public User updateEmail(@PathVariable UUID id, @RequestBody UpdateRequest request) {
