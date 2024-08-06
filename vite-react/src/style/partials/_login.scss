@@ -104,16 +104,6 @@
     text-decoration: underline;
   }
 
-  .del-btn {
-    border: 1px solid $left;
-    color: $left;
-
-    &:hover {
-      background-color: $left;
-      color: #fff;
-    }
-  }
-
   .up-btn {
     border: 1px solid $info;
     background-color: $info;
@@ -124,4 +114,10 @@
       color: #fff;
     }
   }
+}
+
+.placeholder-button {
+  width: 100px;
+  height: 38px;
+  border-radius: 5px;
 }

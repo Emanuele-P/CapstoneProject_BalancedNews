@@ -53,3 +53,15 @@
     border: 1px solid transparent;
   }
 }
+
+.del-btn {
+  background-color: transparent;
+  border: 1px solid $left;
+  color: $left;
+
+  &:hover {
+    border: 1px solid $left;
+    background-color: $left;
+    color: #fff;
+  }
+}

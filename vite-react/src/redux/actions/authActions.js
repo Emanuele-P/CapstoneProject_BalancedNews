@@ -88,14 +88,14 @@ export const logout = () => (dispatch) => {
 }
 
 export const uploadAvatar = (userId, file) => async (dispatch, getState) => {
-  dispatch({ type: UPLOAD_AVATAR_REQUEST })
+  dispatch({ type: 'UPLOAD_AVATAR_REQUEST' })
 
   const {
     auth: { token },
   } = getState()
 
   if (!token) {
-    dispatch({ type: UPLOAD_AVATAR_FAILURE, error: 'No token available' })
+    dispatch({ type: 'UPLOAD_AVATAR_FAILURE', error: 'No token available' })
     return
   }
 
@@ -113,12 +113,12 @@ export const uploadAvatar = (userId, file) => async (dispatch, getState) => {
 
     if (response.ok) {
       const data = await response.json()
-      dispatch({ type: UPLOAD_AVATAR_SUCCESS, payload: data })
+      dispatch({ type: 'UPLOAD_AVATAR_SUCCESS', payload: data })
     } else {
       const errorData = await response.json()
-      dispatch({ type: UPLOAD_AVATAR_FAILURE, error: errorData.message })
+      dispatch({ type: 'UPLOAD_AVATAR_FAILURE', error: errorData.message })
     }
   } catch (error) {
-    dispatch({ type: UPLOAD_AVATAR_FAILURE, error: error.message })
+    dispatch({ type: 'UPLOAD_AVATAR_FAILURE', error: error.message })
   }
 }
