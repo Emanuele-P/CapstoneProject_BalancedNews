@@ -30,6 +30,16 @@
     }
   }
 
+  h4:first-of-type {
+    color: $info;
+  }
+  h4:nth-of-type(2) {
+    font-size: 18px;
+  }
+  h4 {
+    font-weight: 400;
+  }
+
   p {
     margin-top: 1rem;
     font-size: 12px;
@@ -62,7 +72,11 @@
   }
 
   .notice {
-    min-height: 75vh;
+    min-height: 85vh;
+  }
+  .notice-box {
+    padding: 3rem;
+    @include glass();
   }
 }
 
@@ -134,12 +148,7 @@
     top: 90px;
     height: calc(95vh - 70px);
 
-    background: rgba(255, 255, 255, 0.32);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(9.4px);
-    -webkit-backdrop-filter: blur(9.4px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    @include glass();
 
     h6 {
       margin: 0;
@@ -216,12 +225,8 @@
 }
 
 .modal-content {
+  @include glass();
   background: rgba(255, 255, 255, 0.597);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(9.3px);
-  -webkit-backdrop-filter: blur(9.3px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .modal-backdrop.fade {

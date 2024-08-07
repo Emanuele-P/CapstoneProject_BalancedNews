@@ -4,9 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AppNavbar from './components/AppNavbar'
 import HomePage from './components/home/HomePage'
 import DecorativeNav from './components/DecorativeNav'
-import AppFooter from './components/AppFooter'
 import LoginForm from './components/login/LoginForm'
-import SimpleNav from './components/login/SimpleNav'
 import SignupForm from './components/login/SignupForm'
 import ArticlesPage from './components/articles/ArticlesPage'
 import ScrollToTop from './utils/ScrollToTop'
@@ -18,25 +16,12 @@ function App() {
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <SimpleNav />
-                <LoginForm />
-              </>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <>
-                <SimpleNav />
-                <SignupForm />
-              </>
-            }
-          />
+          <Route path="/" element={<LoginForm />} />
+
+          <Route path="/register" element={<SignupForm />} />
+
           <Route path="/home" element={<HomePage />} />
+
           <Route
             path="/article/:id"
             element={
@@ -47,16 +32,8 @@ function App() {
               </>
             }
           />
-          <Route
-            path="/me"
-            element={
-              <>
-                <UserPage />
-              </>
-            }
-          />
+          <Route path="/me" element={<UserPage />} />
         </Routes>
-        {/* <AppFooter /> */}
       </BrowserRouter>
     </div>
   )
