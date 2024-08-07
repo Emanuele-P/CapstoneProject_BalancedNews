@@ -9,11 +9,10 @@ import {
   uploadAvatar,
   updateEmail,
   updateUsername,
-  updateName,
-  updateSurname,
   updatePassword,
   logout,
   deleteAccount,
+  updateFullname,
 } from '../../redux/actions/authActions'
 import UserPagePlaceholder from './UserPagePlaceholder'
 import ImageCropModal from './ImageCropModal'
@@ -29,7 +28,14 @@ function UserPage() {
   const [imageSrc, setImageSrc] = useState(null)
   const [showEditModal, setShowEditModal] = useState(false)
   const [editField, setEditField] = useState('')
-  const [editValues, setEditValues] = useState({ name: '', surname: '', email: '', username: '', password: '' })
+  const [editValues, setEditValues] = useState({
+    name: '',
+    surname: '',
+    email: '',
+    username: '',
+    oldPassword: '',
+    newPassword: '',
+  })
   const navigate = useNavigate()
   const [deleteSuccess, setDeleteSuccess] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -62,6 +68,8 @@ function UserPage() {
     setEditField(field)
     if (field === 'name' || field === 'surname') {
       setEditValues({ name: profile.name, surname: profile.surname })
+    } else if (field === 'password') {
+      setEditValues({ oldPassword: '', newPassword: '' })
     } else {
       setEditValues({ [field]: profile[field] })
     }
@@ -70,26 +78,24 @@ function UserPage() {
 
   const handleEditSave = () => {
     setShowEditModal(false)
-    const payload = editValues[editField].trim()
 
-    switch (editField) {
-      case 'name':
-        dispatch(updateName(profile.id, payload))
-        break
-      case 'surname':
-        dispatch(updateSurname(profile.id, payload))
-        break
-      case 'email':
-        dispatch(updateEmail(profile.id, payload))
-        break
-      case 'username':
-        dispatch(updateUsername(profile.id, payload))
-        break
-      case 'password':
-        dispatch(updatePassword(profile.id, payload))
-        break
-      default:
-        break
+    if (editField === 'name' || editField === 'surname') {
+      dispatch(updateFullname(profile.id, editValues.name.trim(), editValues.surname.trim()))
+    } else {
+      const payload = editValues[editField].trim()
+      switch (editField) {
+        case 'email':
+          dispatch(updateEmail(profile.id, payload))
+          break
+        case 'username':
+          dispatch(updateUsername(profile.id, payload))
+          break
+        case 'password':
+          dispatch(updatePassword(profile.id, editValues.oldPassword.trim(), editValues.newPassword.trim()))
+          break
+        default:
+          break
+      }
     }
   }
 

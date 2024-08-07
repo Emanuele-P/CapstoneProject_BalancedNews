@@ -114,9 +114,14 @@ public class UsersService {
         return usersRepository.save(user);
     }
 
-    public User updatePassword(UUID userId, String password) {
+    public User changePassword(UUID userId, String oldPassword, String newPassword) {
         User user = findById(userId);
-        user.setPassword(bcrypt.encode(password));
+
+        if (!bcrypt.matches(oldPassword, user.getPassword())) {
+            throw new BadRequestException("Old password is incorrect!");
+        }
+
+        user.setPassword(bcrypt.encode(newPassword));
         return usersRepository.save(user);
     }
 
@@ -131,14 +136,9 @@ public class UsersService {
         return usersRepository.save(user);
     }
 
-    public User updateName(UUID userId, String name) {
+    public User updateFullname(UUID userId, String name, String surname) {
         User user = findById(userId);
         user.setName(name);
-        return usersRepository.save(user);
-    }
-
-    public User updateSurname(UUID userId, String surname) {
-        User user = findById(userId);
         user.setSurname(surname);
         return usersRepository.save(user);
     }

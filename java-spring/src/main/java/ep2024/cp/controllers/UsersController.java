@@ -1,9 +1,9 @@
 package ep2024.cp.controllers;
 
 import ep2024.cp.entities.User;
-import ep2024.cp.payloads.NewUserDTO;
-import ep2024.cp.payloads.UpdateRequest;
+import ep2024.cp.payloads.*;
 import ep2024.cp.services.UsersService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -59,28 +59,23 @@ public class UsersController {
 
     // Edit user info
     @PatchMapping("/{id}/email")
-    public User updateEmail(@PathVariable UUID id, @RequestBody UpdateRequest request) {
-        return usersService.updateEmail(id, request.getValue());
+    public User updateEmail(@PathVariable UUID id, @RequestBody @Valid UpdateEmailDTO body) {
+        return usersService.updateEmail(id, body.email());
     }
 
     @PatchMapping("/{id}/password")
-    public User updatePassword(@PathVariable UUID id, @RequestBody UpdateRequest request) {
-        return usersService.updatePassword(id, request.getValue());
+    public User changePassword(@PathVariable UUID id, @RequestBody @Valid ChangePasswordDTO body) {
+        return usersService.changePassword(id, body.oldPassword(), body.newPassword());
     }
 
-    @PatchMapping("/{id}/name")
-    public User updateName(@PathVariable UUID id, @RequestBody UpdateRequest request) {
-        return usersService.updateName(id, request.getValue());
-    }
-
-    @PatchMapping("/{id}/surname")
-    public User updateSurname(@PathVariable UUID id, @RequestBody UpdateRequest request) {
-        return usersService.updateSurname(id, request.getValue());
+    @PatchMapping("/{id}/fullname")
+    public User updateNameAndSurname(@PathVariable UUID id, @RequestBody @Valid UpdateNameSurnameDTO body) {
+        return usersService.updateFullname(id, body.name(), body.surname());
     }
 
     @PatchMapping("/{id}/username")
-    public User updateUsername(@PathVariable UUID id, @RequestBody UpdateRequest request) {
-        return usersService.updateUsername(id, request.getValue());
+    public User updateUsername(@PathVariable UUID id, @RequestBody @Valid UpdateUsernameDTO body) {
+        return usersService.updateUsername(id, body.username());
     }
 
     //upload avatar

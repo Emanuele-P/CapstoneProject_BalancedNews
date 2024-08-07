@@ -24,13 +24,9 @@ export const UPDATE_PASSWORD_REQUEST = 'UPDATE_PASSWORD_REQUEST'
 export const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS'
 export const UPDATE_PASSWORD_FAILURE = 'UPDATE_PASSWORD_FAILURE'
 
-export const UPDATE_NAME_REQUEST = 'UPDATE_NAME_REQUEST'
-export const UPDATE_NAME_SUCCESS = 'UPDATE_NAME_SUCCESS'
-export const UPDATE_NAME_FAILURE = 'UPDATE_NAME_FAILURE'
-
-export const UPDATE_SURNAME_REQUEST = 'UPDATE_SURNAME_REQUEST'
-export const UPDATE_SURNAME_SUCCESS = 'UPDATE_SURNAME_SUCCESS'
-export const UPDATE_SURNAME_FAILURE = 'UPDATE_SURNAME_FAILURE'
+export const UPDATE_FULLNAME_REQUEST = 'UPDATE_FULLNAME_REQUEST'
+export const UPDATE_FULLNAME_SUCCESS = 'UPDATE_FULLNAME_SUCCESS'
+export const UPDATE_FULLNAME_FAILURE = 'UPDATE_FULLNAME_FAILURE'
 
 export const UPDATE_USERNAME_REQUEST = 'UPDATE_USERNAME_REQUEST'
 export const UPDATE_USERNAME_SUCCESS = 'UPDATE_USERNAME_SUCCESS'
@@ -155,6 +151,40 @@ export const uploadAvatar = (userId, file) => async (dispatch, getState) => {
   }
 }
 
+export const deleteAccount = () => async (dispatch, getState) => {
+  const {
+    auth: { token },
+  } = getState()
+
+  if (!token) {
+    console.error('No token available')
+    return { success: false }
+  }
+
+  try {
+    const response = await fetch(`${import.meta.env.VITE_URL}/users/me`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    if (response.ok) {
+      dispatch({ type: DELETE_ACCOUNT })
+      dispatch({ type: LOGOUT })
+      return { success: true }
+    } else {
+      const errorData = await response.json()
+      console.error('Error deleting account:', errorData)
+      return { success: false }
+    }
+  } catch (error) {
+    console.error('Error deleting account:', error)
+    return { success: false }
+  }
+}
+
 export const updateEmail = (userId, email) => async (dispatch, getState) => {
   dispatch({ type: UPDATE_EMAIL_REQUEST })
 
@@ -174,7 +204,7 @@ export const updateEmail = (userId, email) => async (dispatch, getState) => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ value: email.trim() }),
+      body: JSON.stringify({ email: email.trim() }),
     })
     if (response.ok) {
       const data = await response.json()
@@ -207,7 +237,7 @@ export const updateUsername = (userId, username) => async (dispatch, getState) =
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ value: username.trim() }),
+      body: JSON.stringify({ username: username.trim() }),
     })
     if (response.ok) {
       const data = await response.json()
@@ -221,73 +251,41 @@ export const updateUsername = (userId, username) => async (dispatch, getState) =
   }
 }
 
-export const updateName = (userId, name) => async (dispatch, getState) => {
-  dispatch({ type: UPDATE_NAME_REQUEST })
+export const updateFullname = (userId, name, surname) => async (dispatch, getState) => {
+  dispatch({ type: UPDATE_FULLNAME_REQUEST })
 
   const {
     auth: { token },
   } = getState()
 
   if (!token) {
-    dispatch({ type: UPDATE_NAME_FAILURE, error: 'No token available' })
+    dispatch({ type: UPDATE_FULLNAME_FAILURE, error: 'No token available' })
     return
   }
 
   try {
-    const response = await fetch(`${import.meta.env.VITE_URL}/users/${userId}/name`, {
+    const response = await fetch(`${import.meta.env.VITE_URL}/users/${userId}/fullname`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ value: name.trim() }),
+      body: JSON.stringify({ name: name.trim(), surname: surname.trim() }),
     })
+
     if (response.ok) {
       const data = await response.json()
-      dispatch({ type: UPDATE_NAME_SUCCESS, payload: data })
+      dispatch({ type: UPDATE_FULLNAME_SUCCESS, payload: data })
     } else {
       const errorData = await response.json()
-      dispatch({ type: UPDATE_NAME_FAILURE, error: errorData.message })
+      dispatch({ type: UPDATE_FULLNAME_FAILURE, error: errorData.message })
     }
   } catch (error) {
-    dispatch({ type: UPDATE_NAME_FAILURE, error: error.message })
+    dispatch({ type: UPDATE_FULLNAME_FAILURE, error: error.message })
   }
 }
 
-export const updateSurname = (userId, surname) => async (dispatch, getState) => {
-  dispatch({ type: UPDATE_NAME_REQUEST })
-
-  const {
-    auth: { token },
-  } = getState()
-
-  if (!token) {
-    dispatch({ type: UPDATE_SURNAME_FAILURE, error: 'No token available' })
-    return
-  }
-
-  try {
-    const response = await fetch(`${import.meta.env.VITE_URL}/users/${userId}/surname`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ value: surname.trim() }),
-    })
-    if (response.ok) {
-      const data = await response.json()
-      dispatch({ type: UPDATE_SURNAME_SUCCESS, payload: data })
-    } else {
-      const errorData = await response.json()
-      dispatch({ type: UPDATE_SURNAME_FAILURE, error: errorData.message })
-    }
-  } catch (error) {
-    dispatch({ type: UPDATE_SURNAME_FAILURE, error: error.message })
-  }
-}
-
-export const updatePassword = (userId, password) => async (dispatch, getState) => {
+export const updatePassword = (userId, oldPassword, newPassword) => async (dispatch, getState) => {
   dispatch({ type: UPDATE_PASSWORD_REQUEST })
 
   const {
@@ -306,7 +304,7 @@ export const updatePassword = (userId, password) => async (dispatch, getState) =
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ value: password.trim() }),
+      body: JSON.stringify({ oldPassword: oldPassword.trim(), newPassword: newPassword.trim() }),
     })
     if (response.ok) {
       const data = await response.json()
@@ -317,39 +315,5 @@ export const updatePassword = (userId, password) => async (dispatch, getState) =
     }
   } catch (error) {
     dispatch({ type: UPDATE_PASSWORD_FAILURE, error: error.message })
-  }
-}
-
-export const deleteAccount = () => async (dispatch, getState) => {
-  const {
-    auth: { token },
-  } = getState()
-
-  if (!token) {
-    console.error('No token available')
-    return { success: false }
-  }
-
-  try {
-    const response = await fetch(`${import.meta.env.VITE_URL}/users/me`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-
-    if (response.ok) {
-      dispatch({ type: DELETE_ACCOUNT })
-      dispatch({ type: LOGOUT })
-      return { success: true }
-    } else {
-      const errorData = await response.json()
-      console.error('Error deleting account:', errorData)
-      return { success: false }
-    }
-  } catch (error) {
-    console.error('Error deleting account:', error)
-    return { success: false }
   }
 }

@@ -22,29 +22,28 @@ const EditProfileModal = ({ show, onClose, onSave, field, values, setValues }) =
           {field === 'name' || field === 'surname' ? (
             <>
               <Form.Group controlId="formName" className="form-floating-label">
-                <Form.Control type="text" name="name" value={values.name} onChange={handleChange} placeholder="Name" />
+                <Form.Control type="text" name="name" value={values.name} onChange={handleChange} />
                 <Form.Label>Name</Form.Label>
               </Form.Group>
-              <Form.Group controlId="formSurname" className="form-floating-label" style={{ marginTop: '10px' }}>
-                <Form.Control
-                  type="text"
-                  name="surname"
-                  value={values.surname}
-                  onChange={handleChange}
-                  placeholder="Surname"
-                />
+              <Form.Group controlId="formSurname" className="form-floating-label">
+                <Form.Control type="text" name="surname" value={values.surname} onChange={handleChange} />
                 <Form.Label>Surname</Form.Label>
+              </Form.Group>
+            </>
+          ) : field === 'password' ? (
+            <>
+              <Form.Group controlId="formOldPassword" className="form-floating-label">
+                <Form.Control type="password" name="oldPassword" value={values.oldPassword} onChange={handleChange} />
+                <Form.Label>Old Password</Form.Label>
+              </Form.Group>
+              <Form.Group controlId="formNewPassword" className="form-floating-label">
+                <Form.Control type="password" name="newPassword" value={values.newPassword} onChange={handleChange} />
+                <Form.Label>New Password</Form.Label>
               </Form.Group>
             </>
           ) : (
             <Form.Group controlId={`form${field}`} className="form-floating-label">
-              <Form.Control
-                type={field === 'password' ? 'password' : 'text'}
-                name={field}
-                value={values[field]}
-                onChange={handleChange}
-                placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-              />
+              <Form.Control type="text" name={field} value={values[field]} onChange={handleChange} />
               <Form.Label>{field.charAt(0).toUpperCase() + field.slice(1)}</Form.Label>
             </Form.Group>
           )}
