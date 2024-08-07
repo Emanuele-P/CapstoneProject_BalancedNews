@@ -47,7 +47,7 @@ const authReducer = (state = initialState, action) => {
     case UPDATE_PASSWORD_REQUEST:
     case UPDATE_FULLNAME_REQUEST:
     case UPDATE_USERNAME_REQUEST:
-      return { ...state, loading: true }
+      return { ...state, loading: true, error: null }
 
     case REGISTER_SUCCESS:
       return { ...state, loading: false, user: action.payload }
@@ -73,6 +73,7 @@ const authReducer = (state = initialState, action) => {
         loading: false,
         profile: { ...state.profile, ...action.payload },
         user: { ...state.user, ...action.payload },
+        error: null,
       }
 
     case REGISTER_FAILURE:

@@ -13,6 +13,7 @@ import {
   logout,
   deleteAccount,
   updateFullname,
+  clearErrors,
 } from '../../redux/actions/authActions'
 import UserPagePlaceholder from './UserPagePlaceholder'
 import ImageCropModal from './ImageCropModal'
@@ -20,7 +21,7 @@ import EditProfileModal from './EditProfileModal'
 import MiniFooter from './MiniFooter'
 
 function UserPage() {
-  const { isAuthenticated, profile, loading } = useSelector((state) => state.auth)
+  const { isAuthenticated, profile, loading, error } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const fileInputRef = useRef(null)
   const [uploading, setUploading] = useState(false)
@@ -77,27 +78,37 @@ function UserPage() {
   }
 
   const handleEditSave = () => {
-    setShowEditModal(false)
+    if (!error) {
+      setShowEditModal(true)
 
-    if (editField === 'name' || editField === 'surname') {
-      dispatch(updateFullname(profile.id, editValues.name.trim(), editValues.surname.trim()))
-    } else {
-      const payload = editValues[editField].trim()
-      switch (editField) {
-        case 'email':
-          dispatch(updateEmail(profile.id, payload))
-          break
-        case 'username':
-          dispatch(updateUsername(profile.id, payload))
-          break
-        case 'password':
-          dispatch(updatePassword(profile.id, editValues.oldPassword.trim(), editValues.newPassword.trim()))
-          break
-        default:
-          break
+      if (editField === 'name' || editField === 'surname') {
+        dispatch(updateFullname(profile.id, editValues.name.trim(), editValues.surname.trim()))
+      } else {
+        const payload = editValues[editField].trim()
+        switch (editField) {
+          case 'email':
+            dispatch(updateEmail(profile.id, payload))
+            break
+          case 'username':
+            dispatch(updateUsername(profile.id, payload))
+            break
+          case 'password':
+            dispatch(updatePassword(profile.id, editValues.oldPassword.trim(), editValues.newPassword.trim()))
+            break
+          default:
+            break
+        }
       }
+    } else {
+      return setShowEditModal(false)
     }
   }
+
+  useEffect(() => {
+    if (showEditModal) {
+      dispatch(clearErrors())
+    }
+  }, [showEditModal, dispatch])
 
   const handleLogout = () => {
     dispatch(logout())
@@ -285,6 +296,7 @@ function UserPage() {
         field={editField}
         values={editValues}
         setValues={setEditValues}
+        error={error}
       />
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} centered>
         <Modal.Body className="text-center">

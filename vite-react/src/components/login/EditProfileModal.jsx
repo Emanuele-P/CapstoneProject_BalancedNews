@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Modal, Button, Form } from 'react-bootstrap'
 
-const EditProfileModal = ({ show, onClose, onSave, field, values, setValues }) => {
+const EditProfileModal = ({ show, onClose, onSave, field, values, setValues, error }) => {
   const handleChange = (e) => {
     const { name, value } = e.target
     setValues((prevValues) => ({
@@ -47,11 +47,12 @@ const EditProfileModal = ({ show, onClose, onSave, field, values, setValues }) =
               <Form.Label>{field.charAt(0).toUpperCase() + field.slice(1)}</Form.Label>
             </Form.Group>
           )}
+          {error && <p className="text-danger mb-4">{error}</p>}
           <div className="flex justify-content-end gap-2">
             <Button className="login-button" onClick={onClose}>
               Close
             </Button>
-            <Button variant="info" type="submit" className="signup-button">
+            <Button variant="info" type="submit" className="signup-button" onClick={onSave}>
               Save
             </Button>
           </div>
