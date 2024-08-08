@@ -45,7 +45,7 @@ function NavDropdownComponent() {
     >
       {!isAuthenticated ? (
         <Link to={'/'}>
-          <Button className="w-100 login-button mt-2">Login</Button>
+          <Button className="w-100 accent-btn mt-2">Login</Button>
         </Link>
       ) : (
         <>
@@ -53,7 +53,7 @@ function NavDropdownComponent() {
           <p className="drop-email px-2">{profile?.email}</p>
 
           <Link to={'/home'}>
-            <Button className="login-button w-100">Home</Button>
+            <Button className="whi-btn w-100">Home</Button>
           </Link>
         </>
       )}

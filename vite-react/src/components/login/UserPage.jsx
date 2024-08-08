@@ -197,7 +197,7 @@ function UserPage() {
                     <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
                   </Col>
                   <Col lg={{ span: 2, offset: 4 }} className="d-flex align-items-center pe-0">
-                    <Button className="up-btn w-100" onClick={handleUploadClick} disabled={uploading}>
+                    <Button className="accent-btn w-100" onClick={handleUploadClick} disabled={uploading}>
                       {uploading ? <Spinner animation="border" size="sm" /> : 'Upload photo'}
                     </Button>
                   </Col>
@@ -211,7 +211,7 @@ function UserPage() {
                     </span>
                   </Col>
                   <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
-                    <Button className="login-button w-100" onClick={() => handleEditClick('name')}>
+                    <Button className="whi-btn w-100" onClick={() => handleEditClick('name')}>
                       Edit
                     </Button>
                   </Col>
@@ -222,7 +222,7 @@ function UserPage() {
                     <span>{profile.email}</span>
                   </Col>
                   <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                    <Button className="login-button w-100" onClick={() => handleEditClick('email')}>
+                    <Button className="whi-btn w-100" onClick={() => handleEditClick('email')}>
                       Edit
                     </Button>
                   </Col>
@@ -233,7 +233,7 @@ function UserPage() {
                     <span>{profile.username}</span>
                   </Col>
                   <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                    <Button className="login-button w-100" onClick={() => handleEditClick('username')}>
+                    <Button className="whi-btn w-100" onClick={() => handleEditClick('username')}>
                       Edit
                     </Button>
                   </Col>
@@ -245,7 +245,7 @@ function UserPage() {
                     <span>Change your password</span>
                   </Col>
                   <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
-                    <Button className="login-button w-100" onClick={() => handleEditClick('password')}>
+                    <Button className="whi-btn w-100" onClick={() => handleEditClick('password')}>
                       Edit
                     </Button>
                   </Col>
@@ -256,7 +256,7 @@ function UserPage() {
                     <span>End this sessions by signing out from this device</span>
                   </Col>
                   <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
-                    <Button className="login-button w-100" onClick={handleLogout}>
+                    <Button className="whi-btn w-100" onClick={handleLogout}>
                       Log out
                     </Button>
                   </Col>
@@ -314,11 +314,11 @@ function UserPage() {
         </Modal.Body>
         {!deleteSuccess && (
           <Modal.Footer>
-            <Button className="login-button" onClick={() => setShowDeleteModal(false)}>
+            <Button className="whi-btn" onClick={() => setShowDeleteModal(false)}>
               No
             </Button>
             <Button className="del-btn" onClick={handleDeleteAccount}>
-              Yes, Delete
+              Delete
             </Button>
           </Modal.Footer>
         )}

@@ -47,10 +47,10 @@ function AppNavbar({ className }) {
               {!isAuthenticated ? (
                 <>
                   <Link to={'/'}>
-                    <Button className="login-button">Login</Button>
+                    <Button className="whi-btn">Login</Button>
                   </Link>
                   <Link to={'/register'}>
-                    <Button className="signup-button btn-info">Sign up</Button>
+                    <Button className="login-btn">Sign up</Button>
                   </Link>
                 </>
               ) : (
@@ -71,7 +71,7 @@ function AppNavbar({ className }) {
                   <p className="drop-email px-2">{profile.email}</p>
 
                   <Link to={'/me'}>
-                    <Button className="login-button w-100">Profile</Button>
+                    <Button className="accent-btn w-100">Profile</Button>
                   </Link>
 
                   <NavDropdown.Divider className="mt-3" />

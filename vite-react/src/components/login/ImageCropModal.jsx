@@ -45,7 +45,7 @@ const ImageCropModal = ({ imageSrc, onCropComplete, onClose }) => {
         <Button className="del-btn" onClick={onClose}>
           Cancel
         </Button>
-        <Button variant="info" onClick={handleCropComplete}>
+        <Button className="login-btn" onClick={handleCropComplete}>
           Upload
         </Button>
       </Modal.Footer>

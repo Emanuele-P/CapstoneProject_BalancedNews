@@ -13,6 +13,8 @@
   .form-control {
     padding: 0.8rem;
     border: 1px solid transparent;
+
+    @include neu-form($gray);
   }
 
   @media (max-width: $sm) {
@@ -56,6 +58,7 @@
   button {
     width: 100%;
     padding-block: 0.7rem;
+    height: 44px;
   }
   .join-btn {
     margin-bottom: 3rem;

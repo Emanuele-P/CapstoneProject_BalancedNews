@@ -67,7 +67,7 @@ const LoginForm = () => {
                       required
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="password">
+                  <Form.Group className="mb-4" controlId="password">
                     <Form.Label column sm={2}>
                       Password
                     </Form.Label>
@@ -81,7 +81,7 @@ const LoginForm = () => {
                       />
                     </Col>
                   </Form.Group>
-                  <Button type="submit" className="my-3 btn-info">
+                  <Button type="submit" className="my-3 login-btn">
                     {loading ? 'Logging in...' : 'Log In'}
                   </Button>
                   {error && <p className="text-danger">{error}</p>}
@@ -100,10 +100,10 @@ const LoginForm = () => {
                     <hr />
                   </Col>
                 </Row>
-                <Button className="mt-3 btn-dark">
+                <Button className="mt-4 blk-btn">
                   <i className="bi bi-google me-2"></i>Continue with Google
                 </Button>
-                <Button className="mt-3 mb-2 btn-dark">
+                <Button className="mt-3 mb-2 blk-btn">
                   <i className="bi bi-apple me-2"></i>Continue with Apple
                 </Button>
                 <p>
@@ -111,7 +111,7 @@ const LoginForm = () => {
                   <span>Privacy Policy</span>, and <span>Cookie Policy</span>.
                 </p>
                 <Link to={'/register'}>
-                  <Button className="join-btn">New to Balanced News? Join Now</Button>
+                  <Button className="whi-btn mt-4 mb-5">New to Balanced News? Join Now</Button>
                 </Link>
               </Col>
             )}

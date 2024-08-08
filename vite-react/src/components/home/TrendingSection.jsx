@@ -57,7 +57,7 @@ function TrendingSection({ title, query }) {
           ))}
           {validTrendingNews.length > 8 + leftCardCount && (
             <div className="border-top">
-              <Button className="signup-button mt-3 w-100 login-button" onClick={handleLoadMore}>
+              <Button className="mt-3 w-100 more-btn" onClick={handleLoadMore}>
                 Load more
               </Button>
             </div>

@@ -62,3 +62,49 @@
   -webkit-backdrop-filter: blur(9.4px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+@mixin neu-btn($color, $darken: 15%, $lighten: 15%) {
+  $dark-shadow: darken($color, $darken);
+  $light-shadow: lighten($color, $lighten);
+
+  width: 100px;
+  font-weight: 500;
+  padding-inline: 10px !important;
+  padding-block: 8px !important;
+
+  background: $color;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 3px 3px 12px $dark-shadow, -3px -3px 12px $light-shadow;
+  color: darken($color, 60%);
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: inset 3px 3px 12px $dark-shadow, inset -3px -3px 12px 0px $light-shadow;
+    color: darken($color, 60%);
+    background-color: $color;
+  }
+
+  &:active {
+    box-shadow: inset 4px 4px 8px $dark-shadow, inset -4px -4px 8px $light-shadow;
+    color: darken($color, 80%) !important;
+    background-color: $color !important;
+  }
+}
+
+@mixin neu-form($color, $darken: 15%, $lighten: 15%) {
+  $dark-shadow: darken($color, $darken);
+  $light-shadow: lighten($color, $lighten);
+
+  background: $color;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 3px 3px 12px $dark-shadow, -3px -3px 12px $light-shadow;
+  color: darken($color, 60%);
+  font-size: 16px;
+  padding: 10px 20px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}

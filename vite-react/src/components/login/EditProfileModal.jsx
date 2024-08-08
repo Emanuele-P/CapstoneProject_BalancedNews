@@ -49,10 +49,10 @@ const EditProfileModal = ({ show, onClose, onSave, field, values, setValues, err
           )}
           {error && <p className="text-danger mb-4">{error}</p>}
           <div className="flex justify-content-end gap-2">
-            <Button className="login-button" onClick={onClose}>
+            <Button className="whi-btn" onClick={onClose}>
               Close
             </Button>
-            <Button variant="info" type="submit" className="signup-button" onClick={onSave}>
+            <Button variant="info" type="submit" className="login-btn" onClick={onSave}>
               Save
             </Button>
           </div>

@@ -25,7 +25,7 @@ function RightAside({ mainSectionRef, validatedNews }) {
               <RightCard key={article.id} article={article} />
             ))}
             {validatedNews.length > displayCount && (
-              <Button className="mt-1 w-100 login-button" onClick={handleLoadMore}>
+              <Button className="mt-1 w-100 more-btn" onClick={handleLoadMore}>
                 Load more
               </Button>
             )}

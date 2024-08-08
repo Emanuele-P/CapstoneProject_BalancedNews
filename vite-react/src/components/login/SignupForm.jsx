@@ -58,7 +58,7 @@ const SignupForm = () => {
                   <Row>
                     <Col md={6}>
                       <Form.Group className="mb-3" controlId="name">
-                        <Form.Label>First name</Form.Label>
+                        <Form.Label className="mb-2">First name</Form.Label>
                         <Form.Control
                           type="text"
                           placeholder="Enter your first name"
@@ -70,7 +70,7 @@ const SignupForm = () => {
                     </Col>
                     <Col md={6}>
                       <Form.Group className="mb-3" controlId="surname">
-                        <Form.Label>Last name</Form.Label>
+                        <Form.Label className="mb-2">Last name</Form.Label>
                         <Form.Control
                           type="text"
                           placeholder="Enter your last name"
@@ -82,7 +82,7 @@ const SignupForm = () => {
                     </Col>
                   </Row>
                   <Form.Group className="mb-3" controlId="username">
-                    <Form.Label>Username</Form.Label>
+                    <Form.Label className="mb-2">Username</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Enter your username"
@@ -92,7 +92,7 @@ const SignupForm = () => {
                     />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="email">
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label className="mb-2">Email address</Form.Label>
                     <Form.Control
                       type="email"
                       placeholder="Enter your email address"
@@ -102,7 +102,7 @@ const SignupForm = () => {
                     />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="password">
-                    <Form.Label column sm={2}>
+                    <Form.Label column className="mb-2">
                       Password
                     </Form.Label>
                     <Col lg={12}>
@@ -115,7 +115,7 @@ const SignupForm = () => {
                       />
                     </Col>
                   </Form.Group>
-                  <Button type="submit" className="my-3 btn-info">
+                  <Button type="submit" className="mb-3 mt-4 login-btn">
                     {loading ? 'Creating Account...' : 'Create Account'}
                   </Button>
                   {error && <p className="text-danger">{error}</p>}
@@ -132,10 +132,10 @@ const SignupForm = () => {
                     <hr />
                   </Col>
                 </Row>
-                <Button className="mt-3 btn-dark">
+                <Button className="mt-4 blk-btn">
                   <i className="bi bi-google me-2"></i>Continue with Google
                 </Button>
-                <Button className="mt-3 mb-2 btn-dark">
+                <Button className="mt-3 mb-3 blk-btn">
                   <i className="bi bi-apple me-2"></i>Continue with Apple
                 </Button>
                 <p>
@@ -143,7 +143,7 @@ const SignupForm = () => {
                   <span>Privacy Policy</span>, and <span>Cookie Policy</span>.
                 </p>
                 <Link to={'/'}>
-                  <Button className="join-btn">Already a Subscriber? Log In</Button>
+                  <Button className="whi-btn my-3">Already a Subscriber? Log In</Button>
                 </Link>
               </Col>
             )}

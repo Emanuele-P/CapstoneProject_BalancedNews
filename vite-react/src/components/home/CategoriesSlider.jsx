@@ -8,13 +8,13 @@ function CategoriesSlider() {
         <Container className="mb-4">
           <Row className="align-items-center">
             <Col lg={9} className="d-flex gap-2">
-              <Button className="btn-ct rounded-pill btn-outline-dark">Politics</Button>
-              <Button className="btn-ct rounded-pill btn-outline-dark">Business</Button>
-              <Button className="btn-ct rounded-pill btn-outline-dark">Tech</Button>
-              <Button className="btn-ct rounded-pill btn-outline-dark">Arts</Button>
-              <Button className="btn-ct rounded-pill btn-outline-dark">Science</Button>
-              <Button className="btn-ct rounded-pill btn-outline-dark">Health</Button>
-              <Button className="btn-ct rounded-pill btn-outline-dark">Sports</Button>
+              <Button className="whi-btn rounded-pill">Politics</Button>
+              <Button className="whi-btn rounded-pill">Business</Button>
+              <Button className="whi-btn rounded-pill">Tech</Button>
+              <Button className="whi-btn rounded-pill">Arts</Button>
+              <Button className="whi-btn rounded-pill">Science</Button>
+              <Button className="whi-btn rounded-pill">Health</Button>
+              <Button className="whi-btn rounded-pill">Sports</Button>
             </Col>
             <Col lg={3}>
               <SearchForm />
