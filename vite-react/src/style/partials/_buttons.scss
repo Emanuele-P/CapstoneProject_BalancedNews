@@ -6,11 +6,9 @@
   &:hover {
     color: $light;
     background: $info;
-    box-shadow: inset 3px 3px 12px #3d3281, inset -3px -3px 12px 0px #8572ff;
   }
   &:active {
-    color: $light !important;
-    background-color: $info !important;
+    color: $info !important;
   }
 }
 
@@ -32,13 +30,17 @@
 .del-btn {
   @include neu-btn($light);
   color: $danger;
+  $dark-shadow: darken(#d44554c3, 10%);
+  $light-shadow: lighten(#e95c6ac3, 10%);
   &:hover {
     color: $light;
     background: $danger;
-    box-shadow: inset 3px 3px 12px #772424, inset -3px -3px 12px 0px #ea6d6d;
+    box-shadow: 4px 4px 12px $dark-shadow, -4px -4px 12px $light-shadow;
   }
   &:active {
-    color: $danger !important;
+    color: $light !important;
+    background: $danger !important;
+    box-shadow: inset 4px 4px 8px $dark-shadow, inset -4px -4px 8px $light-shadow !important;
   }
 }
 
@@ -51,7 +53,7 @@
   &:hover {
     color: $light;
     background-color: $black;
-    box-shadow: inset 3px 3px 12px #000000, inset -3px -3px 12px 0px #686868;
+    box-shadow: 2px 2px 8px #000000, -2px -2px 8px #686868;
   }
   &:active {
     color: $light !important;

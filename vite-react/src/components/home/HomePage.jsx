@@ -40,7 +40,7 @@ function HomePage() {
             <LeftAside />
             <MainSection />
           </Row>
-          <TrendingSection title="Olympics" query="olympics" />
+          {loaded && <TrendingSection title="Olympics" query="olympics" />}
           {loaded && <TrendingSection title="Israel-Hamas Conflict" query="israel" />}
         </Container>
       </div>

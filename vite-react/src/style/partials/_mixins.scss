@@ -80,10 +80,11 @@
   font-size: 16px;
   padding: 10px 20px;
   cursor: pointer;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 
   &:hover {
-    box-shadow: inset 3px 3px 12px $dark-shadow, inset -3px -3px 12px 0px $light-shadow;
+    box-shadow: 2px 2px 8px $dark-shadow, -2px -2px 8px $light-shadow;
+    transform: translateY(2px);
     color: darken($color, 60%);
     background-color: $color;
   }
@@ -107,4 +108,21 @@
   font-size: 16px;
   padding: 10px 20px;
   transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@mixin neu-card($color, $darken: 15%, $lighten: 15%) {
+  $dark-shadow: darken($color, $darken);
+  $light-shadow: lighten($color, $lighten);
+
+  background: $color;
+  border-radius: 12px;
+  box-shadow: 8px 8px 16px $dark-shadow, -8px -8px 16px $light-shadow;
+  color: darken($color, 60%);
+  padding: 20px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 4px 4px 8px $dark-shadow, -4px -4px 8px $light-shadow;
+    transform: translate(-2px, -2px);
+  }
 }

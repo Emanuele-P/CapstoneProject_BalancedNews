@@ -1,9 +1,7 @@
 import 'bootstrap/scss/bootstrap.scss'
 import './style/App.scss'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import AppNavbar from './components/AppNavbar'
 import HomePage from './components/home/HomePage'
-import DecorativeNav from './components/DecorativeNav'
 import LoginForm from './components/login/LoginForm'
 import SignupForm from './components/login/SignupForm'
 import ArticlesPage from './components/articles/ArticlesPage'
@@ -22,16 +20,7 @@ function App() {
 
           <Route path="/home" element={<HomePage />} />
 
-          <Route
-            path="/article/:id"
-            element={
-              <>
-                <DecorativeNav />
-                <AppNavbar />
-                <ArticlesPage />
-              </>
-            }
-          />
+          <Route path="/article/:id" element={<ArticlesPage />} />
           <Route path="/me" element={<UserPage />} />
         </Routes>
       </BrowserRouter>

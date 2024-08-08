@@ -27,8 +27,8 @@ function SourceCard({ article }) {
   if (!article) {
     return null
   }
-  console.log(`Domain: ${domain}`)
-  console.log(`Source: `, source)
+  // console.log(`Domain: ${domain}`)
+  // console.log(`Source: `, source)
 
   const url = new URL(article.url)
   const displayDomain = url.hostname.replace('www.', '').split('.')[0]
