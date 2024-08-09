@@ -12,6 +12,8 @@
   min-height: 100vh;
   max-height: 125vh;
   @include scrollbar-style;
+
+  position: relative;
 }
 
 //all home sections
@@ -70,6 +72,10 @@ h2 {
     .card-title {
       text-decoration: none;
     }
+  }
+
+  .card-body {
+    padding-right: 12px !important;
   }
 
   .central-card-pic {
@@ -164,6 +170,7 @@ h2 {
   border: none;
   border-radius: 0px;
   background: transparent;
+  height: 100px;
 
   .card-text {
     @include clamp();

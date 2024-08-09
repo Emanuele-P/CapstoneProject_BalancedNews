@@ -4,7 +4,7 @@ import RightCard from './RightCard'
 import { useRef, useState } from 'react'
 import { useDynamicHeight } from '../../utils/heightUtils'
 
-function RightAside({ mainSectionRef, validatedNews }) {
+function RightAside({ mainSectionRef, validatedNews, biasPercentages }) {
   const [displayCount, setDisplayCount] = useState(10)
 
   const rightAsideRef = useRef(null)
@@ -16,20 +16,28 @@ function RightAside({ mainSectionRef, validatedNews }) {
 
   return (
     <>
-      <Col lg={3}>
+      <Col
+        lg={3}
+        style={{ maxHeight: mainSectionHeight }}
+        ref={rightAsideRef}
+        className="d-flex flex-column justify-content-between"
+      >
         <h6 className="m-0 pb-1 border-bottom">Latest news</h6>
         {validatedNews.length === 0 && <Spinner animation="border" />}
         {validatedNews.length > 0 && (
-          <Col className="right-aside hmsc pt-2" style={{ maxHeight: mainSectionHeight }} ref={rightAsideRef}>
-            {validatedNews.slice(0, displayCount).map((article) => (
-              <RightCard key={article.id} article={article} />
+          <Col className="right-aside hmsc pt-2 mb-0">
+            {validatedNews.slice(0, displayCount).map((article, index) => (
+              <RightCard key={article.id} article={article} biasPercentages={biasPercentages[index] || {}} />
             ))}
-            {validatedNews.length > displayCount && (
-              <Button className="mt-1 w-100 more-btn" onClick={handleLoadMore}>
-                Load more
-              </Button>
-            )}
           </Col>
+        )}
+
+        {validatedNews.length > displayCount && (
+          <div>
+            <Button className="w-100 more-btn mb-4 mt-1" onClick={handleLoadMore}>
+              Load more
+            </Button>
+          </div>
         )}
       </Col>
     </>

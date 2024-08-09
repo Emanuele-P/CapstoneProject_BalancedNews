@@ -7,22 +7,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useRef, useState } from 'react'
 import { getNewsSource, getTopNews } from '../../redux/actions/newsActions'
 import RightAside from './RightAside'
-import { extractDomain, filterUniqueDomains, filterValidArticles } from '../../utils/urlUtils'
+import { extractDomain, filterValidArticles } from '../../utils/urlUtils'
 import { calculateBiasPercentages } from '../../utils/BiasUtils'
+import LeftAside from './LeftAside'
 
 function MainSection() {
   const dispatch = useDispatch()
   const loading = useSelector((state) => state.news.loading)
   const news = useSelector((state) => state.news.news)
   const sources = useSelector((state) => state.news.newsSource)
+  const [biasPercentages, setBiasPercentages] = useState([])
 
   const mainSectionRef = useRef(null)
-
-  const [biasPercentages, setBiasPercentages] = useState({
-    leftPercentage: '0%',
-    centerPercentage: '100%',
-    rightPercentage: '0%',
-  })
 
   useEffect(() => {
     if (!news || !news.top_news) {
@@ -46,32 +42,38 @@ function MainSection() {
 
   const uniqueDomains = new Set()
   useEffect(() => {
-    if (allValidNews[0] && allValidNews[0].news.length > 0) {
-      allValidNews[0].news.forEach((article) => {
-        const domain = extractDomain(article.url)
-        if (domain && !uniqueDomains.has(domain)) {
-          uniqueDomains.add(domain)
-          dispatch(getNewsSource(domain))
+    for (let i = 0; i < allValidNews.length; i++) {
+      if (allValidNews[i] && allValidNews[i].news.length > 0) {
+        for (const article of allValidNews[i].news) {
+          const domain = extractDomain(article.url)
+          if (domain && !uniqueDomains.has(domain)) {
+            uniqueDomains.add(domain)
+            dispatch(getNewsSource(domain))
+          }
         }
-      })
+      }
     }
   }, [])
 
   useEffect(() => {
-    if (allValidNews[0] && allValidNews[0].news.length > 0) {
-      const articlesForBiasCalculation = allValidNews[0].news.map((article) => {
-        const domain = extractDomain(article.url)
-        return { ...article, domain }
-      })
-      console.log('Articles for bias calculation:', articlesForBiasCalculation)
+    const biases = []
+    for (let i = 0; i < allValidNews.length; i++) {
+      if (allValidNews[i] && allValidNews[i].news.length > 0) {
+        const articlesForBiasCalculation = allValidNews[i].news.map((article) => {
+          const domain = extractDomain(article.url)
+          return { ...article, domain }
+        })
 
-      const bias = calculateBiasPercentages(articlesForBiasCalculation, sources)
-      setBiasPercentages(bias)
+        const bias = calculateBiasPercentages(articlesForBiasCalculation, sources)
+        biases.push(bias)
+      }
     }
+    setBiasPercentages(biases)
   }, [])
 
   return (
     <>
+      <LeftAside />
       <Col lg={6} className="main-section hmsc pt-1" ref={mainSectionRef}>
         {loading && <Spinner animation="border" />}
         {!loading && flattenedNews[0] && (
@@ -81,9 +83,9 @@ function MainSection() {
               <div className="hero-overlay"></div>
               <h3 className="hero-title">{flattenedNews[0].title || 'Untitled'}</h3>
               <BiasBar
-                leftPercentage={biasPercentages.leftPercentage}
-                centerPercentage={biasPercentages.centerPercentage}
-                rightPercentage={biasPercentages.rightPercentage}
+                leftPercentage={biasPercentages[0]?.leftPercentage || '0%'}
+                centerPercentage={biasPercentages[0]?.centerPercentage || '100%'}
+                rightPercentage={biasPercentages[0]?.rightPercentage || '0%'}
               />
             </section>
           </Link>
@@ -92,9 +94,17 @@ function MainSection() {
           Top news stories <Spinner animation="grow" className="text-danger" />
         </h2>
         {flattenedNews &&
-          flattenedNews.slice(1, 7).map((article) => <CentralCard key={article.id} article={article} />)}
+          flattenedNews
+            .slice(1, 7)
+            .map((article, index) => (
+              <CentralCard key={article.id} article={article} biasPercentages={biasPercentages[index + 1] || {}} />
+            ))}
       </Col>
-      <RightAside mainSectionRef={mainSectionRef} validatedNews={flattenedNews} completeNews={allValidNews} />
+      <RightAside
+        mainSectionRef={mainSectionRef}
+        validatedNews={flattenedNews.slice(7)}
+        biasPercentages={biasPercentages.slice(7)}
+      />
     </>
   )
 }

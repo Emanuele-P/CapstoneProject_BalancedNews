@@ -75,3 +75,53 @@
     font-size: 14px;
   }
 }
+
+.right-card,
+.central-card {
+  &:hover {
+    .bias-bar-container {
+      transform: scaleY(1.33);
+    }
+    .bias-bar {
+      transform: scaleY(1.33);
+    }
+  }
+
+  .bias-bar-container {
+    width: 100%;
+    height: 6px;
+    transition: transform 0.2s ease-in;
+    transform-origin: center;
+  }
+  span {
+    display: none;
+  }
+  .bias-bar {
+    transition: transform 0.2s ease-in;
+  }
+}
+
+.central-card {
+  &:hover {
+    .bias-bar-container {
+      transform: scaleY(1.9);
+    }
+    .bias-bar {
+      transform: scaleY(1.6);
+    }
+    span {
+      opacity: 1;
+      transform: none;
+      position: relative;
+    }
+  }
+  .bias-bar-container {
+    width: 100%;
+  }
+  span {
+    transition: opacity 0.3 ease;
+    opacity: 0;
+    position: relative;
+    transform: none;
+  }
+}

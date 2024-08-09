@@ -1,6 +1,5 @@
 import { Container, Row } from 'react-bootstrap'
 import CategoriesSlider from './CategoriesSlider'
-import LeftAside from './LeftAside'
 import MainSection from './MainSection'
 import TrendingSection from './TrendingSection'
 import { useEffect, useState } from 'react'
@@ -42,7 +41,6 @@ function HomePage() {
       <div className="border-bottom mb-3">
         <Container className="mt-4">
           <Row className="flex-row mb-3 border-bottom">
-            <LeftAside />
             <MainSection />
           </Row>
           {loadedFirst && <TrendingSection title="Olympics" query="olympics" />}
