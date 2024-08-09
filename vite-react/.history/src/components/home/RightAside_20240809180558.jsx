@@ -22,10 +22,10 @@ function RightAside({ mainSectionRef, validatedNews, biasPercentages }) {
         ref={rightAsideRef}
         className="d-flex flex-column justify-content-between"
       >
-        <h6 className="m-0 pb-0 border-bottom">Latest news</h6>
+        <h6 className="m-0 pb-1 border-bottom">Latest news</h6>
         {validatedNews.length === 0 && <Spinner animation="border" />}
         {validatedNews.length > 0 && (
-          <Col className="right-aside hmsc pt-0 mb-0">
+          <Col className="right-aside hmsc pt-1 mb-0">
             {validatedNews.slice(0, displayCount).map((article, index) => (
               <RightCard key={article.id} article={article} biasPercentages={biasPercentages[index] || {}} />
             ))}

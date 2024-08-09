@@ -7,7 +7,7 @@ function RightCard({ article, biasPercentages }) {
   return (
     <>
       <Link to={`/article/${article.id}`} className="s-cards-link">
-        <Card className="w-100 right-card">
+        <Card className="w-100 right-card mb-2">
           <Card.Body className="p-2">
             <Card.Title>
               {article.author || 'Unknown Author'} ・ {article.source_country.toUpperCase()}

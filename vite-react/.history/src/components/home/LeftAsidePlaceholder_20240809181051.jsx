@@ -4,7 +4,7 @@ function LeftAsidePlaceholder() {
   return (
     <Placeholder
       animation="glow"
-      className="col-lg-3 mt-1 pl-as"
+      className="col-lg-3 mt-1"
       style={{ height: '827px', background: 'transparent', border: '1px solid transparent' }}
     >
       <div className="d-flex flex-column justify-content-end p-0">

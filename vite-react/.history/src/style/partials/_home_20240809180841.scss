@@ -1,5 +1,4 @@
-.left-aside,
-.pl-as {
+.left-aside {
   min-height: 20vh;
   position: sticky;
   top: 74px;
@@ -174,7 +173,7 @@ h2 {
 .right-card {
   @include neu-card-s($background);
 
-  margin-bottom: 7px;
+  margin-bottom: 8px;
   border-radius: 6px;
   height: 100px;
 
