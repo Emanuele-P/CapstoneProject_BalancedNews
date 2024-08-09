@@ -10,6 +10,7 @@ import RightAside from './RightAside'
 import { extractDomain, filterValidArticles } from '../../utils/urlUtils'
 import { calculateBiasPercentages } from '../../utils/BiasUtils'
 import LeftAside from './LeftAside'
+import CardPlaceholder from './CardPlaceholder'
 
 function MainSection() {
   const dispatch = useDispatch()
@@ -75,7 +76,7 @@ function MainSection() {
     <>
       <LeftAside />
       <Col lg={6} className="main-section hmsc pt-1" ref={mainSectionRef}>
-        {loading && <Spinner animation="border" />}
+        {loading && <CardPlaceholder />}
         {!loading && flattenedNews[0] && (
           <Link to={`/article/${flattenedNews[0].id}`}>
             <section className="hero-wrapper">
