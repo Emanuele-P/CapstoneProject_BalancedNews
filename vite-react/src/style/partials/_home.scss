@@ -1,5 +1,9 @@
 .left-aside {
-  min-height: 100vh;
+  min-height: 20vh;
+  position: sticky;
+  top: 74px;
+  align-self: flex-start;
+  margin-bottom: 8px;
 }
 
 .main-section {
@@ -167,12 +171,13 @@ h2 {
 
 //right-card
 .right-card {
-  border: none;
-  border-radius: 0px;
-  background: transparent;
+  @include neu-card-s($light);
+
+  border-radius: 6px;
   height: 100px;
 
   .card-text {
+    height: 48px;
     @include clamp();
     -webkit-line-clamp: 2;
     line-clamp: 2;

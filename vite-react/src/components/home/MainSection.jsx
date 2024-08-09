@@ -11,6 +11,7 @@ import { extractDomain, filterValidArticles } from '../../utils/urlUtils'
 import { calculateBiasPercentages, findHighestBiasArticles } from '../../utils/BiasUtils'
 import LeftAside from './LeftAside'
 import CardPlaceholder from './CardPlaceholder'
+import LeftAsidePlaceholder from './LeftAsidePlaceholder'
 
 function MainSection() {
   const dispatch = useDispatch()
@@ -76,7 +77,8 @@ function MainSection() {
 
   return (
     <>
-      <LeftAside highestLeft={highestLeft} highestRight={highestRight} />
+      {loading && <LeftAsidePlaceholder />}
+      {!loading && <LeftAside highestLeft={highestLeft} highestRight={highestRight} />}
       <Col lg={6} className="main-section hmsc pt-1" ref={mainSectionRef}>
         {loading && <CardPlaceholder />}
         {!loading && flattenedNews[0] && (

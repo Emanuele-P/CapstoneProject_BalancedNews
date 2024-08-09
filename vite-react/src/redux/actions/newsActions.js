@@ -59,11 +59,11 @@ export const getNewsSource = (domain) => async (dispatch) => {
     if (response.ok) {
       dispatch({ type: GET_NEWS_SOURCE_SUCCESS, payload: { domain, data } })
     } else {
-      console.log('Error fetching news source:', data.message)
+      // console.log('Error fetching news source:', data.message)
       throw new Error('Error fetching news source, try again later!')
     }
   } catch (error) {
-    console.error('API error:', error)
+    // console.error('API error:', error)
     dispatch({ type: GET_NEWS_SOURCE_FAILURE })
   }
 }

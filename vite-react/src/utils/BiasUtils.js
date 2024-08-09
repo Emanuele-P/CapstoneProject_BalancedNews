@@ -7,11 +7,11 @@ export const calculateBiasPercentages = (articles, sources) => {
 
   articles.forEach((article) => {
     const domain = extractDomain(article.url)
-    console.log(`Processing article with domain: ${domain}`)
+    // console.log(`Processing article with domain: ${domain}`)
 
     if (domain && sources[domain]) {
       const source = sources[domain]
-      console.log(`Matched domain with bias: ${source.biasRating}`)
+      // console.log(`Matched domain with bias: ${source.biasRating}`)
 
       switch (source.biasRating) {
         case 'Left':
@@ -26,7 +26,7 @@ export const calculateBiasPercentages = (articles, sources) => {
           center.push(article)
       }
     } else {
-      console.warn(`Domain not found or not valid: ${domain}`)
+      // console.warn(`Domain not found or not valid: ${domain}`)
     }
   })
 

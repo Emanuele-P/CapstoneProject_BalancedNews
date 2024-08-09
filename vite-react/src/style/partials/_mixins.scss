@@ -126,3 +126,20 @@
     transform: translate(-2px, -2px);
   }
 }
+
+@mixin neu-card-s($color, $darken: 15%, $lighten: 15%, $border-shade: 5%) {
+  $dark-shadow: darken($color, $darken);
+  $light-shadow: lighten($color, $lighten);
+  $border-color: darken($color, $border-shade);
+
+  background: $color;
+  border-radius: 12px;
+  box-shadow: 4px 4px 8px $dark-shadow, -4px -4px 8px $light-shadow;
+  border: 1px solid $border-color;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 2px 2px 6px $dark-shadow, -2px -2px 6px $light-shadow;
+    transform: translateY(-2px);
+  }
+}

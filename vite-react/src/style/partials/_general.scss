@@ -37,9 +37,7 @@
     text-decoration: none;
   }
 }
-// .nav-link {
-//   color: #fff !important;
-// }
+
 .first-dropdown:hover {
   color: $info;
 }
@@ -117,10 +115,6 @@
   }
 }
 
-//decorative nav
-// .dec-wrap {
-//   background-color: #fff;
-// }
 .decoration {
   text-align: center;
   height: 40px;
@@ -152,6 +146,7 @@
   border: 1px solid $gray;
   background-color: $gray;
 
+  @include glass();
   &:focus {
     border: 1px solid $gray;
     box-shadow: none;
@@ -159,18 +154,19 @@
     background-color: $gray;
   }
 }
-.input-group:focus-within,
-.input-group:focus-visible {
-  box-shadow: none;
-  border: none;
-  background-color: $gray;
-}
+// .input-group:focus-within,
+// .input-group:focus-visible {
+//   box-shadow: none;
+//   border: none;
+//   background-color: $gray;
+// }
 .input-group {
   .input-group-text {
     border-radius: 2px;
     background-color: $gray;
     border: 1px solid $gray;
     border-right: none;
+    @include glass();
   }
 }
 

@@ -40,8 +40,8 @@ function TrendingSection({ title, query }) {
         <Image src={trend} className="mb-2 me-2 blinking" />
         <h2 className="mt-0 mb-2">{title}</h2>
       </div>
-      <Row className="flex-row mb-4 central-bottom border-bottom pb-2" ref={trendingSectionRef}>
-        <Col lg={8} className="pb-2">
+      <Row className="flex-row mb-4 pb-2 central-bottom border-bottom">
+        <Col lg={8} ref={trendingSectionRef}>
           {loading ? (
             <Spinner animation="border" />
           ) : (
@@ -51,13 +51,19 @@ function TrendingSection({ title, query }) {
             <CentralCardTrending key={article.id} article={article} />
           ))}
         </Col>
-        <Col lg={4} className="trending-left-aside" style={{ maxHeight: trendingSectionHeight }}>
-          {validTrendingNews.slice(8, 8 + leftCardCount).map((article) => (
-            <LeftCardTrending key={article.id} article={article} />
-          ))}
+        <Col
+          lg={4}
+          className="trending-left-aside d-flex flex-column justify-content-between"
+          style={{ maxHeight: trendingSectionHeight }}
+        >
+          <div>
+            {validTrendingNews.slice(8, 8 + leftCardCount).map((article) => (
+              <LeftCardTrending key={article.id} article={article} />
+            ))}
+          </div>
           {validTrendingNews.length > 8 + leftCardCount && (
             <div className="border-top">
-              <Button className="mt-3 w-100 more-btn" onClick={handleLoadMore}>
+              <Button className="mt-4 w-100 more-btn" onClick={handleLoadMore}>
                 Load more
               </Button>
             </div>
