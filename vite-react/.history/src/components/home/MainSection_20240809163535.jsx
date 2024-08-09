@@ -26,7 +26,7 @@ function MainSection() {
     if (!news || !news.top_news) {
       dispatch(getTopNews())
     }
-  }, [])
+  })
 
   const getValidNews = (newsArray) => {
     return newsArray.map((newsItem) => {

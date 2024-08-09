@@ -171,7 +171,7 @@ h2 {
 
 //right-card
 .right-card {
-  @include neu-card-s($background);
+  @include neu-card-s($light);
 
   border-radius: 6px;
   height: 100px;

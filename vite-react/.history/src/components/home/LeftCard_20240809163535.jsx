@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 function LeftCard({ borderClass, article, bias }) {
   if (!article) return null
-  console.log(article)
 
   return (
     <>
@@ -17,7 +16,7 @@ function LeftCard({ borderClass, article, bias }) {
               <Card.Img src={article.image || pic} className="left-card-pic" />
             </div>
             <Card.Body>
-              <Badge>{bias.rightPercentage > bias.leftPercentage ? 'For the Left' : 'For the right'}</Badge>
+              <Badge>n Sources</Badge>
               <Card.Title>{article.title || 'No title available'}</Card.Title>
               <BiasBar
                 leftPercentage={bias.leftPercentage || '0%'}

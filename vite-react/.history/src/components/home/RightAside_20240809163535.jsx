@@ -34,7 +34,7 @@ function RightAside({ mainSectionRef, validatedNews, biasPercentages }) {
 
         {validatedNews.length > displayCount && (
           <div>
-            <Button className="w-100 more-btn mb-4" onClick={handleLoadMore}>
+            <Button className="w-100 more-btn mb-4 mt-1" onClick={handleLoadMore}>
               Load more
             </Button>
           </div>
