@@ -49,3 +49,37 @@ export const getMaxBias = (leftPercentage, centerPercentage, rightPercentage) =>
 
   return percentages[0]
 }
+
+export const findHighestBiasArticles = (allValidNews, sources) => {
+  let highestLeft = null
+  let highestCenter = null
+  let highestRight = null
+
+  let highestLeftPercentage = 0
+  let highestRightPercentage = 0
+
+  allValidNews.forEach((newsItem) => {
+    const articlesForBiasCalculation = newsItem.news.map((article) => {
+      const domain = extractDomain(article.url)
+      return { ...article, domain }
+    })
+
+    const bias = calculateBiasPercentages(articlesForBiasCalculation, sources)
+
+    if (parseFloat(bias.leftPercentage) > highestLeftPercentage) {
+      highestLeftPercentage = parseFloat(bias.leftPercentage)
+      highestLeft = { article: newsItem.news[0], bias }
+    }
+
+    if (parseFloat(bias.rightPercentage) > highestRightPercentage) {
+      highestRightPercentage = parseFloat(bias.rightPercentage)
+      highestRight = { article: newsItem.news[0], bias }
+    }
+  })
+
+  return {
+    highestLeft,
+    highestCenter,
+    highestRight,
+  }
+}

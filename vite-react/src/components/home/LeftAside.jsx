@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { Col, Image } from 'react-bootstrap'
 import LeftCard from './LeftCard'
 import banner from '../../assets/svg/banner.svg'
 
-function LeftAside() {
+function LeftAside({ highestLeft, highestRight }) {
   return (
     <Col lg={3} className="left-aside">
       <div className="banner">
@@ -12,9 +13,8 @@ function LeftAside() {
         <Image src={banner} />
       </div>
       <h6 className="mb-3">Stories disproportionately reported by the Right, the Left or the Center</h6>
-      <LeftCard borderClass="right-border" />
-      <LeftCard borderClass="left-border" />
-      <LeftCard borderClass="center-border" />
+      {highestRight && <LeftCard borderClass="right-border" article={highestRight.article} bias={highestRight.bias} />}
+      {highestLeft && <LeftCard borderClass="left-border" article={highestLeft.article} bias={highestLeft.bias} />}
     </Col>
   )
 }

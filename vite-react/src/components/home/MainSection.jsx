@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from 'react'
 import { getNewsSource, getTopNews } from '../../redux/actions/newsActions'
 import RightAside from './RightAside'
 import { extractDomain, filterValidArticles } from '../../utils/urlUtils'
-import { calculateBiasPercentages } from '../../utils/BiasUtils'
+import { calculateBiasPercentages, findHighestBiasArticles } from '../../utils/BiasUtils'
 import LeftAside from './LeftAside'
 import CardPlaceholder from './CardPlaceholder'
 
@@ -72,9 +72,11 @@ function MainSection() {
     setBiasPercentages(biases)
   }, [])
 
+  const { highestLeft, highestRight } = findHighestBiasArticles(allValidNews, sources)
+
   return (
     <>
-      <LeftAside />
+      <LeftAside highestLeft={highestLeft} highestRight={highestRight} />
       <Col lg={6} className="main-section hmsc pt-1" ref={mainSectionRef}>
         {loading && <CardPlaceholder />}
         {!loading && flattenedNews[0] && (
