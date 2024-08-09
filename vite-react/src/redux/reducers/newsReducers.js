@@ -8,13 +8,15 @@ import {
   GET_NEWS_SOURCE_REQUEST,
   GET_NEWS_SOURCE_SUCCESS,
   GET_NEWS_SOURCE_FAILURE,
+  SET_VALID_NEWS,
 } from '../actions/newsActions'
 
 const initialState = {
   loading: false,
   news: [],
   trendingNews: [],
-  newsSource: null,
+  newsSource: {},
+  validNews: [],
 }
 
 const newsReducer = (state = initialState, action) => {
@@ -41,6 +43,11 @@ const newsReducer = (state = initialState, action) => {
     case GET_TRENDING_NEWS_FAILURE:
     case GET_NEWS_SOURCE_FAILURE:
       return { ...state, loading: false }
+    case SET_VALID_NEWS:
+      return {
+        ...state,
+        validNews: action.payload,
+      }
     default:
       return state
   }

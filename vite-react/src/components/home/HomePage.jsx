@@ -9,7 +9,8 @@ import AppNavbar from '../AppNavbar'
 import AppFooter from '../AppFooter'
 
 function HomePage() {
-  const [loaded, setLoaded] = useState(false)
+  const [loadedFirst, setLoadedFirst] = useState(false)
+  const [loadedSecond, setLoadedSecond] = useState(false)
   const [scrollTop, setScrollTop] = useState(0)
 
   const handleScroll = () => {
@@ -18,15 +19,19 @@ function HomePage() {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
   }, [])
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoaded(true)
+    const firstTimeout = setTimeout(() => {
+      setLoadedFirst(true)
     }, 1000)
+    const secondTimeout = setTimeout(() => {
+      setLoadedSecond(true)
+    }, 2000)
+    return () => {
+      clearTimeout(firstTimeout)
+      clearTimeout(secondTimeout)
+    }
   }, [])
 
   return (
@@ -40,8 +45,8 @@ function HomePage() {
             <LeftAside />
             <MainSection />
           </Row>
-          {loaded && <TrendingSection title="Olympics" query="olympics" />}
-          {loaded && <TrendingSection title="Israel-Hamas Conflict" query="israel" />}
+          {loadedFirst && <TrendingSection title="Olympics" query="olympics" />}
+          {loadedSecond && <TrendingSection title="Israel-Hamas Conflict" query="israel" />}
         </Container>
       </div>
       <AppFooter />

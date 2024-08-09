@@ -113,9 +113,14 @@ function AppNavbar({ className }) {
                       <span>Terms</span>
                       <span>Copyright</span>
                     </div>
-                    <Link>
-                      <i className="bi bi-github"></i>
-                    </Link>
+                    <div className="flex gap-2">
+                      <Link to={'https://github.com/Emanuele-P'}>
+                        <i className="bi bi-github text-info"></i>
+                      </Link>
+                      <Link to={'https://www.linkedin.com/in/emanuele-pezzato-1232a824a/'}>
+                        <i className="bi bi-linkedin text-info"></i>
+                      </Link>
+                    </div>
                   </div>
                 </NavDropdown>
               )}

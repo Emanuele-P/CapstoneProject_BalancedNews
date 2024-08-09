@@ -197,10 +197,10 @@ function AppFooter() {
                 <a href="#" className="nav-link ">
                   <i className="bi bi-instagram"></i>
                 </a>
-                <a href="#" className="nav-link ">
+                <a href="https://www.linkedin.com/in/emanuele-pezzato-1232a824a/" className="nav-link ">
                   <i className="bi bi-linkedin"></i>
                 </a>
-                <a href="#" className="nav-link ">
+                <a href="https://github.com/Emanuele-P" className="nav-link ">
                   <i className="bi bi-github"></i>
                 </a>
               </ul>

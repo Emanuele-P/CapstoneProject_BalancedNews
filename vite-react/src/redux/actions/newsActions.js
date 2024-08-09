@@ -9,6 +9,13 @@ export const GET_NEWS_SOURCE_REQUEST = 'GET_NEWS_SOURCE_REQUEST'
 export const GET_NEWS_SOURCE_SUCCESS = 'GET_NEWS_SOURCE_SUCCESS'
 export const GET_NEWS_SOURCE_FAILURE = 'GET_NEWS_SOURCE_FAILURE'
 
+export const SET_VALID_NEWS = 'SET_VALID_NEWS'
+
+export const setValidNews = (validNews) => ({
+  type: SET_VALID_NEWS,
+  payload: validNews,
+})
+
 export const getTopNews = () => async (dispatch) => {
   dispatch({ type: GET_TOP_NEWS_REQUEST })
   try {

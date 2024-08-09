@@ -20,6 +20,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import pic from '../../assets/default-avatar.jpg'
 import { getTimeDifference } from '../../utils/timeUtils'
+import { filterValidArticles } from '../../utils/urlUtils'
 import { getNewsSource } from '../../redux/actions/newsActions'
 import { extractDomain } from '../../utils/urlUtils'
 import { calculateBiasPercentages, getMaxBias } from '../../utils/BiasUtils'
@@ -50,8 +51,11 @@ function ArticlesPage() {
   }
   const combinedArticles = [mainArticle, ...relatedArticles]
 
+  const validArticles = filterValidArticles(combinedArticles)
+  // const uniqueRelatedArticles = filterUniqueDomains(validArticles)
+
   const uniqueDomains = new Set()
-  const uniqueRelatedArticles = combinedArticles.filter((article) => {
+  const uniqueRelatedArticles = validArticles.filter((article) => {
     const domain = extractDomain(article.url)
     if (uniqueDomains.has(domain)) {
       return false
@@ -104,7 +108,7 @@ function ArticlesPage() {
     setDisplayedArticles((prevCount) => prevCount + 5)
   }
 
-  const source = mainArticle ? sources[extractDomain(mainArticle.url)] : null
+  const source = mainArticle ? sources[extractDomain(mainArticle.url)] : {}
   const url = new URL(mainArticle.url)
   const displayDomain = url.hostname.replace('www.', '').split('.')[0]
   const maxBias = getMaxBias(leftPercentage, centerPercentage, rightPercentage)
@@ -117,9 +121,6 @@ function ArticlesPage() {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
   }, [])
 
   return (

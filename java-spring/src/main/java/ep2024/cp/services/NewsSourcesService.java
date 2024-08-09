@@ -22,14 +22,14 @@ public class NewsSourcesService {
 
                 NewsSource newsSource = new NewsSource();
                 newsSource.setDomain(domain);
-                newsSource.setName(details.optString("name", null));
-                newsSource.setBiasRating(details.optString("bias_rating", null));
-                newsSource.setFactualReporting(details.optString("factual_reporting", null));
-                newsSource.setCountry(details.optString("country", null));
-                newsSource.setCountryFreedomRank(details.optString("MBFC_ranking", null));
-                newsSource.setMediaType(details.optString("media_type", null));
-                newsSource.setTrafficPopularity(details.optString("traffic_popularity", null));
-                newsSource.setCredibilityRating(details.optString("credibility", null));
+                newsSource.setName(details.optString("name", "Unknown name"));
+                newsSource.setBiasRating(details.optString("bias_rating", "Center"));
+                newsSource.setFactualReporting(details.optString("factual_reporting", "High"));
+                newsSource.setCountry(details.optString("country", "US"));
+                newsSource.setCountryFreedomRank(details.optString("MBFC_ranking", "Mostly Free"));
+                newsSource.setMediaType(details.optString("media_type", "News Website"));
+                newsSource.setTrafficPopularity(details.optString("traffic_popularity", "Medium Traffic"));
+                newsSource.setCredibilityRating(details.optString("credibility", "Medium Credibility"));
 
                 newsSourcesRepository.save(newsSource);
             }
