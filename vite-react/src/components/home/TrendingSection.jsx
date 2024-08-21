@@ -40,8 +40,8 @@ function TrendingSection({ title, query }) {
         <Image src={trend} className="mb-2 me-2 blinking" />
         <h2 className="mt-0 mb-2">{title}</h2>
       </div>
-      <Row className="flex-row mb-4 pb-2 central-bottom border-bottom">
-        <Col lg={8} ref={trendingSectionRef}>
+      <Row className="flex-row mb-4 pb-4 central-bottom border-bottom">
+        <Col lg={8} ref={trendingSectionRef} className="d-flex flex-column  justify-content-between">
           {loading ? (
             <Spinner animation="border" />
           ) : (

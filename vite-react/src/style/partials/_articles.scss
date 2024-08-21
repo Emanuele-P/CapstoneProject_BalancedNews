@@ -26,6 +26,14 @@
   min-height: 135px;
   margin-bottom: 1rem;
   border-color: $gray;
+
+  .card-body {
+    padding-block: 0rem;
+  }
+}
+
+.s-logo {
+  border-radius: 99px;
 }
 
 .span-link {
@@ -43,8 +51,8 @@
   text-align: justify;
   margin-bottom: 0;
   @include clamp();
-  -webkit-line-clamp: 18;
-  line-clamp: 18;
+  -webkit-line-clamp: 22;
+  line-clamp: 22;
 }
 
 @keyframes backgroundFade {
@@ -57,8 +65,9 @@
 }
 
 .articles-list-card {
-  border: none;
-  background: linear-gradient(to bottom, $gray 0%, $gray 100%);
+  border: 1px solid transparent;
+  background: linear-gradient(to bottom, $light 0%, $light 100%);
+  border-radius: 16px;
   background-size: 100% 0%;
   background-repeat: no-repeat;
   transition: background-size 0.5s ease-out;
@@ -73,28 +82,47 @@
   }
   .top-wrapper {
     padding: 0.5rem;
-    background-color: $gray;
-    border-radius: 6px;
+    background-color: $gls;
+    border-radius: 16px;
+    @include glass();
   }
   .badge {
     padding: 0.5rem;
     font-weight: 600;
   }
-  .fact-badge {
-    background-color: #a6b1b0 !important;
-  }
+  .fact-badge,
   .bias-badge {
-    background-color: #a6b1b0 !important;
+    background-color: $light !important;
+    color: $black;
+    transition: box-shadow 0.3s ease;
   }
 
   .fact-badge:hover,
   .bias-badge:hover {
     cursor: pointer;
+    box-shadow: 3px 3px 12px #f0f0f0, -3px -3px 12px $gray;
+    background: #ffffff;
   }
 
   button {
     border-radius: 75px;
     padding: 4px 15px 4px 5px;
+    background-color: $light;
+    color: $black;
+    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+
+    &:hover,
+    &:active {
+      box-shadow: 3px 3px 12px #f0f0f0, -3px -3px 12px $gray;
+      color: inherit;
+      background-color: #fefefe;
+    }
+    &:active {
+      box-shadow: 1px 1px 8px #f0f0f0, -1px -1px 8px $gray !important;
+      color: inherit !important;
+      background-color: #fefefe !important;
+      border: 1px solid transparent !important;
+    }
   }
   .source-logo {
     width: 30px;
@@ -139,7 +167,7 @@
     margin-left: 0.5rem;
     vertical-align: middle;
     background-color: $gray !important;
-    color: rgb(136, 136, 136);
+    color: #a6abb1;
     padding: 4px;
   }
 }

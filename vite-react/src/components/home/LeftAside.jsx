@@ -3,7 +3,7 @@ import { Col, Image } from 'react-bootstrap'
 import LeftCard from './LeftCard'
 import banner from '../../assets/svg/banner.svg'
 
-function LeftAside({ highestLeft, highestRight }) {
+function LeftAside({ highestLeft, highestRight, scrollTop }) {
   return (
     <Col lg={3} className="left-aside">
       <div className="banner">
@@ -12,7 +12,7 @@ function LeftAside({ highestLeft, highestRight }) {
         </h2>
         <Image src={banner} />
       </div>
-      <h6 className="mb-3">Stories disproportionately reported by the Right, the Left or the Center</h6>
+      <h6 className={scrollTop > 72 ? 'scrolled' : ''}>Stories disproportionately reported by the Left or the Right</h6>
       {highestRight && <LeftCard borderClass="right-border" article={highestRight.article} bias={highestRight.bias} />}
       {highestLeft && <LeftCard borderClass="left-border" article={highestLeft.article} bias={highestLeft.bias} />}
     </Col>

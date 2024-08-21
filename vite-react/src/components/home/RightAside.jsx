@@ -25,7 +25,7 @@ function RightAside({ mainSectionRef, validatedNews, biasPercentages }) {
         <h6 className="m-0 pb-0 border-bottom">Latest news</h6>
         {validatedNews.length === 0 && <Spinner animation="border" />}
         {validatedNews.length > 0 && (
-          <Col className="right-aside hmsc pt-0 mb-0">
+          <Col className="right-aside hmsc pt-2 mb-0">
             {validatedNews.slice(0, displayCount).map((article, index) => (
               <RightCard key={article.id} article={article} biasPercentages={biasPercentages[index] || {}} />
             ))}
@@ -33,7 +33,7 @@ function RightAside({ mainSectionRef, validatedNews, biasPercentages }) {
         )}
 
         {validatedNews.length > displayCount && (
-          <div>
+          <div className="mx-2">
             <Button className="w-100 more-btn mb-4" onClick={handleLoadMore}>
               Load more
             </Button>

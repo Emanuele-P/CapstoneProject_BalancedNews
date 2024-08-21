@@ -2,7 +2,7 @@
 import { Badge, Button, Card, CardBody, CardText, CardTitle, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
-import pic from '../../assets/default-avatar.jpg'
+import pic from '../../assets/svg/sourceLogo.svg'
 import { getTimeDifference } from '../../utils/timeUtils'
 import { useDispatch, useSelector } from 'react-redux'
 import { getNewsSource } from '../../redux/actions/newsActions'
@@ -47,9 +47,9 @@ function SourceCard({ article }) {
           </div>
         </div>
         <Link to={`/article/${article.id}`}>
-          <CardTitle className="mt-2 px-2">{article.title || 'No title available'}</CardTitle>
-          <CardText className="px-2">{article.summary || 'No summary available'}</CardText>
-          <div className="flex justify-content-between px-2 pb-3">
+          <CardTitle className="mt-2 px-3">{article.title || 'No title available'}</CardTitle>
+          <CardText className="px-3">{article.summary || 'No summary available'}</CardText>
+          <div className="flex justify-content-between px-3 pb-3">
             <span>{getTimeDifference(article.publish_date)}</span>
             <Link to={article.url}>
               <span className="span-link">Read full article</span>

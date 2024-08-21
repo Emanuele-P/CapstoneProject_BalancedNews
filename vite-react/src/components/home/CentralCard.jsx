@@ -31,9 +31,9 @@ function CentralCard({ article, biasPercentages }) {
                     centerPercentage={biasPercentages.centerPercentage || '100%'}
                     rightPercentage={biasPercentages.rightPercentage || '0%'}
                   />
-                  {/* <span className="percentage">{`L:${biasPercentages.leftPercentage || '0%'}| C:${
+                  <span className="percentage">{`L:${biasPercentages.leftPercentage || '0%'}| C:${
                     biasPercentages.centerPercentage || '100%'
-                  }| R:${biasPercentages.rightPercentage || '0%'}`}</span> */}
+                  }| R:${biasPercentages.rightPercentage || '0%'}`}</span>
                 </div>
               </Card.Body>
             </Col>

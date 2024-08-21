@@ -15,7 +15,7 @@ import {
   updateFullname,
   clearErrors,
 } from '../../redux/actions/authActions'
-import UserPagePlaceholder from './UserPagePlaceholder'
+import UserPagePlaceholder from '../placeholders/UserPagePlaceholder'
 import ImageCropModal from './ImageCropModal'
 import EditProfileModal from './EditProfileModal'
 import MiniFooter from './MiniFooter'
@@ -141,10 +141,16 @@ function UserPage() {
               <Image src={logo} className="nav-logo" />
             </Link>
           </Navbar.Brand>
-          <div className="flex gap-4">
-            <i className="bi bi-question-circle"></i>
-            <i className="bi bi-gear"></i>
-            <i className="bi bi-bell-fill"></i>
+          <div className="flex gap-3">
+            <div className="icon-wrap">
+              <i className="bi bi-question-circle"></i>
+            </div>
+            <div className="icon-wrap">
+              <i className="bi bi-gear"></i>
+            </div>
+            <div className="icon-wrap">
+              <i className="bi bi-bell-fill"></i>
+            </div>
             <NavDropdownComponent />
           </div>
         </Container>
@@ -164,7 +170,7 @@ function UserPage() {
                 </div>
                 <div className="flex gap-2">
                   <i className="bi bi-envelope"></i>
-                  <h6>Messages settings</h6>
+                  <h6>Message settings</h6>
                 </div>
                 <div className="flex gap-2">
                   <i className="bi bi-unlock"></i>
@@ -184,11 +190,14 @@ function UserPage() {
                   <h6>Preferences</h6>
                 </div>
               </Col>
-              <Col className="ms-5" style={{ paddingLeft: '18%' }}>
+              <Col lg={3}></Col>
+              <Col>
                 <h4 className="mb-4">Your account</h4>
                 <Row className="border-bottom pb-4 mx-0 mb-4">
                   <Col lg={2} className="ps-0">
-                    <Image src={profile.avatar || propic} className="propic" roundedCircle />
+                    <div className="propic-wrapper">
+                      <Image src={profile.avatar || propic} className="propic" roundedCircle />
+                    </div>
                   </Col>
                   <Col lg={4} className="d-flex flex-column justify-content-center">
                     <Row></Row>

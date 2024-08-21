@@ -16,7 +16,7 @@
 .carousel {
   position: relative;
   .c-pic {
-    height: 40vh;
+    height: 45vh;
     object-fit: cover;
   }
   .hero-overlay {
@@ -73,18 +73,16 @@
 
 //right section
 .left-card-trending {
-  border-radius: 6px !important;
-  border-radius: 0;
-  border: 1px solid transparent;
   margin-bottom: 1rem;
-  background-color: $gray;
 
+  @include neu-btn($light);
   @include sentbar();
 
   .card-body {
     margin-inline: 0.5rem;
+    padding-bottom: 0.5rem;
     height: 100%;
-    min-height: 150px;
+    min-height: 130px;
   }
   h6 {
     margin-bottom: 10px;
@@ -98,6 +96,7 @@
     @include clamp();
     -webkit-line-clamp: 2;
     line-clamp: 2;
+    min-height: 48px;
   }
   .left-card-pic-container {
     height: 200px;

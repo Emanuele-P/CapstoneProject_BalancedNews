@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
-import { Card, Image, Row } from 'react-bootstrap'
+import { Card, Row } from 'react-bootstrap'
 import pic from '../../assets/leftpic.webp'
 import { Link } from 'react-router-dom'
 import SentimentBar from '../SentimentBar'
-import logo from '../../assets/default-avatar.jpg'
 
 function LeftCardTrending({ article }) {
   if (!article) {
     return null
   }
+
+  const url = new URL(article.url)
+  const domain = url.hostname.replace('www.', '').split('.')[0]
 
   return (
     <>
@@ -21,8 +23,9 @@ function LeftCardTrending({ article }) {
             <Card.Body>
               <div className="d-flex flex-column">
                 <div className="body-wrapper">
-                  <Image src={logo} className="source-pic" />
+                  {/* <Image src={search} className="source-pic" /> */}
                   <Card.Subtitle>
+                    | {domain} {''} ・ {''}
                     {article.author || 'Unknown Author'} ・ {article.source_country.toUpperCase()}
                   </Card.Subtitle>
                   <Card.Title>{article.title || 'No title available'}</Card.Title>

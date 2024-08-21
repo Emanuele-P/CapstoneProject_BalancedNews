@@ -41,7 +41,7 @@ function HomePage() {
       <div className="border-bottom mb-3">
         <Container className="mt-4">
           <Row className="flex-row mb-3 border-bottom">
-            <MainSection />
+            <MainSection scrollTop={scrollTop} />
           </Row>
           {loadedFirst && <TrendingSection title="Olympics" query="olympics" />}
           {loadedSecond && <TrendingSection title="Israel-Hamas Conflict" query="israel" />}

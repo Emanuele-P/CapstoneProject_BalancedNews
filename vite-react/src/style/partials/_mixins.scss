@@ -8,14 +8,13 @@
 @mixin bias {
   .bias-bar-container {
     display: flex;
-    background-color: #e0e0e0;
+    background-color: #e0e0e0 !important;
     border-radius: 10px;
     overflow: hidden;
     border-radius: 0;
   }
   .bias-bar {
     height: 100%;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,12 +54,33 @@
 }
 
 @mixin glass {
-  background: rgba(255, 255, 255, 0.32);
+  background: $gls;
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(9.4px);
   -webkit-backdrop-filter: blur(9.4px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@mixin glass-hover($gls, $border-color: rgba(255, 255, 255, 0.3)) {
+  border: 1px solid transparent;
+  background: linear-gradient(to bottom, $gls 0%, $gls 100%);
+  background-size: 100% 0%;
+  background-repeat: no-repeat;
+  height: 100px;
+  margin-bottom: 7px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: background-size 0.5s ease-out, backdrop-filter 0.7s ease-out 0.5s, border 0.7s ease-out;
+
+  &:hover {
+    cursor: pointer;
+    background-size: 100% 100%;
+    border: 1px solid $border-color;
+    backdrop-filter: blur(9.4px);
+    -webkit-backdrop-filter: blur(9.4px);
+  }
 }
 
 @mixin neu-btn($color, $darken: 15%, $lighten: 15%) {
@@ -127,19 +147,36 @@
   }
 }
 
-@mixin neu-card-s($color, $darken: 15%, $lighten: 15%, $border-shade: 5%) {
-  $dark-shadow: darken($color, $darken);
-  $light-shadow: lighten($color, $lighten);
-  $border-color: darken($color, $border-shade);
+@mixin neu-bar($background, $shadow-dark-percentage: 15%, $shadow-light-percentage: 20%) {
+  $shadow-dark: darken($background, $shadow-dark-percentage);
+  $shadow-light: lighten($background, $shadow-light-percentage);
 
-  background: $color;
-  border-radius: 12px;
-  box-shadow: 4px 4px 8px $dark-shadow, -4px -4px 8px $light-shadow;
-  border: 1px solid $border-color;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  height: 12px;
+  border-radius: 20px;
+  background-color: $background;
+  box-shadow: inset 7px 7px 14px $shadow-dark, inset -7px -7px 14px $shadow-light;
+  padding: 4px;
+  display: flex;
+  overflow: hidden;
 
-  &:hover {
-    box-shadow: 2px 2px 6px $dark-shadow, -2px -2px 6px $light-shadow;
-    transform: translateY(-2px);
+  .left {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
+
+  .right {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+}
+
+@mixin propic-wrapper($wrapper-size: 100px, $background-color: transparent, $hover-color: $info) {
+  background: $background-color;
+  border-radius: 100%;
+  box-shadow: inset 7px 7px 14px #d4d6d9, inset -7px -7px 14px #ffffff;
+  height: $wrapper-size;
+  width: $wrapper-size;
+  overflow: hidden;
+  position: relative;
+  transition: background-color 0.3s ease-in;
 }

@@ -1,27 +1,8 @@
-.left-aside,
-.pl-as {
-  min-height: 20vh;
-  position: sticky;
-  top: 74px;
-  align-self: flex-start;
-  margin-bottom: 8px;
-}
-
+//all home sections
 .main-section {
   min-height: 100vh;
 }
 
-.right-aside {
-  padding-bottom: 8px;
-  margin-bottom: 12px;
-  min-height: 100vh;
-  max-height: 125vh;
-  @include scrollbar-style;
-
-  position: relative;
-}
-
-//all home sections
 .hmsc {
   padding: 0.5rem;
 }
@@ -70,7 +51,7 @@ h2 {
 
 //central card latest news
 .central-card {
-  background-color: $gray;
+  @include neu-form($background);
   border: none;
 
   &:hover {
@@ -103,7 +84,7 @@ h2 {
 
     min-height: 48px;
     font-weight: 500;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
   }
 
   span {
@@ -122,10 +103,33 @@ h2 {
   height: 13px;
 }
 
+//left aside
+.left-aside,
+.pl-as {
+  min-height: 20vh;
+  position: sticky;
+  top: 74px;
+  align-self: flex-start;
+  margin-bottom: 8px;
+}
+
+.left-aside h6 {
+  margin-block: 0.5rem 1rem;
+  transition: opacity 0.5s ease, margin 0.5s ease, font-size 0.5s ease;
+  opacity: 1;
+}
+
+.left-aside h6.scrolled {
+  opacity: 0;
+  margin: 0;
+  font-size: 10px;
+}
+
 //left card blindspot
 .left-card {
   background-color: transparent;
   margin-bottom: 0.5rem;
+  @include neu-btn($background);
 
   &.right-border {
     border: 8px solid $right;
@@ -136,9 +140,11 @@ h2 {
   &.center-border {
     border: 8px solid $center;
   }
+  img.card-img.left-card-pic {
+    border-radius: 0px !important;
+  }
 
   .left-card-pic {
-    border-radius: 4px;
     overflow: hidden;
   }
   .card-title {
@@ -170,13 +176,25 @@ h2 {
   }
 }
 
+//right aside
+
+.right-aside {
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  min-height: 100vh;
+  max-height: 125vh;
+  @include scrollbar-style;
+
+  position: relative;
+}
+
 //right-card
 .right-card {
-  @include neu-card-s($background);
+  @include glass-hover(#fff);
 
-  margin-bottom: 7px;
-  border-radius: 6px;
-  height: 100px;
+  &:hover p {
+    text-decoration: none;
+  }
 
   .card-text {
     height: 48px;
@@ -192,6 +210,12 @@ h2 {
     @include clamp();
     -webkit-line-clamp: 1;
     line-clamp: 1;
+
+    margin-bottom: 3px;
+  }
+
+  p {
+    margin-bottom: 5px !important;
   }
 
   span {
