@@ -1,10 +1,6 @@
 //all home sections
 .main-section {
-  min-height: 100vh;
-}
-
-.hmsc {
-  padding: 0.5rem;
+  min-height: 90vh;
 }
 
 //hero
@@ -128,7 +124,7 @@ h2 {
 //left card blindspot
 .left-card {
   background-color: transparent;
-  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
   @include neu-btn($background);
 
   &.right-border {
@@ -180,12 +176,8 @@ h2 {
 
 .right-aside {
   padding-bottom: 8px;
-  margin-bottom: 12px;
   min-height: 100vh;
-  max-height: 125vh;
   @include scrollbar-style;
-
-  position: relative;
 }
 
 //right-card

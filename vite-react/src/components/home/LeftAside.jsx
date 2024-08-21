@@ -5,7 +5,7 @@ import banner from '../../assets/svg/banner.svg'
 
 function LeftAside({ highestLeft, highestRight, scrollTop }) {
   return (
-    <Col lg={3} className="left-aside">
+    <Col lg={3} className="left-aside mb-0">
       <div className="banner">
         <h2 className="display-4 mt-0">
           <i className="bi bi-circle-half"></i>versight

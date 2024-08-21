@@ -37,7 +37,7 @@ function MainSection({ scrollTop }) {
     })
   }
 
-  const allValidNews = news.top_news ? getValidNews(news.top_news) : []
+  const allValidNews = news.top_news ? getValidNews(news.top_news).slice(0, 80) : []
 
   // console.log('Filtered valid news:', allValidNews)
   const flattenedNews = allValidNews.flatMap((newsItem) => newsItem.news[0])
@@ -79,9 +79,9 @@ function MainSection({ scrollTop }) {
     <>
       {loading && <HomePlaceholder />}
       {!loading && (
-        <Row>
+        <Row className="mb-4 pb-4">
           <LeftAside highestLeft={highestLeft} highestRight={highestRight} scrollTop={scrollTop} />
-          <Col lg={6} className="main-section hmsc pt-1" ref={mainSectionRef}>
+          <Col lg={6} className="main-section pt-1" ref={mainSectionRef}>
             {flattenedNews[0] && (
               <>
                 <Link to={`/article/${flattenedNews[0].id}`}>

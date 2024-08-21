@@ -12,7 +12,7 @@ function CentralCard({ article, biasPercentages }) {
   return (
     <>
       <Link to={`/article/${article.id}`}>
-        <Card className="w-100 central-card p-0 mb-2">
+        <Card className="w-100 central-card p-0 mt-2">
           <Row>
             <Col md={3} className="pe-0">
               <div className="central-card-pic-container">

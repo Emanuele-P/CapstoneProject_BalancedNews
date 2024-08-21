@@ -1,7 +1,7 @@
 import { Container } from 'react-bootstrap'
 import CategoriesSlider from './CategoriesSlider'
 import MainSection from './MainSection'
-import TrendingSection from './TrendingSection'
+import TrendingSection from '../trending/TrendingSection'
 import { useEffect, useState } from 'react'
 import DecorativeNav from '../DecorativeNav'
 import AppNavbar from '../AppNavbar'
