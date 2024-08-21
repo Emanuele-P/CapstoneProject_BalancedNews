@@ -32,7 +32,7 @@ const LoginForm = () => {
       setShowWelcome(true)
       setTimeout(() => {
         navigate('/home')
-      }, 2000)
+      }, 1200)
     }
   }, [profile, navigate])
 

@@ -155,7 +155,7 @@ function UserPage() {
           </div>
         </Container>
       </Navbar>
-      {isAuthenticated && !loading ? (
+      {isAuthenticated ? (
         <>
           <Container className="user-page">
             <Row>
@@ -192,103 +192,117 @@ function UserPage() {
               </Col>
               <Col lg={3}></Col>
               <Col>
-                <h4 className="mb-4">Your account</h4>
-                <Row className="border-bottom pb-4 mx-0 mb-4">
-                  <Col lg={2} className="ps-0">
-                    <div className="propic-wrapper">
-                      <Image src={profile.avatar || propic} className="propic" roundedCircle />
-                    </div>
-                  </Col>
-                  <Col lg={4} className="d-flex flex-column justify-content-center">
-                    <Row></Row>
-                    <h6>Upload your profile photo</h6>
-                    <span className="guide">Profile photo guidelines</span>
-                    <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
-                  </Col>
-                  <Col lg={{ span: 2, offset: 4 }} className="d-flex align-items-center pe-0">
-                    <Button className="accent-btn w-100" onClick={handleUploadClick} disabled={uploading}>
-                      {uploading ? <Spinner animation="border" size="sm" /> : 'Upload photo'}
-                    </Button>
-                  </Col>
-                </Row>
-                <Row className="border-bottom pb-4 mx-0 mb-4">
-                  <h5 className="mt-1 mb-4">Personal details</h5>
-                  <Col lg={4} className="d-flex flex-column justify-content-center">
-                    <h6>Name</h6>
-                    <span>
-                      {profile.name} {profile.surname}
-                    </span>
-                  </Col>
-                  <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
-                    <Button className="whi-btn w-100" onClick={() => handleEditClick('name')}>
-                      Edit
-                    </Button>
-                  </Col>
-                </Row>
-                <Row className="border-bottom pb-4 mx-0 mb-4">
-                  <Col lg={4} className="d-flex flex-column justify-content-center pe-0">
-                    <h6>Email address</h6>
-                    <span>{profile.email}</span>
-                  </Col>
-                  <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                    <Button className="whi-btn w-100" onClick={() => handleEditClick('email')}>
-                      Edit
-                    </Button>
-                  </Col>
-                </Row>
-                <Row className="border-bottom pb-4 mx-0 mb-4">
-                  <Col lg={4} className="d-flex flex-column justify-content-center pe-0">
-                    <h6>Username</h6>
-                    <span>{profile.username}</span>
-                  </Col>
-                  <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                    <Button className="whi-btn w-100" onClick={() => handleEditClick('username')}>
-                      Edit
-                    </Button>
-                  </Col>
-                </Row>
-                <Row className="border-bottom pb-4 mx-0 mb-4">
-                  <h5 className="mt-1 mb-4">Login & security</h5>
-                  <Col lg={4} className="d-flex flex-column justify-content-center pe-0">
-                    <h6>Password</h6>
-                    <span>Change your password</span>
-                  </Col>
-                  <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
-                    <Button className="whi-btn w-100" onClick={() => handleEditClick('password')}>
-                      Edit
-                    </Button>
-                  </Col>
-                </Row>
-                <Row className="border-bottom pb-4 mx-0 mb-4">
-                  <Col lg={4} className="d-flex flex-column justify-content-center">
-                    <h6>Logout</h6>
-                    <span>End this sessions by signing out from this device</span>
-                  </Col>
-                  <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
-                    <Button className="whi-btn w-100" onClick={handleLogout}>
-                      Log out
-                    </Button>
-                  </Col>
-                </Row>
-                <Row className="border-bottom pb-4 mx-0 mb-4">
-                  <Col lg={4} className="d-flex flex-column justify-content-center">
-                    <h6>Delete account</h6>
-                    <span>Remove your account permanently</span>
-                  </Col>
-                  <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
-                    <Button className="del-btn w-100" onClick={() => setShowDeleteModal(true)}>
-                      Delete
-                    </Button>
-                  </Col>
-                </Row>
+                {loading ? (
+                  <UserPagePlaceholder />
+                ) : (
+                  <>
+                    <h4 className="mb-4">Your account</h4>
+                    <Row className="border-bottom pb-4 mx-0 mb-4">
+                      <Col lg={2} className="ps-0">
+                        <div className="propic-wrapper">
+                          <Image src={profile.avatar || propic} className="propic" roundedCircle />
+                        </div>
+                      </Col>
+                      <Col lg={4} className="d-flex flex-column justify-content-center">
+                        <Row></Row>
+                        <h6>Upload your profile photo</h6>
+                        <span className="guide">Profile photo guidelines</span>
+                        <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={handleFileChange} />
+                      </Col>
+                      <Col lg={{ span: 2, offset: 4 }} className="d-flex align-items-center pe-0">
+                        <Button className="accent-btn w-100" onClick={handleUploadClick} disabled={uploading}>
+                          {uploading ? <Spinner animation="border" size="sm" /> : 'Upload photo'}
+                        </Button>
+                      </Col>
+                    </Row>
+                    <Row className="border-bottom pb-4 mx-0 mb-4">
+                      <h5 className="mt-1 mb-4">Personal details</h5>
+                      <Col lg={4} className="d-flex flex-column justify-content-center">
+                        <h6>Name</h6>
+                        <span>
+                          {profile.name} {profile.surname}
+                        </span>
+                      </Col>
+                      <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
+                        <Button className="whi-btn w-100" onClick={() => handleEditClick('name')}>
+                          Edit
+                        </Button>
+                      </Col>
+                    </Row>
+                    <Row className="border-bottom pb-4 mx-0 mb-4">
+                      <Col lg={4} className="d-flex flex-column justify-content-center pe-0">
+                        <h6>Email address</h6>
+                        <span>{profile.email}</span>
+                      </Col>
+                      <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
+                        <Button className="whi-btn w-100" onClick={() => handleEditClick('email')}>
+                          Edit
+                        </Button>
+                      </Col>
+                    </Row>
+                    <Row className="border-bottom pb-4 mx-0 mb-4">
+                      <Col lg={4} className="d-flex flex-column justify-content-center pe-0">
+                        <h6>Username</h6>
+                        <span>{profile.username}</span>
+                      </Col>
+                      <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
+                        <Button className="whi-btn w-100" onClick={() => handleEditClick('username')}>
+                          Edit
+                        </Button>
+                      </Col>
+                    </Row>
+                    <Row className="border-bottom pb-4 mx-0 mb-4">
+                      <h5 className="mt-1 mb-4">Login & security</h5>
+                      <Col lg={4} className="d-flex flex-column justify-content-center pe-0">
+                        <h6>Password</h6>
+                        <span>Change your password</span>
+                      </Col>
+                      <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
+                        <Button className="whi-btn w-100" onClick={() => handleEditClick('password')}>
+                          Edit
+                        </Button>
+                      </Col>
+                    </Row>
+                    <Row className="border-bottom pb-4 mx-0 mb-4">
+                      <Col lg={4} className="d-flex flex-column justify-content-center">
+                        <h6>Logout</h6>
+                        <span>End this sessions by signing out from this device</span>
+                      </Col>
+                      <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
+                        <Button className="whi-btn w-100" onClick={handleLogout}>
+                          Log out
+                        </Button>
+                      </Col>
+                    </Row>
+                    <Row className="border-bottom pb-4 mx-0 mb-4">
+                      <Col lg={4} className="d-flex flex-column justify-content-center">
+                        <h6>Delete account</h6>
+                        <span>Remove your account permanently</span>
+                      </Col>
+                      <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
+                        <Button className="del-btn w-100" onClick={() => setShowDeleteModal(true)}>
+                          Delete
+                        </Button>
+                      </Col>
+                    </Row>
+                  </>
+                )}
               </Col>
             </Row>
           </Container>
+
           <MiniFooter />
         </>
       ) : (
-        <Container>
-          <UserPagePlaceholder />
+        <Container className="background-login">
+          <Row className="justify-content-center" style={{ height: '100vh' }}>
+            <Col lg={9} className="flex justify-content-center notice">
+              <div className="notice-box flex flex-column justify-content-center">
+                <h4 className="mb-5">Redirecting to home...</h4>
+                <Spinner animation="border" role="status" />
+              </div>
+            </Col>
+          </Row>
         </Container>
       )}
       {cropModalVisible && (

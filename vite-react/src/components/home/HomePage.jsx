@@ -1,4 +1,4 @@
-import { Container, Row } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import CategoriesSlider from './CategoriesSlider'
 import MainSection from './MainSection'
 import TrendingSection from './TrendingSection'
@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import DecorativeNav from '../DecorativeNav'
 import AppNavbar from '../AppNavbar'
 import AppFooter from '../AppFooter'
+import TrendingPlaceholder from '../placeholders/TrendingPlaceholder'
 
 function HomePage() {
   const [loadedFirst, setLoadedFirst] = useState(false)
@@ -23,10 +24,10 @@ function HomePage() {
   useEffect(() => {
     const firstTimeout = setTimeout(() => {
       setLoadedFirst(true)
-    }, 1000)
+    }, 3000)
     const secondTimeout = setTimeout(() => {
       setLoadedSecond(true)
-    }, 2000)
+    }, 4000)
     return () => {
       clearTimeout(firstTimeout)
       clearTimeout(secondTimeout)
@@ -40,11 +41,10 @@ function HomePage() {
       <CategoriesSlider />
       <div className="border-bottom mb-3">
         <Container className="mt-4">
-          <Row className="flex-row mb-3 border-bottom">
-            <MainSection scrollTop={scrollTop} />
-          </Row>
-          {loadedFirst && <TrendingSection title="Olympics" query="olympics" />}
-          {loadedSecond && <TrendingSection title="Israel-Hamas Conflict" query="israel" />}
+          <MainSection scrollTop={scrollTop} />
+
+          {!loadedFirst ? <TrendingPlaceholder /> : <TrendingSection title="Olympics" query="olympics" />}
+          {!loadedSecond ? <TrendingPlaceholder /> : <TrendingSection title="Israel-Hamas Conflict" query="israel" />}
         </Container>
       </div>
       <AppFooter />

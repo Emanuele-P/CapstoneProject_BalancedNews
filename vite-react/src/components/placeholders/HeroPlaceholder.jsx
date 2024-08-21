@@ -7,7 +7,12 @@ function HeroPlaceholder() {
       <Placeholder
         as={Card}
         animation="glow"
-        style={{ height: '397px', background: '#e9e9e9', borderRadius: '0', border: '1px solid transparent' }}
+        style={{
+          height: '397px',
+          background: '#e9e9e9',
+          borderRadius: '0',
+          border: '1px solid transparent',
+        }}
       >
         <Card.Body className="d-flex flex-column justify-content-end p-0">
           {/* <Placeholder as={Card.Title} animation="glow" className="px-2">

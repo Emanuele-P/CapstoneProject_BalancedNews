@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Button, Col, Image, Row, Spinner } from 'react-bootstrap'
+import { Button, Col, Image, Row } from 'react-bootstrap'
 import CentralCarousel from './CentralCarousel'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useRef, useState } from 'react'
@@ -12,7 +12,6 @@ import { useDynamicHeight } from '../../utils/heightUtils'
 function TrendingSection({ title, query }) {
   const dispatch = useDispatch()
   const trendingNews = useSelector((state) => state.news.trendingNews[query])
-  const loading = useSelector((state) => state.news.loading)
   const [leftCardCount, setLeftCardCount] = useState(2)
 
   const trendingSectionRef = useRef(null)
@@ -41,12 +40,8 @@ function TrendingSection({ title, query }) {
         <h2 className="mt-0 mb-2">{title}</h2>
       </div>
       <Row className="flex-row mb-4 pb-4 central-bottom border-bottom">
-        <Col lg={8} ref={trendingSectionRef} className="d-flex flex-column  justify-content-between">
-          {loading ? (
-            <Spinner animation="border" />
-          ) : (
-            validTrendingNews.length > 0 && <CentralCarousel news={trendingNews.news} />
-          )}
+        <Col lg={8} ref={trendingSectionRef} className="d-flex flex-column justify-content-between">
+          {validTrendingNews.length > 0 && <CentralCarousel news={trendingNews.news} />}
           {validTrendingNews.slice(3, 7).map((article) => (
             <CentralCardTrending key={article.id} article={article} />
           ))}

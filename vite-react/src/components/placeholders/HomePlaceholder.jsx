@@ -9,7 +9,7 @@ function HomePlaceholder() {
       <Col lg={3}>
         <LeftAsidePlaceholder />
       </Col>
-      <Col lg={6} className="main-section hmsc pt-1">
+      <Col lg={6}>
         <HeroPlaceholder />
       </Col>
       <Col lg={3}>

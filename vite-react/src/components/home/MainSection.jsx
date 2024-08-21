@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Col, Image, Spinner } from 'react-bootstrap'
+import { Col, Image, Row, Spinner } from 'react-bootstrap'
 import hero from '../../assets/hero.jpg'
 import CentralCard from './CentralCard'
 import BiasBar from '../BiasBar'
@@ -79,7 +79,7 @@ function MainSection({ scrollTop }) {
     <>
       {loading && <HomePlaceholder />}
       {!loading && (
-        <>
+        <Row>
           <LeftAside highestLeft={highestLeft} highestRight={highestRight} scrollTop={scrollTop} />
           <Col lg={6} className="main-section hmsc pt-1" ref={mainSectionRef}>
             {flattenedNews[0] && (
@@ -110,7 +110,7 @@ function MainSection({ scrollTop }) {
             validatedNews={flattenedNews.slice(7)}
             biasPercentages={biasPercentages.slice(7)}
           />
-        </>
+        </Row>
       )}
     </>
   )
