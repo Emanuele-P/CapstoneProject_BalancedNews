@@ -68,13 +68,18 @@
   border: 1px solid transparent;
   background: linear-gradient(to bottom, $light 0%, $light 100%);
   border-radius: 16px;
-  background-size: 100% 0%;
+  background-size: 100% 20%;
   background-repeat: no-repeat;
-  transition: background-size 0.5s ease-out;
+  transition: all 0.5s ease-out;
 
   &:hover {
     cursor: pointer;
     background-size: 100% 100%;
+
+    .top-wrapper {
+      background-color: transparent;
+      box-shadow: none;
+    }
   }
 
   .card-body {
@@ -95,6 +100,10 @@
     background-color: $light !important;
     color: $black;
     transition: box-shadow 0.3s ease;
+
+    i {
+      color: #46526b;
+    }
   }
 
   .fact-badge:hover,
@@ -160,18 +169,73 @@
 .article-selection {
   display: flex;
   justify-content: start;
-  gap: 3rem;
+  gap: 1.2rem;
   align-items: center;
+  @include glass();
+  border-radius: 6px;
+  padding-block: 0.5rem;
 
   .badge {
-    margin-left: 0.5rem;
-    vertical-align: middle;
     background-color: $gray !important;
-    color: #a6abb1;
-    padding: 4px;
+    color: $greenish;
+    min-width: 20px !important;
+    padding: 2px;
+  }
+
+  .nav-item:not(:nth-of-type(1)) {
+    @include neu-btn($light);
+    @include neu-card($light);
+    transition: all 0.3s ease-in-out;
+    padding-block: 4px !important;
+  }
+  .nav-item:nth-of-type(2) {
+    width: 50px;
+  }
+  .nav-link {
+    padding: 0;
+    color: $black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover,
+    &:focus {
+      border-bottom: none;
+    }
+  }
+
+  .nav-link.active {
+    color: $info;
+    border-bottom: none;
+
+    .badge {
+      color: $info;
+    }
   }
 }
-.nav-item a {
-  color: $black;
-  text-decoration: #ffc107;
+
+.info-card {
+  @include neu-card($background);
+}
+
+.info-card:nth-of-type(2) {
+  min-height: 160px;
+
+  a {
+    text-decoration: underline;
+    color: $info;
+    padding: 3px;
+    border-radius: 3px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+      background-color: $info;
+      color: $light;
+    }
+  }
+  .fake-bar {
+    width: 100%;
+    height: 25px;
+    background-color: $greenish;
+  }
 }

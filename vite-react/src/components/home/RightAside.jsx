@@ -5,7 +5,7 @@ import { useRef, useState } from 'react'
 import { useDynamicHeight } from '../../utils/heightUtils'
 
 function RightAside({ mainSectionRef, validatedNews, biasPercentages }) {
-  const [displayCount, setDisplayCount] = useState(10)
+  const [displayCount, setDisplayCount] = useState(18)
 
   const rightAsideRef = useRef(null)
   const mainSectionHeight = useDynamicHeight(mainSectionRef)

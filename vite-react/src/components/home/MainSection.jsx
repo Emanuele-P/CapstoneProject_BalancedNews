@@ -37,7 +37,7 @@ function MainSection({ scrollTop }) {
     })
   }
 
-  const allValidNews = news.top_news ? getValidNews(news.top_news).slice(0, 80) : []
+  const allValidNews = news.top_news ? getValidNews(news.top_news).slice(0, 50) : []
 
   // console.log('Filtered valid news:', allValidNews)
   const flattenedNews = allValidNews.flatMap((newsItem) => newsItem.news[0])
@@ -99,7 +99,7 @@ function MainSection({ scrollTop }) {
                 <h2>
                   Top news stories <Spinner animation="grow" className="text-danger" />
                 </h2>
-                {flattenedNews.slice(1, 7).map((article, index) => (
+                {flattenedNews.slice(1, 14).map((article, index) => (
                   <CentralCard key={article.id} article={article} biasPercentages={biasPercentages[index + 1] || {}} />
                 ))}
               </>
@@ -107,8 +107,8 @@ function MainSection({ scrollTop }) {
           </Col>
           <RightAside
             mainSectionRef={mainSectionRef}
-            validatedNews={flattenedNews.slice(7)}
-            biasPercentages={biasPercentages.slice(7)}
+            validatedNews={flattenedNews.slice(14)}
+            biasPercentages={biasPercentages.slice(14)}
           />
         </Row>
       )}

@@ -10,8 +10,8 @@
   position: relative;
 }
 .hero {
-  width: 130%;
-  object-fit: fill;
+  width: 110%;
+  object-fit: cover;
 }
 .hero-overlay {
   position: absolute;
@@ -111,12 +111,13 @@ h2 {
 
 .left-aside h6 {
   margin-block: 0.5rem 1rem;
-  transition: opacity 0.5s ease, margin 0.5s ease, font-size 0.5s ease;
+  transition: opacity 0.5s ease, margin 0.5s ease, font-size 0.5s ease, height 1.2s ease;
   opacity: 1;
 }
 
 .left-aside h6.scrolled {
   opacity: 0;
+  height: 0;
   margin: 0;
   font-size: 10px;
 }

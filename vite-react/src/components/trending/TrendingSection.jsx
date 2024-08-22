@@ -12,7 +12,7 @@ import { useDynamicHeight } from '../../utils/heightUtils'
 function TrendingSection({ title, query }) {
   const dispatch = useDispatch()
   const trendingNews = useSelector((state) => state.news.trendingNews[query])
-  const [leftCardCount, setLeftCardCount] = useState(2)
+  const [leftCardCount, setLeftCardCount] = useState(3)
 
   const trendingSectionRef = useRef(null)
   const trendingSectionHeight = useDynamicHeight(trendingSectionRef)
@@ -33,6 +33,19 @@ function TrendingSection({ title, query }) {
     setLeftCardCount(leftCardCount + 2)
   }
 
+  const filteredArticles =
+    title === 'Israel-Hamas Conflict'
+      ? validTrendingNews
+          .slice(1, 2)
+          .concat(validTrendingNews.slice(3, 8))
+          .concat(validTrendingNews.slice(9, 18))
+          .concat(validTrendingNews.slice(20, 21))
+      : title === 'Olympics'
+      ? validTrendingNews.slice(0, 11).concat(validTrendingNews.slice(15, 20)).concat(validTrendingNews.slice(22, 26))
+      : title === 'European Politics'
+      ? validTrendingNews.slice(0, 14)
+      : validTrendingNews
+
   return (
     <>
       <div className="flex">
@@ -41,8 +54,8 @@ function TrendingSection({ title, query }) {
       </div>
       <Row className="flex-row mb-4 pb-4 central-bottom border-bottom">
         <Col lg={8} ref={trendingSectionRef} className="d-flex flex-column justify-content-between">
-          {validTrendingNews.length > 0 && <CentralCarousel news={trendingNews.news} />}
-          {validTrendingNews.slice(3, 7).map((article) => (
+          {filteredArticles.length > 0 && <CentralCarousel news={filteredArticles} />}
+          {filteredArticles.slice(3, 9).map((article) => (
             <CentralCardTrending key={article.id} article={article} />
           ))}
         </Col>
@@ -52,11 +65,11 @@ function TrendingSection({ title, query }) {
           style={{ maxHeight: trendingSectionHeight }}
         >
           <div>
-            {validTrendingNews.slice(8, 8 + leftCardCount).map((article) => (
+            {filteredArticles.slice(10, 10 + leftCardCount).map((article) => (
               <LeftCardTrending key={article.id} article={article} />
             ))}
           </div>
-          {validTrendingNews.length > 8 + leftCardCount && (
+          {filteredArticles.length > 10 + leftCardCount && (
             <div className="border-top">
               <Button className="mt-4 w-100 more-btn" onClick={handleLoadMore}>
                 Load more

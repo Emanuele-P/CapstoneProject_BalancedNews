@@ -10,6 +10,7 @@ import { extractDomain } from '../../utils/urlUtils'
 
 function SourceCard({ article }) {
   const dispatch = useDispatch()
+  const { isAuthenticated } = useSelector((state) => state.auth)
 
   useEffect(() => {
     if (article) {
@@ -42,8 +43,10 @@ function SourceCard({ article }) {
             <h6>{source?.name || displayDomain || 'Unknown Source'}</h6>
           </Button>
           <div>
-            <Badge className="fact-badge">{source?.factualReporting || 'High'}</Badge>
-            <Badge className="ms-2 bias-badge">{source?.biasRating || 'Center'}</Badge>
+            <Badge className="fact-badge">{isAuthenticated ? source?.factualReporting || 'High' : ''}</Badge>
+            <Badge className="ms-2 bias-badge">
+              {isAuthenticated ? source?.biasRating || 'Center' : <i className="bi bi-lock-fill p-0 mx-3"></i>}
+            </Badge>
           </div>
         </div>
         <Link to={`/article/${article.id}`}>

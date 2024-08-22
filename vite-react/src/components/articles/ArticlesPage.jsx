@@ -38,6 +38,7 @@ function ArticlesPage() {
     news: state.news.news,
     sources: state.news.newsSource,
   }))
+  const { isAuthenticated } = useSelector((state) => state.auth)
 
   const { mainArticle, relatedArticles } = (() => {
     for (const newsItem of news.top_news) {
@@ -174,36 +175,55 @@ function ArticlesPage() {
                 </Card>
 
                 <Card className="article-card info-card source fact mt-1">
-                  <CardBody>
-                    <Row className="mb-4">
-                      <Col lg={6}>
-                        <CardText>Popularity</CardText>
-                        <CardSubtitle>{source?.trafficPopularity || 'Medium Traffic'}</CardSubtitle>
-                      </Col>
-                      <Col lg={6}>
-                        <CardText>Media Type</CardText>
-                        <CardSubtitle>{source?.mediaType || 'News Website'}</CardSubtitle>
-                      </Col>
-                    </Row>
-                    <Row className="mb-3">
-                      <Col lg={6}>
-                        <CardText>Bias</CardText>
-                        <CardSubtitle>{source?.biasRating || 'Center'}</CardSubtitle>
-                      </Col>
-                      <Col lg={6}>
-                        <CardText>Factuality</CardText>
-                        <CardSubtitle>{source?.factualReporting || 'High'}</CardSubtitle>
-                      </Col>
-                    </Row>
-                    <FactualityBar bias={source?.biasRating} />
-                  </CardBody>
+                  {isAuthenticated ? (
+                    <>
+                      <CardBody>
+                        <Row className="mb-4">
+                          <Col lg={6}>
+                            <CardText>Popularity</CardText>
+                            <CardSubtitle>{source?.trafficPopularity || 'Medium Traffic'}</CardSubtitle>
+                          </Col>
+                          <Col lg={6}>
+                            <CardText>Media Type</CardText>
+                            <CardSubtitle>{source?.mediaType || 'News Website'}</CardSubtitle>
+                          </Col>
+                        </Row>
+                        <Row className="mb-3">
+                          <Col lg={6}>
+                            <CardText>Bias</CardText>
+                            <CardSubtitle>{source?.biasRating || 'Center'}</CardSubtitle>
+                          </Col>
+                          <Col lg={6}>
+                            <CardText>Factuality</CardText>
+                            <CardSubtitle>{source?.factualReporting || 'High'}</CardSubtitle>
+                          </Col>
+                        </Row>
+                        <FactualityBar bias={source?.biasRating} />
+                      </CardBody>
+                    </>
+                  ) : (
+                    <>
+                      <CardBody className="d-flex flex-column justify-content-center gap-4">
+                        <Row>
+                          <div className="flex justify-content-between p-0">
+                            <h6 className="p-0 m-0">
+                              To view factuality data please <Link to={'/'}>log in</Link>
+                            </h6>
+                            <i className="bi bi-lock-fill p-0"></i>
+                          </div>
+                        </Row>
+                        <Row>
+                          <div className="fake-bar"></div>
+                        </Row>
+                      </CardBody>
+                    </>
+                  )}
                 </Card>
 
                 <Card className="article-card info-card">
                   <CardBody>
                     <CardTitle>Bias Distribution</CardTitle>
                     <CardText>
-                      {' '}
                       • {maxBias.value}% of the sources are {maxBias.type}
                     </CardText>
                     <BiasBar
@@ -217,7 +237,7 @@ function ArticlesPage() {
             </Row>
           </>
         )}
-        <Nav variant="underline" defaultActiveKey="link" className="article-selection mt-4 mb-3 border-bottom">
+        <Nav defaultActiveKey="link" className="article-selection mt-4 mb-3 border-bottom">
           <Nav.Item className="ms-2">{totalArticles} Articles</Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey="all" onClick={() => handleFilterChange('all')}>

@@ -105,7 +105,11 @@ function NavDropdownComponent() {
           <Link to={'https://github.com/Emanuele-P'}>
             <i className="bi bi-github"></i>
           </Link>
-          <Link to={'https://www.linkedin.com/in/emanuele-pezzato-1232a824a/'}>
+          <Link
+            to={
+              'https://www.linkedin.com/in/emanuele-pezzato-1232a824a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BgXGvQZPBTsa5rKGDFLENeg%3D%3D'
+            }
+          >
             <i className="bi bi-linkedin"></i>
           </Link>
         </div>

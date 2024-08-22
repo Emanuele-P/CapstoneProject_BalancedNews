@@ -83,17 +83,21 @@ function UserPage() {
 
       if (editField === 'name' || editField === 'surname') {
         dispatch(updateFullname(profile.id, editValues.name.trim(), editValues.surname.trim()))
+        setShowEditModal(false)
       } else {
         const payload = editValues[editField].trim()
         switch (editField) {
           case 'email':
             dispatch(updateEmail(profile.id, payload))
+            setShowEditModal(false)
             break
           case 'username':
             dispatch(updateUsername(profile.id, payload))
+            setShowEditModal(false)
             break
           case 'password':
             dispatch(updatePassword(profile.id, editValues.oldPassword.trim(), editValues.newPassword.trim()))
+            setShowEditModal(false)
             break
           default:
             break

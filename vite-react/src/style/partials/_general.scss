@@ -85,8 +85,9 @@
   cursor: auto;
 }
 
-.active {
-  color: $primary;
+.active-sc {
+  font-weight: 600;
+  color: $info;
 }
 .nav-logo {
   width: 70px;

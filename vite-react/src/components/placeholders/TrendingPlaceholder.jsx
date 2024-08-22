@@ -16,7 +16,7 @@ function TrendingPlaceholder() {
             as={Card}
             animation="glow"
             style={{
-              height: '386px',
+              height: '50vh',
               background: '#e9e9e9',
               borderRadius: '0',
               border: '1px solid transparent',

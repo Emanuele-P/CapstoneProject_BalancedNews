@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import propic from '../assets/default-avatar.jpg'
 import logo from '../assets/svg/simple-logo.svg'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../redux/actions/authActions'
 import arrow from '../assets/icons/arrow.svg'
@@ -18,6 +18,7 @@ function AppNavbar({ className }) {
   const { isAuthenticated, profile } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const location = useLocation()
 
   const handleToggle = (isOpen) => {
     setDropdownOpen(isOpen)
@@ -37,11 +38,14 @@ function AppNavbar({ className }) {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/home" className="active">
+              <Nav.Link href="/home" className={location.pathname === '/home' ? 'active-sc' : ''}>
                 Home
               </Nav.Link>
-              <Nav.Link href="#link">Discover</Nav.Link>
-              <Nav.Link href="#link">Media/bias</Nav.Link>
+              <Nav.Link href="/trending" className={location.pathname === '/trending' ? 'active-sc' : ''}>
+                Trending
+              </Nav.Link>
+              <Nav.Link>Discover</Nav.Link>
+              <Nav.Link>Media/bias</Nav.Link>
             </Nav>
             <div className="d-flex gap-3">
               {!isAuthenticated ? (
@@ -119,7 +123,11 @@ function AppNavbar({ className }) {
                       <Link to={'https://github.com/Emanuele-P'}>
                         <i className="bi bi-github"></i>
                       </Link>
-                      <Link to={'https://www.linkedin.com/in/emanuele-pezzato-1232a824a/'}>
+                      <Link
+                        to={
+                          'https://www.linkedin.com/in/emanuele-pezzato-1232a824a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BgXGvQZPBTsa5rKGDFLENeg%3D%3D'
+                        }
+                      >
                         <i className="bi bi-linkedin"></i>
                       </Link>
                     </div>

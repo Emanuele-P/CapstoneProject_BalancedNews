@@ -14,7 +14,7 @@ function CentralCarousel({ news }) {
     <Carousel fade className="carousel mb-4">
       {limitedNews.map((article) => (
         <Carousel.Item key={article.id}>
-          <Link to={`/article/${article.id}`} className="carousel-link">
+          <Link to={article.url} className="carousel-link">
             <Image src={article.image || pic} className="w-100 c-pic" />
             <div className="hero-overlay"></div>
             <Carousel.Caption>

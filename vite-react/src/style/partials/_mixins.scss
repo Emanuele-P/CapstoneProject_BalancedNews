@@ -102,7 +102,8 @@
   cursor: pointer;
   transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     box-shadow: 2px 2px 8px $dark-shadow, -2px -2px 8px $light-shadow;
     transform: translateY(2px);
     color: darken($color, 60%);
