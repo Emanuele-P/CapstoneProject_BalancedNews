@@ -52,7 +52,7 @@ const EditProfileModal = ({ show, onClose, onSave, field, values, setValues, err
             <Button className="whi-btn" onClick={onClose}>
               Close
             </Button>
-            <Button variant="info" type="submit" className="login-btn" onClick={onSave}>
+            <Button variant="primary" type="submit" className="login-btn" onClick={onSave}>
               Save
             </Button>
           </div>

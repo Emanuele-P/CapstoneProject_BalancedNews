@@ -205,11 +205,11 @@
   }
 
   .nav-link.active {
-    color: $info;
+    color: $primary;
     border-bottom: none;
 
     .badge {
-      color: $info;
+      color: $primary;
     }
   }
 }
@@ -223,13 +223,13 @@
 
   a {
     text-decoration: underline;
-    color: $info;
+    color: $primary;
     padding: 3px;
     border-radius: 3px;
     transition: color 0.3s ease, background-color 0.3s ease;
 
     &:hover {
-      background-color: $info;
+      background-color: $primary;
       color: $light;
     }
   }

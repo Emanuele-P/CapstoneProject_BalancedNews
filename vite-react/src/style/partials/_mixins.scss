@@ -171,7 +171,7 @@
   }
 }
 
-@mixin propic-wrapper($wrapper-size: 100px, $background-color: transparent, $hover-color: $info) {
+@mixin propic-wrapper($wrapper-size: 100px, $background-color: transparent, $hover-color: $primary) {
   background: $background-color;
   border-radius: 100%;
   box-shadow: inset 7px 7px 14px #d4d6d9, inset -7px -7px 14px #ffffff;

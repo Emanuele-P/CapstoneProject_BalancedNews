@@ -221,7 +221,7 @@ function UserPage() {
                     </Row>
                     <Row className="border-bottom pb-4 mx-0 mb-4">
                       <h5 className="mt-1 mb-4">Personal details</h5>
-                      <Col lg={4} className="d-flex flex-column justify-content-center">
+                      <Col lg={4} className="d-flex flex-column justify-content-center pe-0">
                         <h6>Name</h6>
                         <span>
                           {profile.name} {profile.surname}
@@ -238,7 +238,7 @@ function UserPage() {
                         <h6>Email address</h6>
                         <span>{profile.email}</span>
                       </Col>
-                      <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
+                      <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
                         <Button className="whi-btn w-100" onClick={() => handleEditClick('email')}>
                           Edit
                         </Button>
@@ -249,7 +249,7 @@ function UserPage() {
                         <h6>Username</h6>
                         <span>{profile.username}</span>
                       </Col>
-                      <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
+                      <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
                         <Button className="whi-btn w-100" onClick={() => handleEditClick('username')}>
                           Edit
                         </Button>
@@ -279,11 +279,11 @@ function UserPage() {
                       </Col>
                     </Row>
                     <Row className="border-bottom pb-4 mx-0 mb-4">
-                      <Col lg={4} className="d-flex flex-column justify-content-center">
+                      <Col lg={4} className="d-flex flex-column justify-content-center pe-0">
                         <h6>Delete account</h6>
                         <span>Remove your account permanently</span>
                       </Col>
-                      <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start">
+                      <Col lg={{ span: 2, offset: 6 }} className="d-flex align-items-start pe-0">
                         <Button className="del-btn w-100" onClick={() => setShowDeleteModal(true)}>
                           Delete
                         </Button>

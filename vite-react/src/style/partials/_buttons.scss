@@ -1,14 +1,14 @@
 .login-btn {
   @include neu-btn(#bfb9e0);
   color: $light;
-  background-color: $info;
+  background-color: $primary;
 
   &:hover {
     color: $light;
-    background: $info;
+    background: $primary;
   }
   &:active {
-    color: $info !important;
+    color: $primary !important;
   }
 }
 
@@ -20,10 +20,10 @@
   @include neu-btn($light);
 
   &:hover {
-    color: $info;
+    color: $primary;
   }
   &:active {
-    color: $info !important;
+    color: $primary !important;
   }
 }
 
