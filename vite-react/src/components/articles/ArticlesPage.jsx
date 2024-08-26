@@ -135,7 +135,7 @@ function ArticlesPage() {
     <>
       <DecorativeNav />
       <AppNavbar className={scrollTop > 0 ? 'scrolled' : ''} />
-      <Container className="mt-3 mb-5">
+      <Container className="mt-3 mb-5 article">
         {mainArticle && (
           <>
             <span>
@@ -237,7 +237,7 @@ function ArticlesPage() {
             </Row>
           </>
         )}
-        <Nav defaultActiveKey="link" className="article-selection mt-4 mb-3 border-bottom">
+        <Nav defaultActiveKey="link" className="article-selection mt-4 mb-3">
           <Nav.Item className="ms-2">{totalArticles} Articles</Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey="all" onClick={() => handleFilterChange('all')}>

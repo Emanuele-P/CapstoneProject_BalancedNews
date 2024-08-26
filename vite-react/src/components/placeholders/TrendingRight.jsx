@@ -1,12 +1,20 @@
 import { Card, Placeholder } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 
 function TrendingRight() {
+  const theme = useSelector((state) => state.theme.theme)
+
   return (
     <>
       <Placeholder
         as={Card}
         animation="glow"
-        style={{ height: '338px', border: '1px solid transparent', background: '#ebebeb', borderRadius: '12px' }}
+        style={{
+          height: '338px',
+          border: '1px solid transparent',
+          background: `${theme === 'light' ? '#ebebeb' : '#505050'}`,
+          borderRadius: '12px',
+        }}
         className="mb-3"
       >
         <Placeholder as={Card.Img} style={{ height: '200px' }} />

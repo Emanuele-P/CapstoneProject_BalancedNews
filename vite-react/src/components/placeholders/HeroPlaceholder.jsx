@@ -1,7 +1,10 @@
 import { Card, Placeholder } from 'react-bootstrap'
 import CentralCardPlaceholder from './CentralCardPlaceholder'
+import { useSelector } from 'react-redux'
 
 function HeroPlaceholder() {
+  const theme = useSelector((state) => state.theme.theme)
+
   return (
     <>
       <Placeholder
@@ -9,7 +12,8 @@ function HeroPlaceholder() {
         animation="glow"
         style={{
           height: '397px',
-          background: '#e9e9e9',
+
+          background: `${theme === 'light' ? '#e9e9e9' : '#444444'}`,
           borderRadius: '0',
           border: '1px solid transparent',
         }}
@@ -29,7 +33,10 @@ function HeroPlaceholder() {
           />
         </Card.Body>
       </Placeholder>
-      <h2 className="glowing-placeholder" style={{ marginBlock: '2rem 1.5rem' }}>
+      <h2
+        className="glowing-placeholder"
+        style={{ marginBlock: '2rem 1.5rem', color: `${theme === 'light' ? '#e9e9e9' : '#e2e2e2'}` }}
+      >
         <Placeholder animation="glow">
           <Placeholder xs={6} />
         </Placeholder>

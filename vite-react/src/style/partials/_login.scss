@@ -63,7 +63,7 @@
   .join-btn {
     margin-bottom: 3rem;
     background: transparent;
-    color: $black;
+    color: $text;
     border: 1px solid $gray;
 
     &:hover {
@@ -165,7 +165,7 @@
     color: #fff;
 
     &:hover {
-      background-color: rgb(109, 89, 223);
+      background-color: #6d59df;
       color: #fff;
     }
   }
@@ -254,7 +254,7 @@
 
 .modal-content {
   @include glass();
-  background: rgba(255, 255, 255, 0.597);
+  background: #ffffff98;
 }
 
 .modal-backdrop.fade {

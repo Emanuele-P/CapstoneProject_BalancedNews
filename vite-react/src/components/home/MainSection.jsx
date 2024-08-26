@@ -37,7 +37,7 @@ function MainSection({ scrollTop }) {
     })
   }
 
-  const allValidNews = news.top_news ? getValidNews(news.top_news).slice(0, 50) : []
+  const allValidNews = news.top_news ? getValidNews(news.top_news).slice(0, 40) : []
 
   // console.log('Filtered valid news:', allValidNews)
   const flattenedNews = allValidNews.flatMap((newsItem) => newsItem.news[0])

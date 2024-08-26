@@ -12,13 +12,24 @@ import arrow from '../assets/icons/arrow.svg'
 import light from '../assets/svg/light.svg'
 import dark from '../assets/svg/dark.svg'
 import system from '../assets/svg/system.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { setTheme } from '../redux/actions/themeActions'
 
 function AppNavbar({ className }) {
   const { isAuthenticated, profile } = useSelector((state) => state.auth)
+  const theme = useSelector((state) => state.theme.theme)
   const dispatch = useDispatch()
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const location = useLocation()
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-bs-theme', theme)
+  }, [theme])
+
+  const changeTheme = (newTheme) => {
+    dispatch(setTheme(newTheme))
+    localStorage.setItem('theme', newTheme)
+  }
 
   const handleToggle = (isOpen) => {
     setDropdownOpen(isOpen)
@@ -89,11 +100,17 @@ function AppNavbar({ className }) {
                   <NavDropdown.Divider />
 
                   <div className="flex color-mode">
-                    <Button className="w-100 transparent">
+                    <Button
+                      className={`w-100 transparent ${theme === 'light' ? 'active-theme' : ''}`}
+                      onClick={() => changeTheme('light')}
+                    >
                       <Image src={light} className="square active-color" />
                       <span>Light</span>
                     </Button>
-                    <Button className="w-100 transparent">
+                    <Button
+                      className={`w-100 transparent ${theme === 'dark' ? 'active-theme' : ''}`}
+                      onClick={() => changeTheme('dark')}
+                    >
                       <Image src={dark} className="square" />
                       <span>Dark</span>
                     </Button>

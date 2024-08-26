@@ -1,0 +1,357 @@
+.user-page-placeholder {
+  h4 {
+    margin-bottom: 1.5rem;
+  }
+
+  .user-info-row {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    margin-left: 0;
+    margin-right: 0;
+
+    .col-lg-2 {
+      padding-left: 0;
+
+      .placeholder-glow {
+        .placeholder-full-width {
+          height: 148px;
+          border-radius: 99px;
+        }
+      }
+    }
+
+    .col-lg-4 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .col-lg-offset-4 {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .placeholder-glow {
+        .placeholder-button {
+          width: 8rem;
+        }
+      }
+    }
+  }
+
+  .inner-row {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    margin-left: 0;
+    margin-right: 0;
+
+    .col-lg-4 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-right: 0;
+    }
+
+    .col-lg-offset-6 {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .placeholder-glow {
+        .placeholder-button {
+          width: 6rem;
+        }
+      }
+    }
+  }
+}
+
+.trending-right {
+  .placeholder-card {
+    height: 338px;
+    border: 1px solid transparent;
+    background: #ebebeb;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+
+    .card-img-placeholder {
+      height: 200px;
+    }
+
+    .card-body-placeholder {
+      text-align: center;
+
+      .placeholder-glow {
+        .placeholder-xs-3,
+        .placeholder-xs-8,
+        .placeholder-xs-7,
+        .placeholder-xs-4 {
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      .placeholder-full-width {
+        margin-top: 1rem;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.trending-placeholder {
+  h2 {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .central-bottom {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    flex-direction: row;
+
+    .col-lg-8 {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      .placeholder-card {
+        height: 50vh;
+        background: #e9e9e9;
+        border-radius: 0;
+        border: 1px solid transparent;
+        margin-bottom: 1.5rem;
+
+        .card-body-placeholder {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          padding: 0;
+
+          .card-text-placeholder {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+          }
+        }
+      }
+    }
+
+    .col-lg-4 {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-height: 100%;
+
+      .trending-right-container {
+        display: flex;
+        flex-direction: column;
+
+        .trending-right {
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      .border-top {
+        border-top: 1px solid #ddd;
+        margin-top: 1rem;
+
+        .placeholder-button {
+          width: 100%;
+          margin-top: 1rem;
+          border-radius: 6px;
+          background: #676767;
+          border: 1px solid transparent;
+          height: 38px;
+        }
+      }
+    }
+  }
+}
+
+.right-aside-placeholder {
+  .col-lg-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 1290px;
+    width: 100%;
+
+    h6 {
+      margin: 0;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .col {
+      padding-top: 0.5rem;
+      margin-bottom: 0;
+
+      .placeholder-glow {
+        .placeholder-card {
+          background: #e9e9e9;
+          padding: 10px;
+          border-radius: 5px;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+
+  .placeholder-button {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    background: #676767;
+    border: 1px solid transparent;
+  }
+}
+
+.left-aside-placeholder {
+  .placeholder-glow {
+    .col-lg-3 {
+      margin-top: 0.5rem;
+      height: 827px;
+      background: transparent;
+      border: 1px solid transparent;
+    }
+
+    .card-title-placeholder {
+      height: 70px;
+      margin-top: 0;
+    }
+
+    .card-text-placeholder {
+      height: 40px;
+    }
+
+    .card-placeholder {
+      height: 338px;
+      border: 1px solid transparent;
+      background: #ebebeb;
+
+      .card-img-placeholder {
+        height: 200px;
+      }
+
+      .card-body-placeholder {
+        text-align: center;
+
+        .placeholder-xs-3,
+        .placeholder-xs-8,
+        .placeholder-xs-7,
+        .placeholder-xs-4 {
+          margin-bottom: 0.5rem;
+        }
+
+        .placeholder-full-width {
+          margin-top: 1rem;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.hero-placeholder {
+  .placeholder-card {
+    height: 397px;
+    background: #e9e9e9;
+    border-radius: 0;
+    border: 1px solid transparent;
+
+    .card-body-placeholder {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0;
+
+      .card-text-placeholder {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+    }
+  }
+
+  .glowing-placeholder {
+    margin-block: 2rem 1.5rem;
+  }
+
+  .placeholder-button {
+    width: 100%;
+    border-radius: 0;
+    background: #676767;
+    border: 1px solid transparent;
+  }
+}
+
+.central-card-placeholder {
+  .central-card {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0.5rem;
+    box-shadow: none;
+    background: #e9e9e9;
+    height: 125px;
+
+    .row {
+      height: 100%;
+
+      .col-md-3 {
+        padding-right: 0;
+
+        .central-card-pic-container {
+          height: 100%;
+
+          .central-card-pic {
+            background: #676767;
+            height: 100%;
+          }
+        }
+      }
+
+      .col-md-9 {
+        padding: 0;
+
+        .card-body {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 100%;
+
+          .card-title-placeholder,
+          .card-text-placeholder {
+            background: #676767;
+          }
+
+          .card-title-placeholder {
+            width: 50%;
+          }
+
+          .card-text-placeholder {
+            width: 80%;
+          }
+
+          .align-items-center {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .placeholder-xs-3 {
+              width: 25%;
+            }
+
+            .percentage .placeholder-xs-4 {
+              width: 33.33%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,9 @@
 import { Col, Placeholder } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 
 function RightAsidePlaceholder() {
+  const theme = useSelector((state) => state.theme.theme)
+
   return (
     <Col lg={3} className="d-flex flex-column justify-content-between" style={{ height: '1290px', width: '100%' }}>
       <div>
@@ -17,7 +20,11 @@ function RightAsidePlaceholder() {
               key={index}
               animation="glow"
               className="mb-3"
-              style={{ background: '#e9e9e9', padding: '10px', borderRadius: '5px' }}
+              style={{
+                background: `${theme === 'light' ? '#e9e9e9' : '#505050'}`,
+                padding: '10px',
+                borderRadius: '5px',
+              }}
             >
               <Placeholder as="h6" className="mb-2" xs={7} />
               <Placeholder as="p" className="mb-1" xs={9} />

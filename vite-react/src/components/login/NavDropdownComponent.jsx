@@ -8,12 +8,14 @@ import dark from '../../assets/svg/dark.svg'
 import system from '../../assets/svg/system.svg'
 import propic from '../../assets/default-avatar.jpg'
 import { useEffect, useState } from 'react'
+import { setTheme } from '../../redux/actions/themeActions'
 
 function NavDropdownComponent() {
   const { isAuthenticated, profile, loading } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const theme = useSelector((state) => state.theme.theme)
 
   const handleToggle = (isOpen) => {
     setDropdownOpen(isOpen)
@@ -21,6 +23,15 @@ function NavDropdownComponent() {
 
   const handleLogout = () => {
     dispatch(logout())
+  }
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-bs-theme', theme)
+  }, [theme])
+
+  const changeTheme = (newTheme) => {
+    dispatch(setTheme(newTheme))
+    localStorage.setItem('theme', newTheme)
   }
 
   useEffect(() => {
@@ -68,11 +79,17 @@ function NavDropdownComponent() {
       <NavDropdown.Divider />
 
       <div className="flex color-mode">
-        <Button className="w-100 transparent">
+        <Button
+          className={`w-100 transparent ${theme === 'light' ? 'active-theme' : ''}`}
+          onClick={() => changeTheme('light')}
+        >
           <Image src={light} className="square active-color" />
           <span>Light</span>
         </Button>
-        <Button className="w-100 transparent">
+        <Button
+          className={`w-100 transparent ${theme === 'dark' ? 'active-theme' : ''}`}
+          onClick={() => changeTheme('dark')}
+        >
           <Image src={dark} className="square" />
           <span>Dark</span>
         </Button>

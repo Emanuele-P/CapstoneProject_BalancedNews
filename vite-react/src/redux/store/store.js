@@ -5,10 +5,12 @@ import newsReducer from '../reducers/newsReducers'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { encryptTransform } from 'redux-persist-transform-encrypt'
+import themeReducer from '../reducers/themeReducer'
 
 const rootReducer = combineReducers({
   auth: authReducer,
   news: newsReducer,
+  theme: themeReducer,
 })
 
 const persistConfig = {

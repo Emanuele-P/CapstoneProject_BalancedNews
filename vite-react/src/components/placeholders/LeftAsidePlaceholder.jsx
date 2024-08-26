@@ -1,6 +1,9 @@
 import { Card, Placeholder } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 
 function LeftAsidePlaceholder() {
+  const theme = useSelector((state) => state.theme.theme)
+
   return (
     <Placeholder
       animation="glow"
@@ -18,7 +21,11 @@ function LeftAsidePlaceholder() {
           <Placeholder
             as={Card}
             animation="glow"
-            style={{ height: '338px', border: '1px solid transparent', background: '#ebebeb' }}
+            style={{
+              height: '338px',
+              border: '1px solid transparent',
+              background: `${theme === 'light' ? '#ebebeb' : '#444444'}`,
+            }}
           >
             <Placeholder as={Card.Img} style={{ height: '200px' }} />
             <Placeholder as={Card.Body} animation="glow">
@@ -33,7 +40,11 @@ function LeftAsidePlaceholder() {
           <Placeholder
             as={Card}
             animation="glow"
-            style={{ height: '338px', border: '1px solid transparent', background: '#ebebeb' }}
+            style={{
+              height: '338px',
+              border: '1px solid transparent',
+              background: `${theme === 'light' ? '#ebebeb' : '#444444'}`,
+            }}
           >
             <Placeholder as={Card.Img} style={{ height: '200px' }} />
             <Placeholder as={Card.Body} animation="glow">

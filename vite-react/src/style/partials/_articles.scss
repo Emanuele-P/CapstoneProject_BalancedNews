@@ -2,7 +2,7 @@
   position: relative;
   height: 20px;
   width: 100%;
-  background-color: #cecece;
+  background-color: $greenish;
   overflow: hidden;
 }
 
@@ -98,7 +98,7 @@
   .fact-badge,
   .bias-badge {
     background-color: $light !important;
-    color: $black;
+    color: $text;
     transition: box-shadow 0.3s ease;
 
     i {
@@ -109,7 +109,7 @@
   .fact-badge:hover,
   .bias-badge:hover {
     cursor: pointer;
-    box-shadow: 3px 3px 12px #f0f0f0, -3px -3px 12px $gray;
+    box-shadow: 3px 3px 12px $light-up, -3px -3px 12px $light-down;
     background: #ffffff;
   }
 
@@ -122,12 +122,12 @@
 
     &:hover,
     &:active {
-      box-shadow: 3px 3px 12px #f0f0f0, -3px -3px 12px $gray;
+      box-shadow: 3px 3px 12px $light-up, -3px -3px 12px $light-down;
       color: inherit;
       background-color: #fefefe;
     }
     &:active {
-      box-shadow: 1px 1px 8px #f0f0f0, -1px -1px 8px $gray !important;
+      box-shadow: 1px 1px 8px $light-up, -1px -1px 8px $light-down !important;
       color: inherit !important;
       background-color: #fefefe !important;
       border: 1px solid transparent !important;
@@ -193,7 +193,7 @@
   }
   .nav-link {
     padding: 0;
-    color: $black;
+    color: $text;
     display: flex;
     align-items: center;
     justify-content: space-between;

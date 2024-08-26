@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Button, Col, Spinner } from 'react-bootstrap'
+import { Button, Col } from 'react-bootstrap'
 import RightCard from './RightCard'
 import { useRef, useState } from 'react'
 import { useDynamicHeight } from '../../utils/heightUtils'
@@ -24,23 +24,19 @@ function RightAside({ mainSectionRef, validatedNews, biasPercentages }) {
       >
         <div>
           <h6 className="m-0 pb-0 border-bottom">Latest news</h6>
-          {validatedNews.length === 0 && <Spinner animation="border" />}
-          {validatedNews.length > 0 && (
-            <Col className="hmsc pt-2 mb-0">
-              {validatedNews.slice(0, displayCount).map((article, index) => (
-                <RightCard key={article.id} article={article} biasPercentages={biasPercentages[index] || {}} />
-              ))}
-            </Col>
-          )}
+
+          <Col className="hmsc pt-2 mb-0">
+            {validatedNews.slice(0, displayCount).map((article, index) => (
+              <RightCard key={article.id} article={article} biasPercentages={biasPercentages[index] || {}} />
+            ))}
+          </Col>
         </div>
 
-        {validatedNews.length > displayCount && (
-          <div className="border-top mx-2">
-            <Button className="w-100 more-btn mt-4" onClick={handleLoadMore}>
-              Load more
-            </Button>
-          </div>
-        )}
+        <div className="border-top mx-2">
+          <Button className="w-100 more-btn mt-4" onClick={handleLoadMore}>
+            Load more
+          </Button>
+        </div>
       </Col>
     </>
   )

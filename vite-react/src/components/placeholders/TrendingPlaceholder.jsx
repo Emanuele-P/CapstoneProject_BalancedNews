@@ -1,8 +1,11 @@
 import { Col, Row, Placeholder, Card } from 'react-bootstrap'
 import CentralCardPlaceholder from './CentralCardPlaceholder'
 import TrendingRight from './TrendingRight'
+import { useSelector } from 'react-redux'
 
 function TrendingPlaceholder() {
+  const theme = useSelector((state) => state.theme.theme)
+
   return (
     <>
       <h2 className="m-0 mb-2 mt-2">
@@ -17,7 +20,7 @@ function TrendingPlaceholder() {
             animation="glow"
             style={{
               height: '50vh',
-              background: '#e9e9e9',
+              background: `${theme === 'light' ? '#e9e9e9' : '#505050'}`,
               borderRadius: '0',
               border: '1px solid transparent',
             }}

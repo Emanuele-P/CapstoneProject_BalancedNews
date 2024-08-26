@@ -45,7 +45,7 @@ function TrendingPage() {
       <DecorativeNav />
       <AppNavbar className={scrollTop > 0 ? 'scrolled' : ''} />
       <CategoriesSlider />
-      <div className="border-bottom mb-3">
+      <div className="border-bottom mb-3 trend">
         <Container className="mt-4">
           {loadedFirst && !loading ? (
             <TrendingSection title="Olympics" query="olympics" scrollTop={scrollTop} />

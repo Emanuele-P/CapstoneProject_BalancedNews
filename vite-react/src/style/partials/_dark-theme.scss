@@ -1,0 +1,676 @@
+[data-bs-theme='dark'] {
+  .app {
+    background-color: #313131;
+    color: $text-dark;
+  }
+
+  //main section
+  .main-section {
+    h2 {
+      color: $text-dark;
+    }
+
+    //central card latest news
+    .central-card {
+      @include neu-form($black-dark);
+      color: $text-dark;
+
+      &:hover {
+        background-color: $background-dark;
+      }
+    }
+    .separator {
+      border-bottom: 1px solid $text-dark;
+      height: 13px;
+    }
+  }
+
+  //left aside
+  //left card blindspot
+  .left-card {
+    background-color: transparent;
+    @include neu-btn($black-dark);
+    color: $text-dark;
+
+    .badge {
+      color: $main-dark;
+    }
+
+    &:hover {
+      background-color: #151515;
+      color: inherit;
+    }
+
+    &.right-border {
+      border: 8px solid $right-dark;
+    }
+    &.left-border {
+      border: 8px solid $left-dark;
+    }
+    &.center-border {
+      border: 8px solid $center-dark;
+    }
+  }
+
+  .banner {
+    h2 {
+      color: $text-dark;
+    }
+  }
+
+  //right aside
+
+  //right-card
+  .right-card {
+    @include glass-hover($black-dark);
+    &:hover {
+      border: 1px solid transparent;
+    }
+  }
+
+  ////BIAS BAR
+
+  //bias bar
+
+  .bias-bar.left {
+    background-color: $left-dark;
+    background-image: linear-gradient(to right, $left-dark 85%, white);
+  }
+
+  .bias-bar.right {
+    background-color: $right-dark;
+    background-image: linear-gradient(to left, $right-dark 85%, white);
+  }
+
+  .central-card {
+    .bias-bar-container {
+      @include neu-bar($main-dark);
+    }
+  }
+
+  .right-card {
+    .bias-bar-container {
+      @include neu-bar($main-dark);
+    }
+  }
+
+  ////BUTTONS
+
+  .login-btn {
+    @include neu-btn(#3f3673);
+    color: $light;
+    background-color: $primary-dark;
+
+    &:hover {
+      color: $light;
+      background: $primary-dark;
+    }
+    &:active {
+      color: $primary-dark !important;
+    }
+  }
+
+  .whi-btn {
+    @include neu-btn($black-dark);
+    color: $text-dark;
+
+    &:hover {
+      color: $text-dark;
+    }
+    &:active {
+      color: $gray-dark !important;
+    }
+  }
+
+  .categories .whi-btn {
+    color: $main-dark;
+    &:hover {
+      color: $text-dark;
+    }
+  }
+
+  .accent-btn {
+    @include neu-btn($black-dark);
+    color: $text-dark;
+
+    &:hover {
+      color: $primary-dark;
+    }
+    &:active {
+      color: $primary-dark !important;
+    }
+  }
+
+  .del-btn {
+    @include neu-btn($black-dark);
+    color: $danger;
+
+    &:hover {
+      color: $light;
+      background: $danger;
+      box-shadow: 4px 4px 12px $danger-down, -4px -4px 12px $danger-up;
+    }
+    &:active {
+      color: $light !important;
+      background: $danger !important;
+      box-shadow: inset 4px 4px 8px $danger-down, inset -4px -4px 8px $danger-up !important;
+    }
+  }
+
+  .blk-btn {
+    @include neu-btn(#403f4867);
+    color: $light;
+    background-color: $black;
+    &:hover {
+      color: $light;
+      background-color: $black;
+      box-shadow: 2px 2px 8px #000000, -2px -2px 8px #686868;
+    }
+    &:active {
+      color: $light !important;
+      background-color: #404040 !important;
+    }
+  }
+
+  .more-btn {
+    @include neu-btn($gls-dark);
+    color: $main-dark;
+    &:hover {
+      color: $main-dark;
+    }
+    &:active {
+      color: #404040 !important;
+    }
+  }
+
+  .btn-source {
+    background-color: #a6b1b0;
+    border: 1px solid transparent;
+
+    &:hover {
+      background-color: #8c9897;
+      border: 1px solid transparent;
+    }
+  }
+
+  ////GENERAL
+
+  //app navbar
+  .app-navbar {
+    @include glass();
+    background-color: #20202099;
+    border: 1px solid #3c3c3c;
+
+    .nav-link:hover {
+      color: $primary-dark;
+    }
+  }
+  .active-sc {
+    color: $primary-dark;
+  }
+
+  //nav dropdown
+  .dropdown-menu {
+    background: $black-dark;
+
+    .dropdown-item {
+      &:hover {
+        background-color: $gray-dark;
+      }
+    }
+    i {
+      color: $gray !important;
+      &:hover {
+        color: $primary-dark !important;
+      }
+    }
+  }
+
+  .first-dropdown:hover {
+    color: $primary-dark;
+  }
+
+  //nav-propic
+  .propic-wrap {
+    outline: 3px solid $black-dark;
+    box-shadow: inset 7px 7px 14px $gray-dark, inset -7px -7px 14px $main-dark;
+
+    &.dropdown-open {
+      box-shadow: 0px 0px 20px $main-dark;
+    }
+  }
+
+  .drop-email {
+    color: $primary-dark;
+  }
+
+  button:hover {
+    span {
+      transition: color 0.5s ease;
+      color: $text-dark !important;
+    }
+  }
+
+  button span {
+    color: $main-dark !important;
+  }
+
+  .active-theme {
+    img {
+      border: 2px solid $primary-dark;
+    }
+    span {
+      color: $text-dark !important;
+    }
+  }
+
+  .transparent {
+    background-color: transparent;
+    border: none;
+    &:hover,
+    &:active,
+    &:focus-visible {
+      background-color: inherit !important;
+      border: inherit !important;
+      box-shadow: none !important;
+    }
+  }
+  .dropdown-toggle::after {
+    .propic {
+      outline: 2px solid $primary-dark;
+    }
+  }
+
+  .decoration {
+    h4 {
+      background-color: #3f3f3f8b;
+    }
+  }
+
+  //search bar
+
+  .form-control {
+    border: 1px solid $gray-dark;
+    background-color: $black-dark;
+
+    &:focus {
+      border: 1px solid $gray-dark;
+      background-color: $background-dark;
+    }
+  }
+
+  .input-group {
+    width: 100% !important;
+    border-radius: 75px !important;
+    $dark-shadow: $black-dark;
+    $light-shadow: $black-dark;
+
+    @include neu-btn($background-dark);
+    padding: 4px !important;
+
+    border: 1px solid $black-dark !important;
+    background-color: $background-dark;
+
+    &:focus-within {
+      border: 1px solid $black-dark;
+      color: darken($gray-dark, 80%) !important;
+      background-color: $gray-dark !important;
+    }
+
+    .input-group-text {
+      border-radius: 75px 0 0 75px;
+      background-color: $black-dark;
+      border: 1px solid $black-dark;
+      border-right: none;
+    }
+
+    .form-control {
+      border-left: none;
+      background-color: $black-dark;
+      border: 1px solid $black-dark;
+    }
+  }
+
+  //badges
+  .badge.bg-primary {
+    background-color: $text-dark !important;
+  }
+
+  //sentiment bar
+  .sentiment-bar-container {
+    background-color: $main-dark;
+  }
+
+  ////LOGIN
+
+  .background-login {
+    h1 {
+      color: $primary-dark;
+    }
+
+    .form-control {
+      @include neu-form($black-dark);
+      color: $text-dark;
+    }
+
+    h4:first-of-type {
+      color: $primary-dark;
+    }
+
+    p {
+      span {
+        color: $primary-dark;
+        &:hover {
+          text-decoration: underline $primary-dark;
+        }
+      }
+    }
+
+    .join-btn {
+      background: $main-dark;
+      color: $text-dark;
+      border: 1px solid $gray-dark;
+
+      &:hover {
+        background: $gray-dark;
+      }
+    }
+
+    .notice-box {
+      @include glass();
+      background: #55555598;
+      border: 1px solid $main-dark;
+    }
+
+    .whi-btn {
+      @include neu-btn(#3b3b3bbc);
+      color: $text-dark;
+
+      &:hover {
+        color: $text-dark;
+      }
+      &:active {
+        color: $main-dark !important;
+      }
+    }
+    .blk-btn {
+      @include neu-btn(#111111);
+      color: $light;
+      &:hover {
+        color: $light;
+        background-color: $black-dark;
+        box-shadow: 2px 2px 8px #161616, -2px -2px 8px #353535;
+      }
+      &:active {
+        color: $light !important;
+        background-color: #404040 !important;
+      }
+    }
+    button {
+      width: 100% !important;
+      padding-block: 0.7rem;
+      height: 44px;
+    }
+  }
+
+  //nav
+  .simple-nav {
+    background-color: $background-dark;
+
+    .icon-wrap {
+      background: $background-dark;
+      background-image: linear-gradient(145deg, $main-dark, $black-dark);
+      box-shadow: 3px 3px 16px $background-dark, -3px -3px 16px $black-dark;
+
+      &:hover {
+        background: $background-dark;
+        box-shadow: inset 3px 3px 16px #1a1a1a, inset -3px -3px 16px $black-dark;
+
+        i {
+          color: $primary-dark;
+        }
+      }
+    }
+  }
+
+  //personal page
+  .user-page {
+    h4 {
+      color: $primary-dark;
+    }
+    .propic-wrapper {
+      outline: 4px solid $black-dark;
+      box-shadow: inset 7px 7px 14px $gray-dark, inset -7px -7px 14px $main-dark;
+    }
+
+    .up-btn {
+      border: 1px solid $primary-dark;
+      background-color: $primary-dark;
+      color: $text-dark;
+
+      &:hover {
+        background-color: #6d59df;
+        color: #fff;
+      }
+    }
+
+    .user-aside {
+      @include glass();
+      background-color: #20202099;
+      border: 1px solid #292929;
+
+      div:hover {
+        background-color: $gray-dark;
+      }
+
+      .user-active {
+        background-color: $primary-dark;
+        color: $text-dark;
+
+        &:hover {
+          background-color: rgb(109, 89, 223);
+        }
+      }
+    }
+  }
+  .form-floating-label input:focus + label,
+  .form-floating-label input:not(:placeholder-shown) + label {
+    color: $text-dark;
+    background-color: $primary-dark;
+  }
+
+  .form-floating-label input:focus {
+    border-color: $primary-dark !important;
+  }
+
+  .modal-content {
+    @include glass();
+    background: #55555598;
+    border: 1px solid $main-dark;
+  }
+
+  ///ARTICLES
+
+  .article {
+    h2 {
+      color: $text-dark;
+    }
+    .factuality-bar-container {
+      background-color: $greenish;
+    }
+
+    .article-card {
+      border-color: transparent;
+    }
+
+    .articles-list-card {
+      border: 1px solid transparent;
+      background: linear-gradient(to bottom, $gray-dark 0%, $gray-dark 100%);
+      border-radius: 16px;
+      background-size: 100% 20%;
+      background-repeat: no-repeat;
+      transition: all 0.5s ease-out;
+
+      &:hover {
+        cursor: pointer;
+        background-size: 100% 100%;
+
+        .top-wrapper {
+          background-color: transparent;
+          border: 1px solid transparent;
+          box-shadow: none;
+        }
+      }
+
+      .top-wrapper {
+        background-color: $gls-dark;
+        @include glass();
+      }
+
+      .fact-badge,
+      .bias-badge {
+        background-color: $main-dark !important;
+        color: $text-dark;
+
+        i {
+          color: $gls;
+        }
+      }
+
+      .fact-badge:hover,
+      .bias-badge:hover {
+        box-shadow: 3px 3px 12px #313131b4, -3px -3px 12px #83838369;
+        background: $main-dark;
+      }
+
+      button {
+        background-color: $main-dark;
+        color: $text-dark;
+
+        &:hover,
+        &:active {
+          box-shadow: 3px 3px 12px $gray-dark, -3px -3px 12px $main-dark;
+          color: inherit;
+          background-color: $gls;
+        }
+        &:active {
+          box-shadow: 1px 1px 8px $gray-dark, -1px -1px 8px $main-dark !important;
+          color: inherit !important;
+          background-color: $gls !important;
+          border: 1px solid transparent !important;
+        }
+      }
+    }
+
+    .article-selection {
+      @include glass();
+
+      .badge {
+        background-color: $gray-dark !important;
+        color: $greenish;
+      }
+
+      .nav-item:not(:nth-of-type(1)) {
+        @include neu-card($main-dark);
+        box-shadow: 3px 3px 14px $background-dark, -3px -3px 14px $main-dark;
+        transition: all 0.3s ease-in-out;
+        padding-block: 4px !important;
+      }
+
+      .nav-link {
+        padding: 0;
+        color: $gls;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:hover,
+        &:focus {
+          border-bottom: none;
+        }
+      }
+
+      .nav-link.active {
+        color: $primary-dark;
+
+        .badge {
+          color: $primary-dark;
+        }
+      }
+    }
+
+    .info-card {
+      @include neu-card($background-dark);
+      color: $text-dark;
+    }
+
+    .info-card:nth-of-type(2) {
+      min-height: 160px;
+
+      a {
+        text-decoration: underline;
+        color: $primary;
+        padding: 3px;
+        border-radius: 3px;
+        transition: color 0.3s ease, background-color 0.3s ease;
+
+        &:hover {
+          background-color: $primary;
+          color: $light;
+        }
+      }
+      .fake-bar {
+        width: 100%;
+        height: 25px;
+        background-color: $greenish;
+      }
+    }
+  }
+
+  ////TRENDING
+
+  //carousel
+  .carousel-control-prev,
+  .carousel-control-next,
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon,
+  .carousel-indicators {
+    filter: invert(100%);
+    color: #fff;
+  }
+
+  .trend {
+    h2 {
+      color: $text-dark;
+    }
+    .carousel {
+      color: $text-dark !important;
+
+      p,
+      h3 {
+        color: $text-dark !important;
+      }
+    }
+
+    //central card
+    .central-bottom {
+      .central-card {
+        @include neu-form($black-dark);
+        color: $text-dark;
+
+        &:hover {
+          background-color: $background-dark;
+        }
+      }
+    }
+
+    //right section
+    .left-card-trending {
+      @include neu-btn($background-dark);
+      color: $text-dark;
+      &:hover {
+        color: $text-dark;
+      }
+    }
+  }
+}
