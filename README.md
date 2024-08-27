@@ -52,4 +52,4 @@ Together, these design choices result in a clean, user-friendly interface that i
 
 ## **Contacts**
 
-**This is my** - [LinkedIn](www.linkedin.com/in/emanuele-pezzato-1232a824a)
+**This is my** - [LinkedIn](https://www.linkedin.com/in/emanuele-pezzato-1232a824a)
