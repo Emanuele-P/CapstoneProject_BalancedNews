@@ -504,7 +504,7 @@
     }
 
     .articles-list-card {
-      border: 1px solid transparent;
+      border: 1px solid #313131;
       background: linear-gradient(to bottom, $gray-dark 0%, $gray-dark 100%);
       border-radius: 16px;
       background-size: 100% 20%;
@@ -514,6 +514,7 @@
       &:hover {
         cursor: pointer;
         background-size: 100% 100%;
+        border: 1px solid #636363;
 
         .top-wrapper {
           background-color: transparent;
@@ -523,8 +524,10 @@
       }
 
       .top-wrapper {
-        background-color: $gls-dark;
         @include glass();
+        background-color: $main-dark;
+        border-color: #636363;
+        border-radius: 16px;
       }
 
       .fact-badge,
@@ -539,8 +542,8 @@
 
       .fact-badge:hover,
       .bias-badge:hover {
-        box-shadow: 3px 3px 12px #313131b4, -3px -3px 12px #83838369;
-        background: $main-dark;
+        box-shadow: 3px 3px 14px $background-dark, -3px -3px 14px $main-dark;
+        color: #9a9a9a !important;
       }
 
       button {
@@ -557,14 +560,14 @@
           box-shadow: 1px 1px 8px $gray-dark, -1px -1px 8px $main-dark !important;
           color: inherit !important;
           background-color: $gls !important;
-          border: 1px solid transparent !important;
         }
       }
     }
 
     .article-selection {
       @include glass();
-
+      background-color: $main-dark;
+      border-color: #636363;
       .badge {
         background-color: $gray-dark !important;
         color: $greenish;
@@ -591,10 +594,10 @@
       }
 
       .nav-link.active {
-        color: $primary-dark;
+        color: $light;
 
         .badge {
-          color: $primary-dark;
+          color: $light;
         }
       }
     }
@@ -605,24 +608,16 @@
     }
 
     .info-card:nth-of-type(2) {
-      min-height: 160px;
-
       a {
-        text-decoration: underline;
-        color: $primary;
-        padding: 3px;
-        border-radius: 3px;
-        transition: color 0.3s ease, background-color 0.3s ease;
+        color: $primary-dark;
 
         &:hover {
-          background-color: $primary;
+          background-color: $primary-dark;
           color: $light;
         }
       }
       .fake-bar {
-        width: 100%;
-        height: 25px;
-        background-color: $greenish;
+        background-color: $greenish-dark;
       }
     }
   }

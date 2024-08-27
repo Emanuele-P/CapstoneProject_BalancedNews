@@ -137,16 +137,12 @@ function AppNavbar({ className }) {
                       <span>Copyright</span>
                     </div>
                     <div className="flex gap-2">
-                      <Link to={'https://github.com/Emanuele-P'}>
+                      <a href="https://github.com/Emanuele-P" target="_blank">
                         <i className="bi bi-github"></i>
-                      </Link>
-                      <Link
-                        to={
-                          'https://www.linkedin.com/in/emanuele-pezzato-1232a824a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BgXGvQZPBTsa5rKGDFLENeg%3D%3D'
-                        }
-                      >
+                      </a>
+                      <a href="https://www.linkedin.com/in/emanuele-pezzato-1232a824a" target="_blank">
                         <i className="bi bi-linkedin"></i>
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 </NavDropdown>

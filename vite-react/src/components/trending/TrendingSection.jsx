@@ -39,11 +39,12 @@ function TrendingSection({ title, query }) {
           .slice(1, 2)
           .concat(validTrendingNews.slice(3, 8))
           .concat(validTrendingNews.slice(9, 18))
-          .concat(validTrendingNews.slice(20, 21))
+          .concat(validTrendingNews.slice(21, 22))
+          .concat(validTrendingNews.slice(23, 24))
       : title === 'Olympics'
-      ? validTrendingNews.slice(0, 11).concat(validTrendingNews.slice(15, 20)).concat(validTrendingNews.slice(22, 26))
+      ? validTrendingNews.slice(0, 11).concat(validTrendingNews.slice(15, 18)).concat(validTrendingNews.slice(21))
       : title === 'European Politics'
-      ? validTrendingNews.slice(0, 14)
+      ? validTrendingNews.slice(0, 1).concat(validTrendingNews.slice(2, 22)).concat(validTrendingNews.slice(23))
       : validTrendingNews
 
   return (

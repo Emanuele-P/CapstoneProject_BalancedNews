@@ -6,14 +6,12 @@ import CategoriesSlider from '../home/CategoriesSlider'
 import AppFooter from '../AppFooter'
 import TrendingPlaceholder from '../placeholders/TrendingPlaceholder'
 import { Container } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
 
 function TrendingPage() {
   const [loadedFirst, setLoadedFirst] = useState(false)
   const [loadedSecond, setLoadedSecond] = useState(false)
   const [loadedThird, setLoadedThird] = useState(false)
   const [scrollTop, setScrollTop] = useState(0)
-  const loading = useSelector((state) => state.news.loading)
 
   const handleScroll = () => {
     setScrollTop(window.scrollY)
@@ -47,17 +45,17 @@ function TrendingPage() {
       <CategoriesSlider />
       <div className="border-bottom mb-3 trend">
         <Container className="mt-4">
-          {loadedFirst && !loading ? (
+          {loadedFirst ? (
             <TrendingSection title="Olympics" query="olympics" scrollTop={scrollTop} />
           ) : (
             <TrendingPlaceholder />
           )}
-          {loadedSecond && !loading ? (
+          {loadedSecond ? (
             <TrendingSection title="Israel-Hamas Conflict" query="israel" scrollTop={scrollTop} />
           ) : (
             <TrendingPlaceholder />
           )}
-          {loadedThird && !loading ? (
+          {loadedThird ? (
             <TrendingSection title="European Politics" query="europe+politics" scrollTop={scrollTop} />
           ) : (
             <TrendingPlaceholder />

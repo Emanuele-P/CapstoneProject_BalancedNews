@@ -25,7 +25,7 @@ public class NewsService {
     private String apiKey3;
 
     public String getTopNews() {
-        String date = String.valueOf(LocalDate.now().minusDays(10));
+        String date = String.valueOf(LocalDate.now().minusDays(9));
         String url = "https://api.worldnewsapi.com/top-news?source-country=us&language=en&date=" + date;
 
         HttpHeaders headers = new HttpHeaders();

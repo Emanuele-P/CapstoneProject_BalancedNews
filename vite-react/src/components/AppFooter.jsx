@@ -1,7 +1,23 @@
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import logo from '../assets/svg/extended-logo.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { setTheme } from '../redux/actions/themeActions'
+import { useEffect } from 'react'
 
 function AppFooter() {
+  const theme = useSelector((state) => state.theme.theme)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-bs-theme', theme)
+  }, [theme])
+
+  const changeTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    dispatch(setTheme(newTheme))
+    localStorage.setItem('theme', newTheme)
+  }
+
   return (
     <div className="border-top footer-wrapper">
       <Container className="p-0 p-0">
@@ -188,6 +204,19 @@ function AppFooter() {
             </Col>
             <Col md={6} className="social-link">
               <ul className="nav d-flex gap-3 justify-content-end">
+                <div className={`toggle-theme  ${theme}`} onClick={changeTheme} aria-label="Toggle theme">
+                  {theme === 'light' ? (
+                    <div className="light-i">
+                      <i className="bi bi-brightness-high-fill"></i>
+                    </div>
+                  ) : theme === 'dark' ? (
+                    <div className="dark-i">
+                      <i className="bi bi-moon-stars-fill"></i>
+                    </div>
+                  ) : (
+                    'light'
+                  )}
+                </div>
                 <a href="#" className="nav-link ">
                   <i className="bi bi-facebook"></i>
                 </a>
@@ -197,7 +226,7 @@ function AppFooter() {
                 <a href="#" className="nav-link ">
                   <i className="bi bi-instagram"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/emanuele-pezzato-1232a824a/" className="nav-link ">
+                <a href="https://www.linkedin.com/in/emanuele-pezzato-1232a824a" className="nav-link ">
                   <i className="bi bi-linkedin"></i>
                 </a>
                 <a href="https://github.com/Emanuele-P" className="nav-link ">

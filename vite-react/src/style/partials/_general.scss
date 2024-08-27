@@ -285,6 +285,57 @@ footer {
         color: $primary;
       }
     }
+
+    .toggle-theme {
+      width: 32px;
+      height: 16px;
+      background-color: $gray;
+      border-radius: 15px;
+      position: relative;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      margin-top: 3px;
+      transition: background-color 0.5s ease;
+    }
+    .dark-i {
+      position: relative;
+      margin: 1px;
+      height: 14px;
+      width: 14px;
+      right: -16px;
+      border-radius: 99px;
+      background-color: $primary-dark;
+
+      i {
+        position: absolute;
+        top: -3px;
+        left: -15px;
+        font-size: 14px;
+        color: $black;
+        transition: background-color 1s ease-in-out;
+      }
+    }
+
+    .light-i {
+      position: absolute;
+      margin: 1px;
+      height: 14px;
+      width: 14px;
+      left: 0;
+      border-radius: 99px;
+      background-color: $primary;
+      transition: all 1s ease-in-out;
+
+      i {
+        position: absolute;
+        top: -3px;
+        right: -15.5px;
+        font-size: 14px;
+        color: $black;
+        transition: color 1s ease-in-out;
+      }
+    }
   }
 }
 
