@@ -30,6 +30,7 @@ public class NewsSourcesService {
                 newsSource.setMediaType(details.optString("media_type", "News Website"));
                 newsSource.setTrafficPopularity(details.optString("traffic_popularity", "Medium Traffic"));
                 newsSource.setCredibilityRating(details.optString("credibility", "Medium Credibility"));
+                newsSource.setLogo(details.optString("logo", null));
 
                 newsSourcesRepository.save(newsSource);
             }

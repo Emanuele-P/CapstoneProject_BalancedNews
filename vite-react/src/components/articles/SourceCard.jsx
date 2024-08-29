@@ -39,7 +39,7 @@ function SourceCard({ article }) {
       <CardBody>
         <div className="flex justify-content-between top-wrapper">
           <Button className="flex justify-content-start btn-source">
-            <Image src={pic} className="source-logo" />
+            <Image src={source?.logo || pic} className="source-logo" />
             <h6>{source?.name || displayDomain || 'Unknown Source'}</h6>
           </Button>
           <div>

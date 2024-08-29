@@ -24,6 +24,7 @@ function App() {
           <Route path="/trending" element={<TrendingPage />} />
 
           <Route path="/article/:id" element={<ArticlesPage />} />
+
           <Route path="/me" element={<UserPage />} />
         </Routes>
       </BrowserRouter>

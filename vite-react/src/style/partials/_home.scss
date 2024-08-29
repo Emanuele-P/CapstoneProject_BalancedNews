@@ -146,8 +146,8 @@ h2 {
   }
   .card-title {
     @include clamp();
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
   }
   .card-body {
     padding-top: 0.2rem;

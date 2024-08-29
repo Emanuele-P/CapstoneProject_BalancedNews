@@ -39,7 +39,9 @@ public class NewsSource {
 
     @Column(name = "popularity")
     private String trafficPopularity;
-    
+
     @Column(name = "credibility")
     private String credibilityRating;
+
+    private String logo;
 }

@@ -35,7 +35,7 @@ const LoginForm = () => {
       setShowWelcome(true)
       setTimeout(() => {
         navigate('/home')
-      }, 1200)
+      }, 1000)
     }
   }, [profile, navigate])
 

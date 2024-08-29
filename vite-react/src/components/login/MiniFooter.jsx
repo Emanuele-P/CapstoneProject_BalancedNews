@@ -1,8 +1,24 @@
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import logo from '../../assets/svg/extended-logo.svg'
 import world from '../../assets/svg/world.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { setTheme } from '../../redux/actions/themeActions'
 
 function MiniFooter() {
+  const theme = useSelector((state) => state.theme.theme)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-bs-theme', theme)
+  }, [theme])
+
+  const changeTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    dispatch(setTheme(newTheme))
+    localStorage.setItem('theme', newTheme)
+  }
+
   return (
     <div className="border-top footer-wrapper mini-footer">
       <Container className="px-4 p-0">
@@ -194,6 +210,19 @@ function MiniFooter() {
             </Col>
             <Col lg={3} className="social-link">
               <ul className="nav d-flex gap-3 justify-content-end">
+                <div className={`toggle-theme  ${theme}`} onClick={changeTheme} aria-label="Toggle theme">
+                  {theme === 'light' ? (
+                    <div className="light-i">
+                      <i className="bi bi-brightness-high-fill"></i>
+                    </div>
+                  ) : theme === 'dark' ? (
+                    <div className="dark-i">
+                      <i className="bi bi-moon-stars-fill"></i>
+                    </div>
+                  ) : (
+                    'light'
+                  )}
+                </div>
                 <a href="#" className="nav-link ">
                   <i className="bi bi-facebook"></i>
                 </a>

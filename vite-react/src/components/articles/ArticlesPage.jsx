@@ -159,7 +159,7 @@ function ArticlesPage() {
                   <CardBody>
                     <Row className="flex">
                       <Col lg={4}>
-                        <Image fluid src={pic} className="s-logo" />
+                        <Image fluid src={source?.logo || pic} className="s-logo" />
                       </Col>
                       <Col lg={1} />
                       <Col lg={7}>
