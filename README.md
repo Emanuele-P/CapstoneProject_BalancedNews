@@ -8,7 +8,7 @@ This project is a full-stack web application designed to be a comprehensive news
 
 - **News Comparison**: Users can compare headlines and summaries from multiple sources for each news topic. Each source is tagged with information about its political leaning, providing a clear visual representation of the percentage of left, right, and center perspectives.
   
-- **Blindspot Analysis**: The homepage features a blindspot section that highlights the most significant news story of the day that has a noticeable absence of coverage from either the left or the right, offering insights into potential media biases.
+- **Oversight Analysis**: The homepage features an oversight section that highlights the most significant news story of the day that has a noticeable absence of coverage from either the left or the right, offering insights into potential media biases.
 
 - **Trending Section**: The trending page displays popular topics with a sentiment bar, illustrating the effect of specific news on social media interactions. This allows users to gauge partial public opinion as positive or negative.
 
