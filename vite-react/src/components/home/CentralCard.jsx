@@ -12,7 +12,7 @@ function CentralCard({ article, biasPercentages }) {
   return (
     <>
       <Link to={`/article/${article.id}`}>
-        <Card className="w-100 central-card p-0 mb-2">
+        <Card className="w-100 central-card p-0 mt-2">
           <Row>
             <Col md={3} className="pe-0">
               <div className="central-card-pic-container">
@@ -31,9 +31,9 @@ function CentralCard({ article, biasPercentages }) {
                     centerPercentage={biasPercentages.centerPercentage || '100%'}
                     rightPercentage={biasPercentages.rightPercentage || '0%'}
                   />
-                  {/* <span className="percentage">{`L:${biasPercentages.leftPercentage || '0%'}| C:${
+                  <span className="percentage">{`L:${biasPercentages.leftPercentage || '0%'}| C:${
                     biasPercentages.centerPercentage || '100%'
-                  }| R:${biasPercentages.rightPercentage || '0%'}`}</span> */}
+                  }| R:${biasPercentages.rightPercentage || '0%'}`}</span>
                 </div>
               </Card.Body>
             </Col>

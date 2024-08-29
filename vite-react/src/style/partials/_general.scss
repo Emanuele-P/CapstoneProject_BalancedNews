@@ -1,3 +1,4 @@
+//app navbar
 .app-navbar {
   position: fixed;
   top: 40px;
@@ -8,6 +9,10 @@
   @include glass();
 
   transition: top 0.4s ease-in-out;
+
+  .nav-link:hover {
+    color: $primary;
+  }
 }
 .app-navbar.scrolled {
   top: 0 !important;
@@ -19,9 +24,12 @@
   margin-bottom: 1rem;
 }
 
+//nav dropdown
 .dropdown-menu {
-  padding: 0.5rem;
-  box-shadow: 0px 8px 10px 0px rgb(0 0 0 / 12%);
+  padding: 1rem;
+
+  @include glass();
+  background: $light;
 
   .dropdown-item {
     padding: 4px 14px;
@@ -36,26 +44,53 @@
     text-align: start;
     text-decoration: none;
   }
+  i {
+    color: $black !important;
+    transition: color 0.3s ease-out;
+    &:hover {
+      color: $primary !important;
+    }
+  }
 }
 
 .first-dropdown:hover {
-  color: $info;
+  color: $primary;
 }
 .dropdown-menu[data-bs-popper] {
   top: 140%;
 }
+
+//nav-propic
+.propic-wrap {
+  @include propic-wrapper(46px);
+  transition: box-shadow 0.3s ease-in-out;
+  outline: 3px solid #fff;
+
+  &.dropdown-open {
+    box-shadow: 0px 0px 20px #ffffff;
+  }
+}
 .propic {
   width: 40px;
   height: 40px;
-  object-fit: cover;
-  border-radius: 100%;
-  transition: outline 0.1s ease-in-out;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
 
   &.dropdown-open {
-    outline: 2px solid $info;
+    transform: scale(1.1);
   }
 }
-.active {
+.dropdown-toggle {
+  height: 46px;
+  width: 46px;
+  cursor: auto;
+}
+
+.active-sc {
+  font-weight: 600;
   color: $primary;
 }
 .nav-logo {
@@ -67,7 +102,7 @@
   font-weight: 600;
 }
 .drop-email {
-  color: $info;
+  color: $primary;
 }
 .drop-span {
   font-size: 12px;
@@ -84,7 +119,13 @@
 .color-mode {
   span {
     font-size: 13px;
-    color: $black !important;
+    color: $text !important;
+  }
+}
+
+.active-theme {
+  img {
+    border: 2px solid $primary;
   }
 }
 
@@ -92,9 +133,7 @@
   height: 50px;
   background-color: $background;
   border-radius: 8px;
-}
-.active-color {
-  border: 2px solid $info;
+  border: 2px solid transparent;
 }
 .transparent {
   background-color: transparent;
@@ -111,7 +150,7 @@
   border: none;
 
   .propic {
-    outline: 2px solid $info;
+    outline: 2px solid $primary;
   }
 }
 
@@ -135,38 +174,56 @@
     z-index: 1;
     left: 40%;
     top: 10px;
-    background-color: rgba(255, 255, 255, 0.569);
+    background-color: #faffff91;
   }
 }
 
 //search bar
 
 .form-control {
-  border-radius: 2px;
-  border: 1px solid $gray;
-  background-color: $gray;
+  border-radius: 0 75px 75px 0;
+  border: 1px solid $background;
+  background-color: $light;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
-  @include glass();
   &:focus {
-    border: 1px solid $gray;
+    border: 1px solid $background;
     box-shadow: none;
     outline: none;
-    background-color: $gray;
+    background-color: $light;
   }
 }
-// .input-group:focus-within,
-// .input-group:focus-visible {
-//   box-shadow: none;
-//   border: none;
-//   background-color: $gray;
-// }
+
 .input-group {
+  $dark-shadow: darken($background, 15%);
+  $light-shadow: lighten($background, 15%);
+
+  @include neu-btn($background);
+  padding: 4px !important;
+  width: 100%;
+  border-radius: 75px;
+  border: 1px solid $background;
+  background-color: $background;
+  display: flex;
+  align-items: center;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &:focus-within {
+    border: 1px solid $background;
+    box-shadow: inset 4px 4px 8px $dark-shadow, inset -4px -4px 8px $light-shadow;
+    color: darken($background, 80%) !important;
+    background-color: $background !important;
+  }
+
   .input-group-text {
-    border-radius: 2px;
-    background-color: $gray;
-    border: 1px solid $gray;
+    border-radius: 75px 0 0 75px;
+    background-color: $light;
+    border: 1px solid $background;
     border-right: none;
-    @include glass();
+  }
+
+  .form-control {
+    border-left: none;
   }
 }
 
@@ -177,10 +234,18 @@
 
 //footer
 .footer-wrapper {
-  background-color: $dark;
+  background-color: rgb(23, 23, 23);
 }
 footer {
   color: #fff;
+  position: relative;
+
+  .f-bg {
+    position: absolute;
+    width: 50%;
+    left: -100px;
+    top: 0;
+  }
 
   a {
     color: #fff !important;
@@ -217,7 +282,58 @@ footer {
       color: #fff;
 
       &:hover {
-        color: $info;
+        color: $primary;
+      }
+    }
+
+    .toggle-theme {
+      width: 32px;
+      height: 16px;
+      background-color: $gray;
+      border-radius: 15px;
+      position: relative;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      margin-top: 3px;
+      transition: background-color 0.5s ease;
+    }
+    .dark-i {
+      position: relative;
+      margin: 1px;
+      height: 14px;
+      width: 14px;
+      right: -16px;
+      border-radius: 99px;
+      background-color: $primary-dark;
+
+      i {
+        position: absolute;
+        top: -3px;
+        left: -15px;
+        font-size: 14px;
+        color: $black;
+        transition: background-color 1s ease-in-out;
+      }
+    }
+
+    .light-i {
+      position: absolute;
+      margin: 1px;
+      height: 14px;
+      width: 14px;
+      left: 0;
+      border-radius: 99px;
+      background-color: $primary;
+      transition: all 1s ease-in-out;
+
+      i {
+        position: absolute;
+        top: -3px;
+        right: -15.5px;
+        font-size: 14px;
+        color: $black;
+        transition: color 1s ease-in-out;
       }
     }
   }

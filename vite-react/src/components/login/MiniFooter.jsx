@@ -1,16 +1,36 @@
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import logo from '../../assets/svg/extended-logo.svg'
+import world from '../../assets/svg/world.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { setTheme } from '../../redux/actions/themeActions'
 
 function MiniFooter() {
+  const theme = useSelector((state) => state.theme.theme)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-bs-theme', theme)
+  }, [theme])
+
+  const changeTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    dispatch(setTheme(newTheme))
+    localStorage.setItem('theme', newTheme)
+  }
+
   return (
     <div className="border-top footer-wrapper mini-footer">
       <Container className="px-4 p-0">
         <footer className="pt-5">
+          <Image src={world} className="f-bg" />
           <Row>
-            <Col md={5} lg={{ span: 4 }}>
-              <Image src={logo} className="logo" />
+            <Col lg={3}></Col>
+            <Col md={5} lg={3}>
+              <div className="wrap w-100">
+                <Image src={logo} className="logo" />
+              </div>
             </Col>
-            <Col lg={1}></Col>
             <Col xs={6} md={2} className="mb-3">
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
@@ -74,7 +94,7 @@ function MiniFooter() {
               </ul>
             </Col>
 
-            <Col xs={6} md={2} lg={{ span: 2 }} className="mb-3">
+            <Col xs={6} md={2} lg={2} className="mb-3">
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
                   <a className="nav-link li-title">Help</a>
@@ -127,7 +147,7 @@ function MiniFooter() {
               </ul>
             </Col>
 
-            <Col xs={4} md={2} className="mb-3 d-none d-md-block">
+            <Col xs={4} lg={2} className="mb-3 d-none d-md-block">
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
                   <a className="nav-link li-title">Tools</a>
@@ -162,8 +182,9 @@ function MiniFooter() {
             </Col>
           </Row>
 
-          <Row className="border-bottom pt-5 pb-2 d-flex align-items-center">
-            <Col md={6}>
+          <Row className="pt-5 pb-2 flex justify-content-between">
+            <Col lg={2}></Col>
+            <Col lg={5} className="border-bottom pb-2 ps-0">
               <ul className="nav flex-row">
                 <li className="nav-item me-4">
                   <a href="#" className="nav-link ">
@@ -187,8 +208,21 @@ function MiniFooter() {
                 </li>
               </ul>
             </Col>
-            <Col md={6} className="social-link">
+            <Col lg={3} className="social-link">
               <ul className="nav d-flex gap-3 justify-content-end">
+                <div className={`toggle-theme  ${theme}`} onClick={changeTheme} aria-label="Toggle theme">
+                  {theme === 'light' ? (
+                    <div className="light-i">
+                      <i className="bi bi-brightness-high-fill"></i>
+                    </div>
+                  ) : theme === 'dark' ? (
+                    <div className="dark-i">
+                      <i className="bi bi-moon-stars-fill"></i>
+                    </div>
+                  ) : (
+                    'light'
+                  )}
+                </div>
                 <a href="#" className="nav-link ">
                   <i className="bi bi-facebook"></i>
                 </a>
@@ -198,7 +232,7 @@ function MiniFooter() {
                 <a href="#" className="nav-link ">
                   <i className="bi bi-instagram"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/emanuele-pezzato-1232a824a/" className="nav-link ">
+                <a href="https://www.linkedin.com/in/emanuele-pezzato-1232a824a" className="nav-link ">
                   <i className="bi bi-linkedin"></i>
                 </a>
                 <a href="https://github.com/Emanuele-P" className="nav-link ">
@@ -206,11 +240,13 @@ function MiniFooter() {
                 </a>
               </ul>
             </Col>
+            <Row className="mt-2 pb-4">
+              <Col lg={3}></Col>
+              <Col lg={9} className="ps-1">
+                <span>Balanced News © 2024</span>
+              </Col>
+            </Row>
           </Row>
-
-          <div className="d-flex flex-column flex-sm-row justify-content-between mt-2 pb-4">
-            <span>Balanced News © 2024</span>
-          </div>
         </footer>
       </Container>
     </div>

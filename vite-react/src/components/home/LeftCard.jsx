@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 function LeftCard({ borderClass, article, bias }) {
   if (!article) return null
-  console.log(article)
+  // console.log(article)
 
   return (
     <>

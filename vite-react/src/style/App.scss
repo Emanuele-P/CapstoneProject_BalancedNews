@@ -1,6 +1,5 @@
 @import './partials/bootstrap-overrides';
 @import './partials/mixins';
-@import './partials/cards';
 @import './partials/buttons';
 @import './partials/general';
 @import './partials/bias-bar';
@@ -8,6 +7,8 @@
 @import './partials/home';
 @import './partials/articles';
 @import './partials/trending-section';
+@import './partials/placeholders';
+@import './partials/dark-theme';
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');

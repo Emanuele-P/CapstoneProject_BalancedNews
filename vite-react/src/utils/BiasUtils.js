@@ -1,3 +1,4 @@
+/* eslint-disable no-const-assign */
 import { extractDomain } from './urlUtils'
 
 export const calculateBiasPercentages = (articles, sources) => {
@@ -31,11 +32,32 @@ export const calculateBiasPercentages = (articles, sources) => {
   })
 
   const totalSources = left.length + center.length + right.length
-  const leftPercentage = totalSources ? `${Math.round((left.length / totalSources) * 100)}%` : '0%'
-  const centerPercentage = totalSources ? `${Math.round((center.length / totalSources) * 100)}%` : '0%'
-  const rightPercentage = totalSources ? `${Math.round((right.length / totalSources) * 100)}%` : '0%'
+  let leftPercentage = totalSources ? Math.round((left.length / totalSources) * 100) : 0
+  let centerPercentage = totalSources ? Math.round((center.length / totalSources) * 100) : 0
+  let rightPercentage = totalSources ? Math.round((right.length / totalSources) * 100) : 0
 
-  return { leftPercentage, centerPercentage, rightPercentage, left, center, right }
+  const totalPercentage = leftPercentage + centerPercentage + rightPercentage
+
+  if (totalPercentage !== 100 && totalSources > 0) {
+    const diff = 100 - totalPercentage
+
+    if (leftPercentage >= centerPercentage && leftPercentage >= rightPercentage) {
+      leftPercentage += diff
+    } else if (centerPercentage >= leftPercentage && centerPercentage >= rightPercentage) {
+      centerPercentage += diff
+    } else {
+      rightPercentage += diff
+    }
+  }
+
+  return {
+    leftPercentage: `${leftPercentage}%`,
+    centerPercentage: `${centerPercentage}%`,
+    rightPercentage: `${rightPercentage}%`,
+    left,
+    center,
+    right,
+  }
 }
 
 export const getMaxBias = (leftPercentage, centerPercentage, rightPercentage) => {
@@ -52,7 +74,6 @@ export const getMaxBias = (leftPercentage, centerPercentage, rightPercentage) =>
 
 export const findHighestBiasArticles = (allValidNews, sources) => {
   let highestLeft = null
-  let highestCenter = null
   let highestRight = null
 
   let highestLeftPercentage = 0
@@ -65,21 +86,35 @@ export const findHighestBiasArticles = (allValidNews, sources) => {
     })
 
     const bias = calculateBiasPercentages(articlesForBiasCalculation, sources)
+    const numberOfSources = articlesForBiasCalculation.length
 
-    if (parseFloat(bias.leftPercentage) > highestLeftPercentage) {
+    if (
+      parseFloat(bias.leftPercentage) > highestLeftPercentage ||
+      (parseFloat(bias.leftPercentage) === highestLeftPercentage &&
+        numberOfSources > (highestLeft ? highestLeft.bias.numberOfSources : 0))
+    ) {
       highestLeftPercentage = parseFloat(bias.leftPercentage)
-      highestLeft = { article: newsItem.news[0], bias }
+      highestLeft = {
+        article: newsItem.news[0],
+        bias: { ...bias, numberOfSources },
+      }
     }
 
-    if (parseFloat(bias.rightPercentage) > highestRightPercentage) {
+    if (
+      parseFloat(bias.rightPercentage) > highestRightPercentage ||
+      (parseFloat(bias.rightPercentage) === highestRightPercentage &&
+        numberOfSources > (highestRight ? highestRight.bias.numberOfSources : 0))
+    ) {
       highestRightPercentage = parseFloat(bias.rightPercentage)
-      highestRight = { article: newsItem.news[0], bias }
+      highestRight = {
+        article: newsItem.news[0],
+        bias: { ...bias, numberOfSources },
+      }
     }
   })
 
   return {
     highestLeft,
-    highestCenter,
     highestRight,
   }
 }

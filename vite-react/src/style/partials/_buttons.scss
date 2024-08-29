@@ -1,14 +1,14 @@
 .login-btn {
   @include neu-btn(#bfb9e0);
   color: $light;
-  background-color: $info;
+  background-color: $primary;
 
   &:hover {
     color: $light;
-    background: $info;
+    background: $primary;
   }
   &:active {
-    color: $info !important;
+    color: $primary !important;
   }
 }
 
@@ -20,27 +20,26 @@
   @include neu-btn($light);
 
   &:hover {
-    color: $info;
+    color: $primary;
   }
   &:active {
-    color: $info !important;
+    color: $primary !important;
   }
 }
 
 .del-btn {
   @include neu-btn($light);
   color: $danger;
-  $dark-shadow: darken(#d44554c3, 10%);
-  $light-shadow: lighten(#e95c6ac3, 10%);
+
   &:hover {
     color: $light;
     background: $danger;
-    box-shadow: 4px 4px 12px $dark-shadow, -4px -4px 12px $light-shadow;
+    box-shadow: 4px 4px 12px $danger-down, -4px -4px 12px $danger-up;
   }
   &:active {
     color: $light !important;
     background: $danger !important;
-    box-shadow: inset 4px 4px 8px $dark-shadow, inset -4px -4px 8px $light-shadow !important;
+    box-shadow: inset 4px 4px 8px $danger-down, inset -4px -4px 8px $danger-up !important;
   }
 }
 

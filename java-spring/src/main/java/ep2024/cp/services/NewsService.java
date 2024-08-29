@@ -40,7 +40,7 @@ public class NewsService {
     }
 
     public String getTrendingNews(String query) {
-        String url = "https://api.worldnewsapi.com/search-news?text=" + query + "&language=en&number=20";
+        String url = "https://api.worldnewsapi.com/search-news?text=" + query + "&language=en&number=30";
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("x-api-key", apiKey3);

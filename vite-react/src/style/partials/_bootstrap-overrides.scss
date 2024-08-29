@@ -5,20 +5,43 @@
 @import '../../../node_modules/bootstrap/scss/functions';
 
 // 2. Include any default variable overrides here
-// $primary: #007bff;
 $black: #292929;
+$text: #292929;
 $main: #f9f4ed;
 $gray: #eaeaea;
+$greenish: #a6b1b0;
 $teal: #008080;
-$info: #5c1bf2;
-$left: #b33212;
-$right: #3a1f79;
-$center: #f8eded;
-
-$primary: #3067c0;
+$left: #fa5050;
+$right: #2868c9;
+$center: #ecfffb;
+$light-up: #f0f0f0;
+$light-down: #e3e3e3;
+$danger-up: #e95c6ac3;
+$danger-down: #d44554c3;
+$gls: #ffffff52;
+$primary: #5c1bf2;
 $secondary: #8c2636;
-$background: #faf5f4;
+$background: #eef0f4;
 $accent: #e35959;
+
+$black-dark: #212121;
+$text-dark: #eeeeee;
+$main-dark: #575757;
+$gray-dark: #4a4a4a;
+$greenish-dark: #758888;
+$teal-dark: #006666;
+$left-dark: #f03030;
+$right-dark: #184282;
+$center-dark: #e7e7e7;
+$light-up-dark: #1a1a1a;
+$light-down-dark: #121212;
+$danger-up-dark: #b34747;
+$danger-down-dark: #992828;
+$gls-dark: #00000052;
+$primary-dark: #834dff;
+$secondary-dark: #03dac6;
+$background-dark: #282828;
+$accent-dark: #cf6679;
 
 $xs: 0;
 $sm: 576px;

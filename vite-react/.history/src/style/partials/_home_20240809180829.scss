@@ -1,0 +1,205 @@
+.left-aside {
+  min-height: 20vh;
+  position: sticky;
+  top: 74px;
+  align-self: flex-start;
+  margin-bottom: 8px;
+}
+
+.main-section {
+  min-height: 100vh;
+}
+
+.right-aside {
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  min-height: 100vh;
+  max-height: 125vh;
+  @include scrollbar-style;
+
+  position: relative;
+}
+
+//all home sections
+.hmsc {
+  padding: 0.5rem;
+}
+
+//hero
+.hero-wrapper {
+  overflow: hidden;
+  height: 40vh;
+  position: relative;
+}
+.hero {
+  width: 130%;
+  object-fit: fill;
+}
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(to top, $black, transparent);
+  z-index: 1;
+}
+.hero-title {
+  position: absolute;
+  bottom: 6%;
+  color: #fff;
+  z-index: 2;
+  text-align: start;
+
+  @include clamp();
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  padding-inline: 1rem 0.5rem;
+}
+
+h2 {
+  color: $black;
+  margin-block: 2rem 1.5rem;
+}
+.spinner-grow {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+//central card latest news
+.central-card {
+  background-color: $gray;
+  border: none;
+
+  &:hover {
+    .card-title {
+      text-decoration: none;
+    }
+  }
+
+  .card-body {
+    padding-right: 12px !important;
+  }
+
+  .central-card-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+  .central-card-pic-container {
+    width: 100%;
+    height: 115px;
+    overflow: hidden;
+  }
+  .card-text {
+    @include clamp();
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+
+    min-height: 48px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  span {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .card-title {
+    font-size: 12px;
+    font-weight: 300;
+    margin-top: 0.5rem;
+  }
+}
+.separator {
+  border-bottom: 1px solid $black;
+  height: 13px;
+}
+
+//left card blindspot
+.left-card {
+  background-color: transparent;
+  margin-bottom: 0.5rem;
+
+  &.right-border {
+    border: 8px solid $right;
+  }
+  &.left-border {
+    border: 8px solid $left;
+  }
+  &.center-border {
+    border: 8px solid $center;
+  }
+
+  .left-card-pic {
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .card-title {
+    @include clamp();
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+  .card-body {
+    padding-top: 0.2rem;
+    padding-bottom: 0.4rem;
+  }
+}
+
+.banner {
+  min-height: 70px;
+  position: relative;
+
+  h2 {
+    position: absolute;
+    z-index: 2;
+    margin: 0;
+    font-family: 'Bebas Neue', sans-serif;
+  }
+
+  img {
+    width: 100%;
+    position: absolute;
+    top: 10px;
+  }
+}
+
+//right-card
+.right-card {
+  @include neu-card-s($background);
+
+  margin-bottom: 12px;
+  border-radius: 6px;
+  height: 100px;
+
+  .card-text {
+    height: 48px;
+    @include clamp();
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  h5 {
+    @include clamp();
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+  }
+
+  span {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .card-title {
+    font-size: 12px;
+    font-weight: 300;
+  }
+}

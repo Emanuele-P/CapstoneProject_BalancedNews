@@ -5,19 +5,31 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import propic from '../assets/default-avatar.jpg'
 import logo from '../assets/svg/simple-logo.svg'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../redux/actions/authActions'
 import arrow from '../assets/icons/arrow.svg'
 import light from '../assets/svg/light.svg'
 import dark from '../assets/svg/dark.svg'
 import system from '../assets/svg/system.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { setTheme } from '../redux/actions/themeActions'
 
 function AppNavbar({ className }) {
   const { isAuthenticated, profile } = useSelector((state) => state.auth)
+  const theme = useSelector((state) => state.theme.theme)
   const dispatch = useDispatch()
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const location = useLocation()
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-bs-theme', theme)
+  }, [theme])
+
+  const changeTheme = (newTheme) => {
+    dispatch(setTheme(newTheme))
+    localStorage.setItem('theme', newTheme)
+  }
 
   const handleToggle = (isOpen) => {
     setDropdownOpen(isOpen)
@@ -37,11 +49,14 @@ function AppNavbar({ className }) {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/home" className="active">
+              <Nav.Link href="/home" className={location.pathname === '/home' ? 'active-sc' : ''}>
                 Home
               </Nav.Link>
-              <Nav.Link href="#link">Discover</Nav.Link>
-              <Nav.Link href="#link">Media/bias</Nav.Link>
+              <Nav.Link href="/trending" className={location.pathname === '/trending' ? 'active-sc' : ''}>
+                Trending
+              </Nav.Link>
+              <Nav.Link>Discover</Nav.Link>
+              <Nav.Link>Media/bias</Nav.Link>
             </Nav>
             <div className="d-flex gap-3">
               {!isAuthenticated ? (
@@ -56,11 +71,13 @@ function AppNavbar({ className }) {
               ) : (
                 <NavDropdown
                   title={
-                    <Image
-                      src={profile?.avatar || propic}
-                      className={`propic ${dropdownOpen ? 'dropdown-open' : ''}`}
-                      roundedCircle
-                    />
+                    <div className={`propic-wrap ${dropdownOpen ? 'dropdown-open' : ''}`}>
+                      <Image
+                        src={profile?.avatar || propic}
+                        className={`propic ${dropdownOpen ? 'dropdown-open' : ''}`}
+                        roundedCircle
+                      />
+                    </div>
                   }
                   id="basic-nav-dropdown"
                   className="first-dropdown d-none d-md-block"
@@ -83,11 +100,17 @@ function AppNavbar({ className }) {
                   <NavDropdown.Divider />
 
                   <div className="flex color-mode">
-                    <Button className="w-100 transparent">
+                    <Button
+                      className={`w-100 transparent ${theme === 'light' ? 'active-theme' : ''}`}
+                      onClick={() => changeTheme('light')}
+                    >
                       <Image src={light} className="square active-color" />
                       <span>Light</span>
                     </Button>
-                    <Button className="w-100 transparent">
+                    <Button
+                      className={`w-100 transparent ${theme === 'dark' ? 'active-theme' : ''}`}
+                      onClick={() => changeTheme('dark')}
+                    >
                       <Image src={dark} className="square" />
                       <span>Dark</span>
                     </Button>
@@ -114,12 +137,12 @@ function AppNavbar({ className }) {
                       <span>Copyright</span>
                     </div>
                     <div className="flex gap-2">
-                      <Link to={'https://github.com/Emanuele-P'}>
-                        <i className="bi bi-github text-info"></i>
-                      </Link>
-                      <Link to={'https://www.linkedin.com/in/emanuele-pezzato-1232a824a/'}>
-                        <i className="bi bi-linkedin text-info"></i>
-                      </Link>
+                      <a href="https://github.com/Emanuele-P" target="_blank">
+                        <i className="bi bi-github"></i>
+                      </a>
+                      <a href="https://www.linkedin.com/in/emanuele-pezzato-1232a824a" target="_blank">
+                        <i className="bi bi-linkedin"></i>
+                      </a>
                     </div>
                   </div>
                 </NavDropdown>

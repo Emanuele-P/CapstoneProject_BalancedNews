@@ -1,5 +1,5 @@
 import { Container, Image } from 'react-bootstrap'
-import bg from '../assets/topography.svg'
+import bg from '../assets/svg/topography.svg'
 
 function DecorativeNav() {
   return (

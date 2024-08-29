@@ -2,18 +2,20 @@
 
 .bias-bar.left {
   background-color: $left;
+  background-image: linear-gradient(to right, $left 85%, white);
 }
 
 .bias-bar.center {
   background-color: white;
 
   .percentage-text {
-    color: $black;
+    color: $text;
   }
 }
 
 .bias-bar.right {
   background-color: $right;
+  background-image: linear-gradient(to left, $right 85%, white);
 }
 
 .left-card {
@@ -75,53 +77,53 @@
   }
 }
 
-.right-card,
-.central-card {
-  &:hover {
-    .bias-bar-container {
-      transform: scaleY(1.33);
-    }
-    .bias-bar {
-      transform: scaleY(1.33);
-    }
-  }
-
+.right-card {
   .bias-bar-container {
     width: 100%;
+  }
+  span {
+    display: none;
+  }
+}
+
+.central-card {
+  &:hover {
+    background-color: $light;
+    .bias-bar-container {
+      transform: scaleY(1.3);
+    }
+    .bias-bar {
+      transform: scaleY(1.2);
+    }
+
+    .percentage {
+      opacity: 1;
+      transform: translateX(10px);
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+  }
+  .bias-bar-container {
+    width: 60%;
     height: 6px;
     transition: transform 0.2s ease-in;
     transform-origin: center;
     border-radius: 75px;
+    @include neu-bar($background);
+
+    span {
+      opacity: 0;
+    }
   }
-  span {
-    display: none;
+  .percentage {
+    opacity: 0;
   }
   .bias-bar {
     transition: transform 0.2s ease-in;
   }
 }
 
-.central-card {
-  &:hover {
-    .bias-bar-container {
-      transform: scaleY(1.9);
-    }
-    .bias-bar {
-      transform: scaleY(1.6);
-    }
-    span {
-      opacity: 1;
-      transform: none;
-      position: relative;
-    }
-  }
+.right-card {
   .bias-bar-container {
-    width: 100%;
-  }
-  span {
-    transition: opacity 0.3 ease;
-    opacity: 0;
-    position: relative;
-    transform: none;
+    @include neu-bar($background);
   }
 }

@@ -7,6 +7,7 @@ import SignupForm from './components/login/SignupForm'
 import ArticlesPage from './components/articles/ArticlesPage'
 import ScrollToTop from './utils/ScrollToTop'
 import UserPage from './components/login/UserPage'
+import TrendingPage from './components/trending/TrendingPage'
 
 function App() {
   return (
@@ -20,7 +21,10 @@ function App() {
 
           <Route path="/home" element={<HomePage />} />
 
+          <Route path="/trending" element={<TrendingPage />} />
+
           <Route path="/article/:id" element={<ArticlesPage />} />
+
           <Route path="/me" element={<UserPage />} />
         </Routes>
       </BrowserRouter>

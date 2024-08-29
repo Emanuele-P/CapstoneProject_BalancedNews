@@ -18,7 +18,7 @@ import SourceCard from './SourceCard'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import pic from '../../assets/default-avatar.jpg'
+import pic from '../../assets/svg/sourceLogo.svg'
 import { getTimeDifference } from '../../utils/timeUtils'
 import { filterValidArticles } from '../../utils/urlUtils'
 import { getNewsSource } from '../../redux/actions/newsActions'
@@ -38,20 +38,25 @@ function ArticlesPage() {
     news: state.news.news,
     sources: state.news.newsSource,
   }))
+  const { isAuthenticated } = useSelector((state) => state.auth)
 
-  let mainArticle = null
-  let relatedArticles = []
-
-  for (const newsItem of news.top_news) {
-    const foundArticle = newsItem.news.find((article) => article.id === parseInt(id))
-    if (foundArticle) {
-      mainArticle = foundArticle
-      relatedArticles = newsItem.news.filter((article) => article.id !== parseInt(id))
+  const { mainArticle, relatedArticles } = (() => {
+    for (const newsItem of news.top_news) {
+      const foundArticle = newsItem.news.find((article) => article.id === parseInt(id))
+      if (foundArticle) {
+        return {
+          mainArticle: foundArticle,
+          relatedArticles: newsItem.news.filter((article) => article.id !== parseInt(id)),
+        }
+      }
     }
-  }
+    return { mainArticle: null, relatedArticles: [] }
+  })()
+
   const combinedArticles = [mainArticle, ...relatedArticles]
 
   const validArticles = filterValidArticles(combinedArticles)
+
   // const uniqueRelatedArticles = filterUniqueDomains(validArticles)
 
   const uniqueDomains = new Set()
@@ -82,7 +87,7 @@ function ArticlesPage() {
   }, [])
 
   const { leftPercentage, centerPercentage, rightPercentage, left, center, right } = calculateBiasPercentages(
-    uniqueRelatedArticles,
+    validArticles,
     sources
   )
 
@@ -104,6 +109,8 @@ function ArticlesPage() {
     }
   })()
 
+  // console.log('valid', validArticles)
+
   const handleLoadMore = () => {
     setDisplayedArticles((prevCount) => prevCount + 5)
   }
@@ -112,6 +119,7 @@ function ArticlesPage() {
   const url = new URL(mainArticle.url)
   const displayDomain = url.hostname.replace('www.', '').split('.')[0]
   const maxBias = getMaxBias(leftPercentage, centerPercentage, rightPercentage)
+  const totalArticles = left.length + center.length + right.length
 
   const [scrollTop, setScrollTop] = useState(0)
 
@@ -127,7 +135,7 @@ function ArticlesPage() {
     <>
       <DecorativeNav />
       <AppNavbar className={scrollTop > 0 ? 'scrolled' : ''} />
-      <Container className="mt-3 mb-5">
+      <Container className="mt-3 mb-5 article">
         {mainArticle && (
           <>
             <span>
@@ -150,40 +158,72 @@ function ArticlesPage() {
                 <Card className="article-card info-card source mt-1">
                   <CardBody>
                     <Row className="flex">
-                      <Col lg={3}>
-                        <Image fluid src={pic} />
+                      <Col lg={4}>
+                        <Image fluid src={source?.logo || pic} className="s-logo" />
                       </Col>
-                      <Col lg={5}>
+                      <Col lg={1} />
+                      <Col lg={7}>
                         <CardText>{getTimeDifference(mainArticle.publish_date)}</CardText>
                         <CardSubtitle className="mb-2">
                           {source?.name || displayDomain || 'Unknown source'}
                         </CardSubtitle>
-                        <CardText>Media Type</CardText>
-                        <CardSubtitle>{source?.mediaType || 'News Website'}</CardSubtitle>
-                      </Col>
-                      <Col lg={4}>
                         <CardText>Country</CardText>
                         <CardSubtitle className="mb-2">{mainArticle.source_country.toUpperCase()}</CardSubtitle>
-                        <CardText>Popularity</CardText>
-                        <CardSubtitle>{source?.trafficPopularity || 'Medium Traffic'}</CardSubtitle>
                       </Col>
                     </Row>
                   </CardBody>
                 </Card>
 
-                <Card className="article-card info-card fact">
-                  <CardBody>
-                    <CardText className="mb-2">Factuality: {source?.factualReporting || 'High'}</CardText>
-                    <CardText>Bias: {source?.biasRating || 'Center'}</CardText>
-                    <FactualityBar bias={source?.biasRating} />
-                  </CardBody>
+                <Card className="article-card info-card source fact mt-1">
+                  {isAuthenticated ? (
+                    <>
+                      <CardBody>
+                        <Row className="mb-4">
+                          <Col lg={6}>
+                            <CardText>Popularity</CardText>
+                            <CardSubtitle>{source?.trafficPopularity || 'Medium Traffic'}</CardSubtitle>
+                          </Col>
+                          <Col lg={6}>
+                            <CardText>Media Type</CardText>
+                            <CardSubtitle>{source?.mediaType || 'News Website'}</CardSubtitle>
+                          </Col>
+                        </Row>
+                        <Row className="mb-3">
+                          <Col lg={6}>
+                            <CardText>Bias</CardText>
+                            <CardSubtitle>{source?.biasRating || 'Center'}</CardSubtitle>
+                          </Col>
+                          <Col lg={6}>
+                            <CardText>Factuality</CardText>
+                            <CardSubtitle>{source?.factualReporting || 'High'}</CardSubtitle>
+                          </Col>
+                        </Row>
+                        <FactualityBar bias={source?.biasRating} />
+                      </CardBody>
+                    </>
+                  ) : (
+                    <>
+                      <CardBody className="d-flex flex-column justify-content-center gap-4">
+                        <Row>
+                          <div className="flex justify-content-between p-0">
+                            <h6 className="p-0 m-0">
+                              To view factuality data please <Link to={'/'}>log in</Link>
+                            </h6>
+                            <i className="bi bi-lock-fill p-0"></i>
+                          </div>
+                        </Row>
+                        <Row>
+                          <div className="fake-bar"></div>
+                        </Row>
+                      </CardBody>
+                    </>
+                  )}
                 </Card>
 
                 <Card className="article-card info-card">
                   <CardBody>
                     <CardTitle>Bias Distribution</CardTitle>
                     <CardText>
-                      {' '}
                       • {maxBias.value}% of the sources are {maxBias.type}
                     </CardText>
                     <BiasBar
@@ -197,8 +237,8 @@ function ArticlesPage() {
             </Row>
           </>
         )}
-        <Nav variant="underline" defaultActiveKey="link" className="article-selection mt-4 mb-3 border-bottom">
-          <Nav.Item className="ms-2">{uniqueRelatedArticles.length} Articles</Nav.Item>
+        <Nav defaultActiveKey="link" className="article-selection mt-4 mb-3">
+          <Nav.Item className="ms-2">{totalArticles} Articles</Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey="all" onClick={() => handleFilterChange('all')}>
               All

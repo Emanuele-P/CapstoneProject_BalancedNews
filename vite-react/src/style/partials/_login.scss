@@ -1,6 +1,6 @@
 .background-login {
   h1 {
-    color: $info;
+    color: $primary;
     font-weight: 300;
     margin-block: 3rem 2.5rem;
   }
@@ -33,7 +33,7 @@
   }
 
   h4:first-of-type {
-    color: $info;
+    color: $primary;
   }
   h4:nth-of-type(2) {
     font-size: 18px;
@@ -47,10 +47,10 @@
     font-size: 12px;
     opacity: 80%;
     span {
-      color: $info;
+      color: $primary;
       font-weight: 700;
       &:hover {
-        text-decoration: underline $info;
+        text-decoration: underline $primary;
         cursor: pointer;
       }
     }
@@ -63,7 +63,7 @@
   .join-btn {
     margin-bottom: 3rem;
     background: transparent;
-    color: $black;
+    color: $text;
     border: 1px solid $gray;
 
     &:hover {
@@ -81,6 +81,23 @@
     padding: 3rem;
     @include glass();
   }
+
+  //Illustration
+  .illu-wrap {
+    overflow: hidden;
+    margin-top: 1.4rem;
+    margin-bottom: 1rem;
+    height: 80vh;
+    border-radius: 12px;
+    position: sticky;
+    top: 30px;
+    img {
+      width: 120%;
+      position: absolute;
+      bottom: 0;
+      transition: all 1s ease;
+    }
+  }
 }
 
 //nav
@@ -97,17 +114,33 @@
   width: 100%;
   height: 70px;
 
-  i {
-    font-size: 18px;
-    color: $dark;
+  .icon-wrap {
+    background: #e0e0e0;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s ease, background-image 0.3s ease;
+    background-image: linear-gradient(145deg, #ffffff, #d1d9e6);
+    box-shadow: 3px 3px 16px #d1d9e6, -3px -3px 16px #ffffff;
 
     &:hover {
       cursor: pointer;
-      color: $info;
+      background: $background;
+      box-shadow: inset 3px 3px 16px #d1d9e6, inset -3px -3px 16px #ffffff;
+
+      i {
+        color: $primary;
+      }
     }
-  }
-  i::before {
-    font-weight: 600 !important;
+
+    i {
+      color: #6c757d;
+      font-size: 20px;
+    }
   }
 }
 
@@ -122,12 +155,20 @@
   }
 
   h4 {
-    color: $info;
+    color: $primary;
   }
+  .propic-wrapper {
+    @include propic-wrapper(120px);
+    outline: 4px solid #fff;
+    margin-left: 4px;
+  }
+
   .propic {
-    height: 100px;
-    width: 100px;
-    object-fit: cover;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 110px;
+    width: 110px;
   }
 
   .guide:hover {
@@ -136,18 +177,19 @@
   }
 
   .up-btn {
-    border: 1px solid $info;
-    background-color: $info;
+    border: 1px solid $primary;
+    background-color: $primary;
     color: #fff;
 
     &:hover {
-      background-color: rgb(109, 89, 223);
+      background-color: #6d59df;
       color: #fff;
     }
   }
 
   .user-aside {
     position: fixed;
+    z-index: 10;
     top: 90px;
     height: calc(95vh - 70px);
 
@@ -170,7 +212,7 @@
     }
 
     .user-active {
-      background-color: $info;
+      background-color: $primary;
       color: #fff;
 
       &:hover {
@@ -213,13 +255,13 @@
   left: 0.75rem;
   font-size: 12px;
   color: #fff;
-  background-color: $info;
+  background-color: $primary;
   border-radius: 75px;
   padding-inline: 12px;
 }
 
 .form-floating-label input:focus {
-  border-color: $info;
+  border-color: $primary;
 }
 
 .modal-body {
@@ -229,7 +271,7 @@
 
 .modal-content {
   @include glass();
-  background: rgba(255, 255, 255, 0.597);
+  background: #ffffff98;
 }
 
 .modal-backdrop.fade {
@@ -237,9 +279,13 @@
 }
 
 .mini-footer {
-  padding-left: 23%;
-
+  .wrap {
+    position: relative;
+  }
   .logo {
-    width: 80%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: -35px;
   }
 }

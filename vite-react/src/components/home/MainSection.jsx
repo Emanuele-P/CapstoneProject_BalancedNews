@@ -1,4 +1,5 @@
-import { Col, Image, Spinner } from 'react-bootstrap'
+/* eslint-disable react/prop-types */
+import { Col, Image, Row, Spinner } from 'react-bootstrap'
 import hero from '../../assets/hero.jpg'
 import CentralCard from './CentralCard'
 import BiasBar from '../BiasBar'
@@ -10,10 +11,9 @@ import RightAside from './RightAside'
 import { extractDomain, filterValidArticles } from '../../utils/urlUtils'
 import { calculateBiasPercentages, findHighestBiasArticles } from '../../utils/BiasUtils'
 import LeftAside from './LeftAside'
-import CardPlaceholder from './CardPlaceholder'
-import LeftAsidePlaceholder from './LeftAsidePlaceholder'
+import HomePlaceholder from '../placeholders/HomePlaceholder'
 
-function MainSection() {
+function MainSection({ scrollTop }) {
   const dispatch = useDispatch()
   const loading = useSelector((state) => state.news.loading)
   const news = useSelector((state) => state.news.news)
@@ -37,7 +37,7 @@ function MainSection() {
     })
   }
 
-  const allValidNews = news.top_news ? getValidNews(news.top_news) : []
+  const allValidNews = news.top_news ? getValidNews(news.top_news).slice(0, 40) : []
 
   // console.log('Filtered valid news:', allValidNews)
   const flattenedNews = allValidNews.flatMap((newsItem) => newsItem.news[0])
@@ -77,39 +77,41 @@ function MainSection() {
 
   return (
     <>
-      {loading && <LeftAsidePlaceholder />}
-      {!loading && <LeftAside highestLeft={highestLeft} highestRight={highestRight} />}
-      <Col lg={6} className="main-section hmsc pt-1" ref={mainSectionRef}>
-        {loading && <CardPlaceholder />}
-        {!loading && flattenedNews[0] && (
-          <Link to={`/article/${flattenedNews[0].id}`}>
-            <section className="hero-wrapper">
-              <Image src={flattenedNews[0].image || hero} className="hero"></Image>
-              <div className="hero-overlay"></div>
-              <h3 className="hero-title">{flattenedNews[0].title || 'Untitled'}</h3>
-              <BiasBar
-                leftPercentage={biasPercentages[0]?.leftPercentage || '0%'}
-                centerPercentage={biasPercentages[0]?.centerPercentage || '100%'}
-                rightPercentage={biasPercentages[0]?.rightPercentage || '0%'}
-              />
-            </section>
-          </Link>
-        )}
-        <h2>
-          Top news stories <Spinner animation="grow" className="text-danger" />
-        </h2>
-        {flattenedNews &&
-          flattenedNews
-            .slice(1, 7)
-            .map((article, index) => (
-              <CentralCard key={article.id} article={article} biasPercentages={biasPercentages[index + 1] || {}} />
-            ))}
-      </Col>
-      <RightAside
-        mainSectionRef={mainSectionRef}
-        validatedNews={flattenedNews.slice(7)}
-        biasPercentages={biasPercentages.slice(7)}
-      />
+      {loading && <HomePlaceholder />}
+      {!loading && (
+        <Row className="mb-4 pb-4">
+          <LeftAside highestLeft={highestLeft} highestRight={highestRight} scrollTop={scrollTop} />
+          <Col lg={6} className="main-section pt-1" ref={mainSectionRef}>
+            {flattenedNews[0] && (
+              <>
+                <Link to={`/article/${flattenedNews[0].id}`}>
+                  <section className="hero-wrapper">
+                    <Image src={flattenedNews[0].image || hero} className="hero" />
+                    <div className="hero-overlay"></div>
+                    <h3 className="hero-title">{flattenedNews[0].title || 'Untitled'}</h3>
+                    <BiasBar
+                      leftPercentage={biasPercentages[0]?.leftPercentage || '0%'}
+                      centerPercentage={biasPercentages[0]?.centerPercentage || '100%'}
+                      rightPercentage={biasPercentages[0]?.rightPercentage || '0%'}
+                    />
+                  </section>
+                </Link>
+                <h2>
+                  Top news stories <Spinner animation="grow" className="text-danger" />
+                </h2>
+                {flattenedNews.slice(1, 14).map((article, index) => (
+                  <CentralCard key={article.id} article={article} biasPercentages={biasPercentages[index + 1] || {}} />
+                ))}
+              </>
+            )}
+          </Col>
+          <RightAside
+            mainSectionRef={mainSectionRef}
+            validatedNews={flattenedNews.slice(14)}
+            biasPercentages={biasPercentages.slice(14)}
+          />
+        </Row>
+      )}
     </>
   )
 }

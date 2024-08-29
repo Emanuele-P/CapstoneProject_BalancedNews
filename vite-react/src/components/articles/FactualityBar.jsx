@@ -19,8 +19,15 @@ function FactualityBar({ bias }) {
   const biasPosition = biasScale[bias] || 50
   const biasColor = biasColors[bias] || '#bfd7ea'
 
+  const transparentBiasColor = `${biasColor}50`
+
   return (
-    <div className="factuality-bar-container">
+    <div
+      className="factuality-bar-container"
+      style={{
+        backgroundColor: transparentBiasColor,
+      }}
+    >
       <div className="factuality-bar" style={{ left: `${biasPosition}%`, backgroundColor: biasColor }}></div>
     </div>
   )
