@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { Col, Image, Row, Spinner } from 'react-bootstrap'
-import hero from '../../assets/hero.jpg'
 import CentralCard from './CentralCard'
 import BiasBar from '../BiasBar'
 import { Link } from 'react-router-dom'
@@ -12,6 +11,7 @@ import { extractDomain, filterValidArticles } from '../../utils/urlUtils'
 import { calculateBiasPercentages, findHighestBiasArticles } from '../../utils/BiasUtils'
 import LeftAside from './LeftAside'
 import HomePlaceholder from '../placeholders/HomePlaceholder'
+import cover from '../../assets/pol-wir.webp'
 
 function MainSection({ scrollTop }) {
   const dispatch = useDispatch()
@@ -86,7 +86,7 @@ function MainSection({ scrollTop }) {
               <>
                 <Link to={`/article/${flattenedNews[0].id}`}>
                   <section className="hero-wrapper">
-                    <Image src={flattenedNews[0].image || hero} className="hero" />
+                    <Image src={cover} className="hero" />
                     <div className="hero-overlay"></div>
                     <h3 className="hero-title">{flattenedNews[0].title || 'Untitled'}</h3>
                     <BiasBar

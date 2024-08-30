@@ -36,20 +36,20 @@ function SourceCard({ article }) {
 
   return (
     <Card className="articles-list-card mb-3">
-      <CardBody>
-        <div className="flex justify-content-between top-wrapper">
-          <Button className="flex justify-content-start btn-source">
-            <Image src={source?.logo || pic} className="source-logo" />
-            <h6>{source?.name || displayDomain || 'Unknown Source'}</h6>
-          </Button>
-          <div>
-            <Badge className="fact-badge">{isAuthenticated ? source?.factualReporting || 'High' : ''}</Badge>
-            <Badge className="ms-2 bias-badge">
-              {isAuthenticated ? source?.biasRating || 'Center' : <i className="bi bi-lock-fill p-0 mx-3"></i>}
-            </Badge>
+      <Link to={`/article/${article.id}`}>
+        <CardBody>
+          <div className="flex justify-content-between top-wrapper">
+            <Button className="flex justify-content-start btn-source">
+              <Image src={source?.logo || pic} className="source-logo" />
+              <h6>{source?.name || displayDomain || 'Unknown Source'}</h6>
+            </Button>
+            <div>
+              <Badge className="fact-badge">{isAuthenticated ? source?.factualReporting || 'High' : ''}</Badge>
+              <Badge className="ms-2 bias-badge">
+                {isAuthenticated ? source?.biasRating || 'Center' : <i className="bi bi-lock-fill p-0 mx-3"></i>}
+              </Badge>
+            </div>
           </div>
-        </div>
-        <Link to={`/article/${article.id}`}>
           <CardTitle className="mt-2 px-3">{article.title || 'No title available'}</CardTitle>
           <CardText className="px-3">{article.summary || 'No summary available'}</CardText>
           <div className="flex justify-content-between px-3 pb-3">
@@ -58,8 +58,8 @@ function SourceCard({ article }) {
               <span className="span-link">Read full article</span>
             </Link>
           </div>
-        </Link>
-      </CardBody>
+        </CardBody>
+      </Link>
     </Card>
   )
 }
